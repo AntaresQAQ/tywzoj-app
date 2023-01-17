@@ -6,6 +6,9 @@ parserOptions:
   ecmaVersion: 2020
   project: tsconfig.json
 
+ignorePatterns:
+  - vite.config.ts
+
 plugins:
   - '@typescript-eslint/eslint-plugin'
   - simple-import-sort
