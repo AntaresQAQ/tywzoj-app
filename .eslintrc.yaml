@@ -12,6 +12,7 @@ ignorePatterns:
 plugins:
   - '@typescript-eslint/eslint-plugin'
   - simple-import-sort
+  - react-hooks
 
 extends:
   - 'plugin:@typescript-eslint/recommended'
@@ -39,6 +40,8 @@ rules:
   no-unused-vars: off
   react/jsx-uses-react: error
   react/jsx-uses-vars: error
+  react-hooks/rules-of-hooks: error
+  react-hooks/exhaustive-deps: error
   simple-import-sort/exports: error
   simple-import-sort/imports: error
   '@typescript-eslint/explicit-function-return-type': off
@@ -51,7 +54,14 @@ rules:
     - selector: enum
       format: [PascalCase]
       prefix: [CE_]
+    - selector: [ function, classMethod ]
+      modifiers: [ async ]
+      format: [ camelCase, PascalCase ]
+      suffix: [ Async ]
   '@typescript-eslint/no-explicit-any': error
   '@typescript-eslint/no-duplicate-enum-values': error
-  '@typescript-eslint/no-unused-vars': error
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - vars: local
+      args: after-used
   '@typescript-eslint/prefer-as-const': error
