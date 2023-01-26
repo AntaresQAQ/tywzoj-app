@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Auto-generated files
+src/Common/LocalizeString/locale.d.ts
+src/assets/locale/

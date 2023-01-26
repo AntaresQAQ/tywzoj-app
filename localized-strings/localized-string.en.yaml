@@ -1,0 +1,12 @@
+- name: CLOSE_BUTTON_TOOLTIP
+  value: Close
+  raw: Close
+  description: Close button tooltip
+- name: LOGIN_PAGE_USERNAME
+  value: Username
+  raw: Username
+  description: Username for input label
+- name: LOGIN_PAGE_PASSWORD
+  value: Password
+  raw: Password
+  description: Password for input label

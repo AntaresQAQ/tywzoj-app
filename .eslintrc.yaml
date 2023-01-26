@@ -8,6 +8,7 @@ parserOptions:
 
 ignorePatterns:
   - vite.config.ts
+  - scripts/*
 
 plugins:
   - '@typescript-eslint/eslint-plugin'
