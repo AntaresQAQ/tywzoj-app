@@ -7,6 +7,17 @@ export interface IEnvState {
   apiEndPoint: string;
   domainIcpRecordInformation: string;
   gravatarCdn: string;
+  isAndroid: boolean;
+  isChrome: boolean;
+  isEdge: boolean;
+  isFirefox: boolean;
+  isIOS: boolean;
+  isMiddleScreen: boolean;
+  isMiniScreen: boolean;
+  isMobile: boolean;
+  isRtl: boolean;
+  isSafari: boolean;
+  isSmallScreen: boolean;
   recaptchaEnabled: boolean;
   recaptchaKey: string;
   renderMarkdownInUserBio: boolean;

@@ -3,11 +3,12 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
 import { getSessionInfoRequestAsync } from "@/Api/Modules/Auth";
+import { initEnv } from "@/Common/Environment";
 import { setCurrentUser, setEnv, setPagination, setServerVersion } from "@/Common/Environment/Action";
 import { getApiBearerToken } from "@/Common/Environment/Selectors";
 import { ErrorBoundary } from "@/Common/Error/ErrorBoundary";
 import { setLocale } from "@/Common/LocalizeString/Action";
-import { getPreferLanguage, loadLocaleAsync } from "@/Common/LocalizeString/Utils";
+import { getIsRtlLanguage, getPreferLanguage, loadLocaleAsync } from "@/Common/LocalizeString/Utils";
 
 import { App } from "./App";
 import { store } from "./Store";
@@ -57,10 +58,12 @@ function initLocalizeStringAsync() {
         strings: strings,
       }),
     );
+    store.dispatch(setEnv({ isRtl: getIsRtlLanguage(preferLang) }));
   });
 }
 
 function launch() {
+  store.dispatch(initEnv);
   Promise.all([initSessionInfoAsync(), initLocalizeStringAsync()]).then(render);
 }
 

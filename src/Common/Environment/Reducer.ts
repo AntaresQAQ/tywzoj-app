@@ -2,14 +2,12 @@ import { createReducer } from "@reduxjs/toolkit";
 
 import { setCurrentUser, setEnv, setPagination, setServerVersion } from "@/Common/Environment/Action";
 import { ICurrentUserState, IEnvState, IPaginationState, IServerVersionState } from "@/Common/Environment/Types";
-import { getTheme } from "@/Common/Theme";
-import { CE_TokenName, getToken } from "@/Common/Utilities/Token";
+import { CE_ThemeName } from "@/Common/Theme";
 
 const envInitialState: IEnvState = {
   apiEndPoint: "http://localhost:9000/",
-  apiBearerToken: getToken(CE_TokenName.ApiBearerToken),
   gravatarCdn: "https://cn.gravatar.com/avatar/",
-  themeName: getTheme(),
+  themeName: CE_ThemeName.Light,
 } as unknown as IEnvState;
 const serverVersionInitialState: IServerVersionState = null as unknown as IServerVersionState;
 const paginationInitialState: IPaginationState = null as unknown as IPaginationState;
