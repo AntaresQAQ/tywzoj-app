@@ -3,6 +3,7 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 
 const supportedLanguages = [
+  // "ar",
   "en",
   // "fr",
   // "ko",

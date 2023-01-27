@@ -1,6 +1,10 @@
 import { getLocalStorage } from "@/Common/Utilities/SafeStorage";
 
-import { CE_Language, defaultLanguage, languageStorageStringKey, supportedLanguages } from "./Locales";
+import { CE_Language, defaultLanguage, languageStorageStringKey, rtlLanguages, supportedLanguages } from "./Locales";
+
+export function getIsRtlLanguage(lang: CE_Language) {
+  return rtlLanguages.findIndex(l => lang.startsWith(l)) >= 0;
+}
 
 export function chooseLanguage(languages: string | string[]): CE_Language {
   if (!languages) return null;

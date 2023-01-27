@@ -1,28 +1,21 @@
-import {
-  teamsDarkTheme,
-  teamsHighContrastTheme,
-  teamsLightTheme,
-  Theme,
-  webDarkTheme,
-  webLightTheme,
-} from "@fluentui/react-components";
+import { ITheme } from "@fluentui/react";
+
+import { darkTheme } from "./Dark";
+import { highContrastTheme } from "./HighContrast";
+import { lightTheme } from "./Light";
 
 export const enum CE_ThemeName {
-  WebLight = "WebLight",
-  WebDark = "WebDark",
-  TeamsLight = "ThemesLight",
-  TeamsDark = "TeamsDark",
-  TeamsHighContrast = "teamsHighContrast",
+  Light = "Light",
+  Dark = "Dark",
+  HighContrast = "HighContrast",
 }
 
-const themes: { [name: string]: Theme } = {
-  [CE_ThemeName.WebLight]: webLightTheme,
-  [CE_ThemeName.WebDark]: webDarkTheme,
-  [CE_ThemeName.TeamsLight]: teamsLightTheme,
-  [CE_ThemeName.TeamsDark]: teamsDarkTheme,
-  [CE_ThemeName.TeamsHighContrast]: teamsHighContrastTheme,
+const themes: { [name: string]: ITheme } = {
+  [CE_ThemeName.Light]: lightTheme,
+  [CE_ThemeName.Dark]: darkTheme,
+  [CE_ThemeName.HighContrast]: highContrastTheme,
 };
 
-export function getTheme(name?: CE_ThemeName): Theme {
-  return (name && themes[name]) || webLightTheme;
+export function getTheme(name?: CE_ThemeName): ITheme {
+  return name && themes[name];
 }
