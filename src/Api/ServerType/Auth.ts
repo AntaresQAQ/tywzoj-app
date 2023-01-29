@@ -5,4 +5,5 @@ export interface ISessionInfo {
   userBaseDetail: IUserBaseEntity;
   serverVersion: IServerVersion;
   preference: IPreferenceConfig;
+  unixTimestamp: number;
 }
