@@ -3,6 +3,7 @@
 
 interface ImportMetaEnv {
   readonly TYWZOJ_API_END_POINT: string;
+  readonly TYWZOJ_LOGO_URL: string;
 }
 
 interface ImportMeta {

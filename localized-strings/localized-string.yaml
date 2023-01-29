@@ -1,3 +1,31 @@
+- name: COMMON_CLOSE_BUTTON_TITLE
+  value: Close
+  description: Common close button tooltip or aria-label.
+
+- name: APP_NAV_TITLE
+  value: Navigation
+  description: A string for navigation button's tooltip and aria-label.
+
+- name: APP_NAV_PAGE_NAME_HOME_PAGE
+  value: Home
+  description: A name for page.
+
+- name: APP_NAV_PAGE_NAME_PROBLEM_PAGE
+  value: Problem
+  description: A name for page.
+
+- name: APP_NAV_PAGE_NAME_PROBLEM_SET_PAGE
+  value: Problem Set
+  description: A name for page.
+
+- name: APP_NAV_PAGE_NAME_HOMEWORK_PAGE
+  value: Homework
+  description: A name for page.
+
+- name: APP_NAV_PAGE_NAME_CONTEST_PAGE
+  value: Contest
+  description: A name for page.
+
 - name: APP_FOOTER_POWERED_BY
   value: '{0} is powered by TYWZOJ'
   description: The param {0} is the site name. Please keep TYWZOJ as raw string.

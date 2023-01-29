@@ -7,3 +7,7 @@ export function getApiEndPoint() {
   if (!apiEndPoint.endsWith("/")) apiEndPoint += "/";
   return apiEndPoint;
 }
+
+export function getAppLogoUrl() {
+  return getAppBuildEnv().TYWZOJ_LOGO_URL;
+}

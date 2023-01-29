@@ -1,3 +1,4 @@
+import { initializeIcons } from "@fluentui/react";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
@@ -64,6 +65,7 @@ function initLocalizeStringAsync() {
 }
 
 function launch() {
+  initializeIcons();
   store.dispatch(initEnv);
   Promise.all([initSessionInfoAsync(), initLocalizeStringAsync()]).then(render);
 }

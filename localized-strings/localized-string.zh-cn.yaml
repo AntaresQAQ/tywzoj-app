@@ -1,3 +1,31 @@
+- name: COMMON_CLOSE_BUTTON_TITLE
+  value: 关闭
+  description: Common close button tooltip or aria-label.
+  raw: Close
+- name: APP_NAV_TITLE
+  value: 导航
+  description: A string for navigation button's tooltip and aria-label.
+  raw: Navigation
+- name: APP_NAV_PAGE_NAME_HOME_PAGE
+  value: 首页
+  description: A name for page.
+  raw: Home
+- name: APP_NAV_PAGE_NAME_PROBLEM_PAGE
+  value: 题目
+  description: A name for page.
+  raw: Problem
+- name: APP_NAV_PAGE_NAME_PROBLEM_SET_PAGE
+  value: 题集
+  description: A name for page.
+  raw: Problem Set
+- name: APP_NAV_PAGE_NAME_HOMEWORK_PAGE
+  value: 作业
+  description: A name for page.
+  raw: Homework
+- name: APP_NAV_PAGE_NAME_CONTEST_PAGE
+  value: 比赛
+  description: A name for page.
+  raw: Contest
 - name: APP_FOOTER_POWERED_BY
   value: '{0} 由 TYWZOJ 强力驱动'
   description: the param {0} is the site name. Please keep TYWZOJ as raw string.
