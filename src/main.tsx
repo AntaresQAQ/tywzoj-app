@@ -7,8 +7,8 @@ import { initEnv } from "@/Common/Environment";
 import { setCurrentUser, setEnv, setPagination, setServerVersion } from "@/Common/Environment/Action";
 import { getApiBearerToken } from "@/Common/Environment/Selectors";
 import { ErrorBoundary } from "@/Common/Error/ErrorBoundary";
-import { setLocale } from "@/Common/LocalizeString/Action";
-import { getIsRtlLanguage, getPreferLanguage, loadLocaleAsync } from "@/Common/LocalizeString/Utils";
+import { setLocale } from "@/Common/LocalizedString/Action";
+import { getIsRtlLanguage, getPreferLanguage, loadLocaleAsync } from "@/Common/LocalizedString/Utils";
 
 import { App } from "./App";
 import { store } from "./Store";
@@ -34,6 +34,7 @@ function initSessionInfoAsync() {
         ...sessionInfo.preference.security,
         domainIcpRecordInformation: sessionInfo.preference.domainIcpRecordInformation,
         siteName: sessionInfo.preference.siteName,
+        serverTimeDiff: Date.now() - sessionInfo.unixTimestamp,
       }),
     );
     store.dispatch(

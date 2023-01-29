@@ -1,4 +1,4 @@
-import { CE_Language } from "@/Common/LocalizeString/Locales";
+import { CE_Language } from "@/Common/LocalizedString/Locales";
 
 export type ILocalizedNamespace = keyof ILocalizedString;
 

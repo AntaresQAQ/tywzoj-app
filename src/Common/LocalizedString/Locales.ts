@@ -1,3 +1,10 @@
+// import "moment/dist/locale/ar";
+// import "moment/dist/locale/fr";
+// import "moment/dist/locale/ja";
+// import "moment/dist/locale/ko"
+import "moment/dist/locale/zh-cn";
+// import "moment/dist/locale/zh-hk";
+
 export const enum CE_Language {
   ar = "ar",
   en = "en",

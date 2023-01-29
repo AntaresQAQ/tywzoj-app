@@ -1,3 +1,23 @@
+- name: APP_FOOTER_POWERED_BY
+  value: '{0} is powered by TYWZOJ'
+  description: The param {0} is the site name. Please keep TYWZOJ as raw string.
+  raw: '{0} is powered by TYWZOJ'
+- name: APP_FOOTER_SERVER_VERSION_LABEL
+  value: 'Server version:'
+  description: A label for footer server version.
+  raw: 'Server version:'
+- name: APP_FOOTER_CLIENT_VERSION_LABEL
+  value: 'Client version:'
+  description: A label for footer client version.
+  raw: 'Client version:'
+- name: APP_FOOTER_SERVER_TIME_LABEL
+  value: 'Server time:'
+  description: A label for footer server time.
+  raw: 'Server time:'
+- name: APP_FOOTER_CLIENT_TIME_LABEL
+  value: 'Local time:'
+  description: A label for footer client time.
+  raw: 'Local time:'
 - name: CLOSE_BUTTON_TOOLTIP
   value: Close
   raw: Close

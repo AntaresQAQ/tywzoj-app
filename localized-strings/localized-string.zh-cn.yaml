@@ -1,3 +1,23 @@
+- name: APP_FOOTER_POWERED_BY
+  value: '{0} 由 TYWZOJ 强力驱动'
+  description: the param {0} is the site name. Please keep TYWZOJ as raw string.
+  raw: '{0} is powered by TYWZOJ'
+- name: APP_FOOTER_SERVER_VERSION_LABEL
+  value: '服务器版本:'
+  description: A label for footer server version.
+  raw: 'Server version:'
+- name: APP_FOOTER_CLIENT_VERSION_LABEL
+  value: '客户端版本:'
+  description: A label for footer client version.
+  raw: 'Client version:'
+- name: APP_FOOTER_SERVER_TIME_LABEL
+  value: '服务器时间:'
+  description: A label for footer server time.
+  raw: 'Server time:'
+- name: APP_FOOTER_CLIENT_TIME_LABEL
+  value: '本机时间:'
+  description: A label for footer client time.
+  raw: 'Local time:'
 - name: CLOSE_BUTTON_TOOLTIP
   value: 关闭
   description: Close button tooltip

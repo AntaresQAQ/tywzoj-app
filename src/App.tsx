@@ -4,8 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 
 import { getIsRtl, getSiteName, getThemeName } from "@/Common/Environment/Selectors";
 import { AppLayout } from "@/Common/Layout/Layout";
-import { fluentUILanguageMap } from "@/Common/LocalizeString/Locales";
-import { getLanguage } from "@/Common/LocalizeString/Selectors";
+import { fluentUILanguageMap } from "@/Common/LocalizedString/Locales";
+import { getLanguage } from "@/Common/LocalizedString/Selectors";
 import { getTheme } from "@/Common/Theme";
 import { AppRoutes } from "@/Router/Routes";
 import { useAppSelector } from "@/Store";

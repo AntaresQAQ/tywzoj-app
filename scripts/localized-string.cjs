@@ -14,7 +14,7 @@ const defaultLanguage = "en";
 
 const localeDir = path.join(__dirname, "..", "localized-strings");
 const staticDir = path.join(__dirname, "..", "src", "assets", "locale");
-const typesFilePath = path.join(__dirname, "..", "src", "Common", "LocalizeString", "locale.d.ts");
+const typesFilePath = path.join(__dirname, "..", "src", "Common", "LocalizedString", "locale.d.ts");
 const defaultLanguageFilePath = path.join(localeDir, "localized-string.yaml");
 const defaultLanguageYaml = yaml.load(fs.readFileSync(defaultLanguageFilePath).toString());
 
