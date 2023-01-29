@@ -1,15 +1,18 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import { setCurrentUser, setEnv, setPagination, setServerVersion } from "@/Common/Environment/Action";
-import { ICurrentUserState, IEnvState, IPaginationState, IServerVersionState } from "@/Common/Environment/Types";
+import { setClientVersion, setCurrentUser, setEnv, setPagination, setServerVersion } from "@/Common/Environment/Action";
+import { ICurrentUserState, IEnvState, IPaginationState, IVersionState } from "@/Common/Environment/Types";
 import { CE_ThemeName } from "@/Common/Theme";
 
 const envInitialState: IEnvState = {
-  apiEndPoint: "http://localhost:9000/",
+  apiEndPoint: "",
   gravatarCdn: "https://cn.gravatar.com/avatar/",
   themeName: CE_ThemeName.Light,
 } as unknown as IEnvState;
-const serverVersionInitialState: IServerVersionState = null as unknown as IServerVersionState;
+const versionInitialState: IVersionState = {
+  server: {},
+  client: {},
+} as unknown as IVersionState;
 const paginationInitialState: IPaginationState = null as unknown as IPaginationState;
 const currentUserInitialState: ICurrentUserState = null as unknown as ICurrentUserState;
 
@@ -22,8 +25,16 @@ export const envReducer = createReducer<IEnvState>(envInitialState, builder => {
   });
 });
 
-export const serverVersionReducer = createReducer<IServerVersionState>(serverVersionInitialState, builder => {
-  builder.addCase(setServerVersion, (state, action) => action.payload);
+export const versionReducer = createReducer<IVersionState>(versionInitialState, builder => {
+  builder
+    .addCase(setServerVersion, (state, action) => ({
+      ...state,
+      server: action.payload,
+    }))
+    .addCase(setClientVersion, (state, action) => ({
+      ...state,
+      client: action.payload,
+    }));
 });
 
 export const paginationReducer = createReducer<IPaginationState>(paginationInitialState, builder => {

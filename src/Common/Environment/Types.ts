@@ -23,11 +23,18 @@ export interface IEnvState {
   renderMarkdownInUserBio: boolean;
   renderMarkdownInUserListBio: boolean;
   requireEmailVerification: boolean;
+  serverTimeDiff: number;
   siteName: string;
   sortUserBy: "id" | "rating" | "acceptedProblemCount";
   themeName: CE_ThemeName;
 }
 
 export type IServerVersionState = IServerVersion;
+export type IClientVersionState = IClientVersion;
+export interface IVersionState {
+  server: IServerVersionState;
+  client: IClientVersionState;
+}
+
 export type IPaginationState = IPaginationPreferenceConfig;
 export type ICurrentUserState = IUserBaseEntity;

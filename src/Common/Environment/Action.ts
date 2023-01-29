@@ -4,10 +4,11 @@ import { CE_ThemeName } from "@/Common/Theme";
 import { CE_TokenName, saveToken } from "@/Common/Utilities/Token";
 import { IAppDispatch } from "@/Store";
 
-import { ICurrentUserState, IEnvState, IPaginationState, IServerVersionState } from "./Types";
+import { IClientVersionState, ICurrentUserState, IEnvState, IPaginationState, IServerVersionState } from "./Types";
 
 const UPDATE_ENV = "Env/Update";
-const UPDATE_SERVER_VERSION = "ServerVersion/Update";
+const UPDATE_SERVER_VERSION = "Version/Server/Update";
+const UPDATE_CLIENT_VERSION = "Version/Client/Update";
 const UPDATE_PAGINATION = "Pagination/Update";
 const UPDATE_CURRENT_USER = "CurrentUser/Update";
 
@@ -29,6 +30,9 @@ export const updateTheme = (themeName: CE_ThemeName) => (dispatch: IAppDispatch)
 };
 
 export const setServerVersion = createAction(UPDATE_SERVER_VERSION, (props: IServerVersionState) => ({
+  payload: props,
+}));
+export const setClientVersion = createAction(UPDATE_CLIENT_VERSION, (props: IClientVersionState) => ({
   payload: props,
 }));
 

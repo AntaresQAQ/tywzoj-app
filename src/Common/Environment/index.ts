@@ -1,7 +1,9 @@
 import { CE_TokenName, getToken } from "@/Common/Utilities/Token";
 import { IAppDispatch } from "@/Store";
 
-import { setEnv } from "./Action";
+import { setClientVersion, setEnv } from "./Action";
+import { getApiEndPoint } from "./Settings/BuildEnv";
+import { getClientVersion } from "./Settings/BuildInfo";
 import {
   isAndroid,
   isChrome,
@@ -19,6 +21,7 @@ export function initEnv(dispatch: IAppDispatch) {
   dispatch(
     setEnv({
       apiBearerToken: getToken(CE_TokenName.ApiBearerToken),
+      apiEndPoint: getApiEndPoint(),
       isMobile: isMobile(),
       isMiniScreen: isMiniScreen(),
       isSmallScreen: isSmallScreen(),
@@ -31,6 +34,7 @@ export function initEnv(dispatch: IAppDispatch) {
       isSafari: isSafari(),
     }),
   );
+  dispatch(setClientVersion(getClientVersion()));
   dispatch(bindWindowListener);
 }
 
