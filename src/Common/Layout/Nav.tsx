@@ -2,7 +2,6 @@ import { Icon, useTheme } from "@fluentui/react";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
-import { useIsMobile } from "@/Common/Environment/Hooks";
 import { useLocalizedStrings } from "@/Common/LocalizedString/Hooks";
 import { CE_PagePath } from "@/Common/Url/PagePath";
 
@@ -23,8 +22,7 @@ export const AppNav: React.FC<IAppNavProps> = props => {
 
   const theme = useTheme();
   const ls = useLocalizedStrings();
-  const isMobile = useIsMobile();
-  const styles = getNavStyles(theme, isMobile);
+  const styles = getNavStyles(theme);
 
   const navList = React.useMemo((): INavItem[] => {
     return [

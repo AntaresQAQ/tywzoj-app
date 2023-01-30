@@ -11,9 +11,9 @@ import { CE_PagePath } from "@/Common/Url/PagePath";
 import { useAppSelector } from "@/Store";
 
 import { AppFooter } from "./Footer";
-import { AppHeader } from "./Header";
 import { AppNav } from "./Nav";
 import { getLayoutStyles } from "./Styles/LayoutStyles";
+import { AppUserMenu } from "./UserMenu";
 
 export interface IAppLayoutProps {
   children: React.ReactElement;
@@ -50,7 +50,9 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
             </div>
           </>
         )}
-        <AppHeader />
+        <div className={styles.userMenuContainer}>
+          <AppUserMenu />
+        </div>
       </div>
       {isMobile ? (
         <Panel
@@ -73,8 +75,8 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
           <AppNav />
         </div>
       )}
-      <div className={styles.container}>
-        <div className={styles.content}>{props.children}</div>
+      <div className={styles.mainContainer}>
+        <div className={styles.mainContent}>{props.children}</div>
         <AppFooter />
       </div>
     </div>

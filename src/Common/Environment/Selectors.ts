@@ -8,3 +8,5 @@ export const getIsMobile = (state: IRootState) => state.env.isMobile;
 export const getRecaptchaKey = (state: IRootState) => state.env.recaptchaKey;
 export const getSiteName = (state: IRootState) => state.env.siteName;
 export const getThemeName = (state: IRootState) => state.env.themeName;
+
+export const getCurrentUser = (state: IRootState) => state.currentUser;

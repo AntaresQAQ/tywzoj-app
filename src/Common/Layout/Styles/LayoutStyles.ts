@@ -24,7 +24,7 @@ export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean
         left: navBarWidth,
         height: headerHeight,
         width: `calc(100% - ${navBarWidth}px)`,
-        backgroundColor: theme.palette.themeLighter,
+        backgroundColor: theme.palette.white,
         boxShadow: theme.effects.elevation4,
       },
       navbar: {
@@ -86,12 +86,18 @@ export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean
         overflow: "hidden",
         img: { width: navBarWidth },
       },
-      container: {
+      userMenuContainer: {
+        ...flex({
+          flexDirection: "row-reverse",
+        }),
+        flexGrow: 2,
+      },
+      mainContainer: {
         height: "100%",
         width: "100%",
         overflow: "auto",
       },
-      content: {
+      mainContent: {
         margin: 20,
         minHeight: 500,
       },
@@ -104,9 +110,9 @@ export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean
       header: {
         left: 0,
         width: "100%",
-        backgroundColor: theme.palette.white,
       },
       logo: {
+        width: 150,
         img: { width: 150 },
       },
     },

@@ -2,6 +2,18 @@
   value: 关闭
   description: Common close button tooltip or aria-label.
   raw: Close
+- name: COMMON_SIGN_IN_TITLE
+  value: 登录
+  description: A title for sign in
+  raw: Sign in
+- name: COMMON_SIGN_OUT_TITLE
+  value: 退出登录
+  description: A title for sign out
+  raw: Sign out
+- name: COMMON_SIGN_UP_TITLE
+  value: 注册
+  description: A title for sign up
+  raw: Sign up
 - name: APP_NAV_TITLE
   value: 导航
   description: A string for navigation button's tooltip and aria-label.
@@ -26,6 +38,22 @@
   value: 比赛
   description: A name for page.
   raw: Contest
+- name: APP_HEADER_USER_MENU_PROFILE
+  value: 个人资料
+  description: The header user menu item
+  raw: My profile
+- name: APP_HEADER_USER_MENU_EDIT
+  value: 编辑资料
+  description: The header user menu item
+  raw: Edit profile
+- name: APP_HEADER_USER_MENU_SETTINGS
+  value: 用户设置
+  description: The header user menu item
+  raw: Settings
+- name: APP_HEADER_USER_MENU_MANAGE_SITE
+  value: null
+  description: The header user menu admin item
+  raw: Site Management
 - name: APP_FOOTER_POWERED_BY
   value: '{0} 由 TYWZOJ 强力驱动'
   description: the param {0} is the site name. Please keep TYWZOJ as raw string.
