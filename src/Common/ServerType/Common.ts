@@ -6,6 +6,7 @@ export interface IServerVersion {
 export interface ISecurityPreferenceConfig {
   recaptchaEnabled: boolean;
   recaptchaKey: string;
+  useRecaptchaNet: boolean;
   requireEmailVerification: boolean;
 }
 

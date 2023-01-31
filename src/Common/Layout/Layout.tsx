@@ -1,13 +1,13 @@
-import { IconButton, Panel, PanelType, useTheme } from "@fluentui/react";
+import { IconButton, Panel, PanelType, Spinner, SpinnerSize, useTheme } from "@fluentui/react";
 import { useEventCallback } from "@fluentui/react-hooks";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
+import { CE_PagePath } from "@/Common/Enums/PagePath";
 import { useIsMobile } from "@/Common/Environment/Hooks";
 import { getSiteName } from "@/Common/Environment/Selectors";
 import { getAppLogoUrl } from "@/Common/Environment/Settings/BuildEnv";
 import { useLocalizedStrings } from "@/Common/LocalizedString/Hooks";
-import { CE_PagePath } from "@/Common/Url/PagePath";
 import { useAppSelector } from "@/Store";
 
 import { AppFooter } from "./Footer";
@@ -76,7 +76,9 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
         </div>
       )}
       <div className={styles.mainContainer}>
-        <div className={styles.mainContent}>{props.children}</div>
+        <React.Suspense fallback={<Spinner size={SpinnerSize.large} className={styles.spinner} />}>
+          <div className={styles.mainContent}>{props.children}</div>
+        </React.Suspense>
         <AppFooter />
       </div>
     </div>

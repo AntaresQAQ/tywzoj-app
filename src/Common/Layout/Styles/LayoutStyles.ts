@@ -93,13 +93,18 @@ export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean
         flexGrow: 2,
       },
       mainContainer: {
+        ...flex({
+          flexDirection: "column",
+        }),
         height: "100%",
         width: "100%",
         overflow: "auto",
       },
       mainContent: {
         margin: 20,
-        minHeight: 500,
+      },
+      spinner: {
+        flexGrow: 1000,
       },
     },
     isMobile && {

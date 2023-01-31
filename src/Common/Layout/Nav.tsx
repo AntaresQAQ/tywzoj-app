@@ -2,8 +2,8 @@ import { Icon, useTheme } from "@fluentui/react";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
+import { CE_PagePath } from "@/Common/Enums/PagePath";
 import { useLocalizedStrings } from "@/Common/LocalizedString/Hooks";
-import { CE_PagePath } from "@/Common/Url/PagePath";
 
 import { getNavStyles } from "./Styles/NavStyles";
 

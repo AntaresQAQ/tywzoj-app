@@ -14,6 +14,26 @@
   value: 注册
   description: A title for sign up
   raw: Sign up
+- name: COMMON_USERNAME_LABEL
+  value: 用户名
+  description: A label for username.
+  raw: Username
+- name: COMMON_EMAIL_LABEL
+  value: 电子邮箱
+  description: A label for email.
+  raw: Email
+- name: COMMON_PASSWORD_LABEL
+  value: 密码
+  description: A label for password.
+  raw: Password
+- name: COMMON_REVEAL_PASSWORD_LABEL
+  value: 显示密码
+  description: A label for reveal password.
+  raw: Show password
+- name: COMMON_EMPTY_FIELD_ERROR_MESSAGE
+  value: 不可留空
+  description: An error message for empty field
+  raw: Cannot be empty
 - name: APP_NAV_TITLE
   value: 导航
   description: A string for navigation button's tooltip and aria-label.
@@ -51,13 +71,17 @@
   description: The header user menu item
   raw: Settings
 - name: APP_HEADER_USER_MENU_MANAGE_SITE
-  value: null
-  description: The header user menu admin item
+  value: 网站管理
+  description: The header user menu admin item.
   raw: Site Management
 - name: APP_FOOTER_POWERED_BY
-  value: '{0} 由 TYWZOJ 强力驱动'
-  description: the param {0} is the site name. Please keep TYWZOJ as raw string.
-  raw: '{0} is powered by TYWZOJ'
+  value: >-
+    {0} 由&nbsp;<a href="https://github.com/AntaresQAQ/tywzoj" target="_blank"
+    rel="noreferrer noopener">TYWZOJ</a>&nbsp;强力驱动
+  description: The param {0} is the site name. Please keep TYWZOJ as raw string.
+  raw: >-
+    {0} is powered by&nbsp;<a href="https://github.com/AntaresQAQ/tywzoj"
+    target="_blank" rel="noreferrer noopener">TYWZOJ</a>
 - name: APP_FOOTER_SERVER_VERSION_LABEL
   value: '服务器版本:'
   description: A label for footer server version.
@@ -74,15 +98,30 @@
   value: '本机时间:'
   description: A label for footer client time.
   raw: 'Local time:'
-- name: CLOSE_BUTTON_TOOLTIP
-  value: 关闭
-  description: Close button tooltip
-  raw: Close
-- name: LOGIN_PAGE_USERNAME
-  value: 用户名
-  description: Username for input label
-  raw: Username
-- name: LOGIN_PAGE_PASSWORD
-  value: 密码
-  description: Password for input label
-  raw: Password
+- name: APP_GOOGLE_RECAPTCHA_COPYRIGHT
+  value: >-
+    本网站受 reCAPTCHA 和 Google 的保护，适用<a href="https://policies.google.com/privacy"
+    target="_blank" rel="noreferrer noopener">隐私政策</a>和<a
+    href="https://policies.google.com/terms" target="_blank" rel="noreferrer
+    noopener">服务条款</a>。
+  raw: >-
+    This site is protected by reCAPTCHA and the Google <a
+    href="https://policies.google.com/privacy" target="_blank" rel="noreferrer
+    noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms"
+    target="_blank" rel="noreferrer noopener">Terms of Service</a> apply.
+- name: LOGIN_PAGE_LOGIN_TYPE_LABEL
+  value: 登录方式
+  description: A label for sign in type choice.
+  raw: Sign in method
+- name: LOGIN_PAGE_FORGOT_PASSWORD
+  value: 忘记密码
+  description: A string for forgot language.
+  raw: Forgot password
+- name: LOGIN_PAGE_NO_SUCH_USER_ERROR
+  value: 无此用户
+  description: A string for no such user error.
+  raw: No such user
+- name: LOGIN_PAGE_WRONG_PASSWORD_ERROR
+  value: 密码错误
+  description: A string for wrong password error.
+  raw: Wrong password

@@ -1,5 +1,5 @@
-import { IPaginationPreferenceConfig, IServerVersion } from "@/Api/ServerType/Common";
-import { IUserBaseEntity } from "@/Api/ServerType/User";
+import { IPaginationPreferenceConfig, IServerVersion } from "@/Common/ServerType/Common";
+import { IUserBaseEntity } from "@/Common/ServerType/User";
 import { CE_ThemeName } from "@/Common/Theme";
 
 export interface IEnvState {
@@ -27,6 +27,7 @@ export interface IEnvState {
   siteName: string;
   sortUserBy: "id" | "rating" | "acceptedProblemCount";
   themeName: CE_ThemeName;
+  useRecaptchaNet: boolean;
 }
 
 export type IServerVersionState = IServerVersion;

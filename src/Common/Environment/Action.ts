@@ -16,7 +16,7 @@ export const setEnv = createAction(UPDATE_ENV, (props: Partial<IEnvState>) => ({
   payload: props,
 }));
 
-export const setEnvApiBearerToken = (token?: string) => (dispatch: IAppDispatch) => {
+export const setEnvApiBearerToken = (token: string) => (dispatch: IAppDispatch) => {
   dispatch(
     setEnv({
       apiBearerToken: token,

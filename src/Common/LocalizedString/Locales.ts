@@ -52,3 +52,13 @@ export const fluentUILanguageMap = {
   [CE_Language.zh_cn]: "ch-ZHS",
   [CE_Language.zh_hk]: "ch-ZHT",
 };
+
+export const recaptchaLanguageMap = {
+  [CE_Language.ar]: "ar",
+  [CE_Language.en]: "en",
+  [CE_Language.fr]: "fr",
+  [CE_Language.ja]: "ja",
+  [CE_Language.ko]: "ko",
+  [CE_Language.zh_cn]: "zh-CN",
+  [CE_Language.zh_hk]: "zh-HK",
+};

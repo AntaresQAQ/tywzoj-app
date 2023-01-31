@@ -1,7 +1,7 @@
 import { IQueryObj, toQueryString } from "@/Common/Utilities/QueryString";
 import { XOR } from "@/Common/Utilities/Types";
 
-import { CE_PagePath } from "./PagePath";
+import { CE_PagePath } from "../Enums/PagePath";
 
 type IMakeUrlProps = XOR<{ origin: string }, { base: CE_PagePath }> & {
   path?: string;

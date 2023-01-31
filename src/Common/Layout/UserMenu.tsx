@@ -11,16 +11,19 @@ import { useEventCallback } from "@fluentui/react-hooks";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { CE_Permissions } from "@/Common/Enums/Permissions";
 import { useCurrentUser, useIsMobile } from "@/Common/Environment/Hooks";
 import { useGravatar } from "@/Common/Hooks/Gravatar";
+import { logoutAction } from "@/Common/Layout/Action";
 import { getUserMenuStyles } from "@/Common/Layout/Styles/UserMenuStyles";
 import { useLocalizedStrings } from "@/Common/LocalizedString/Hooks";
-import { CE_PagePath } from "@/Common/Url/PagePath";
-import { makeUrl } from "@/Common/Url/Utils";
-import { checkIsAllowed } from "@/Common/UserLevel/Checker";
-import { CE_Permissions } from "@/Common/UserLevel/Permissions";
+import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
+import { makeUrl } from "@/Common/Utilities/Url";
+import { useAppDispatch } from "@/Store";
 
 export const AppUserMenu: React.FC = () => {
+  const dispatch = useAppDispatch();
   const currentUser = useCurrentUser();
   const theme = useTheme();
   const isMobile = useIsMobile();
@@ -53,6 +56,12 @@ export const AppUserMenu: React.FC = () => {
   const onSignUpClick = React.useCallback(() => {
     navigate(makeUrl({ base: CE_PagePath.Register }));
   }, [navigate]);
+
+  const onSignOutClick = React.useCallback(() => {
+    dispatch(logoutAction()).then(() => {
+      navigate(makeUrl({ base: CE_PagePath.Home }));
+    });
+  }, [dispatch, navigate]);
 
   const userMenuItems = React.useMemo(() => {
     if (!currentUser) return [];
@@ -99,11 +108,12 @@ export const AppUserMenu: React.FC = () => {
         key: "sign_out",
         text: ls.LS_COMMON_SIGN_OUT_TITLE,
         iconProps: { iconName: "SignOut" },
+        onClick: onSignOutClick,
       },
     );
 
     return items;
-  }, [currentUser, ls]);
+  }, [currentUser, ls, onSignOutClick]);
 
   return (
     <div className={styles.root} ref={userContainerRef}>

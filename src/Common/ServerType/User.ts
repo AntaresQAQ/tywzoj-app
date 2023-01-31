@@ -1,4 +1,4 @@
-import { CE_UserLevel } from "@/Common/UserLevel/UserLevel";
+import { CE_UserLevel } from "@/Common/Enums/UserLevel";
 
 export const enum CE_UserGender {
   Male = "Male",

@@ -4,15 +4,35 @@
 
 - name: COMMON_SIGN_IN_TITLE
   value: Sign in
-  description: A title for sign in
+  description: A title for sign in.
 
 - name: COMMON_SIGN_OUT_TITLE
   value: Sign out
-  description: A title for sign out
+  description: A title for sign out.
 
 - name: COMMON_SIGN_UP_TITLE
   value: Sign up
-  description: A title for sign up
+  description: A title for sign up.
+
+- name: COMMON_USERNAME_LABEL
+  value: Username
+  description: A label for username.
+
+- name: COMMON_EMAIL_LABEL
+  value: Email
+  description: A label for email.
+
+- name: COMMON_PASSWORD_LABEL
+  value: Password
+  description: A label for password.
+
+- name: COMMON_REVEAL_PASSWORD_LABEL
+  value: Show password
+  description: A label for reveal password.
+
+- name: COMMON_EMPTY_FIELD_ERROR_MESSAGE
+  value: Cannot be empty
+  description: An error message for empty field
 
 - name: APP_NAV_TITLE
   value: Navigation
@@ -40,22 +60,22 @@
 
 - name: APP_HEADER_USER_MENU_PROFILE
   value: My profile
-  description: The header user menu item
+  description: The header user menu item.
 
 - name: APP_HEADER_USER_MENU_EDIT
   value: Edit profile
-  description: The header user menu item
+  description: The header user menu item.
 
 - name: APP_HEADER_USER_MENU_SETTINGS
   value: Settings
-  description: The header user menu item
+  description: The header user menu item.
 
 - name: APP_HEADER_USER_MENU_MANAGE_SITE
   value: Site Management
-  description: The header user menu admin item
+  description: The header user menu admin item.
 
 - name: APP_FOOTER_POWERED_BY
-  value: '{0} is powered by TYWZOJ'
+  value: '{0} is powered by&nbsp;<a href="https://github.com/AntaresQAQ/tywzoj" target="_blank" rel="noreferrer noopener">TYWZOJ</a>'
   description: The param {0} is the site name. Please keep TYWZOJ as raw string.
 
 - name: APP_FOOTER_SERVER_VERSION_LABEL
@@ -74,12 +94,21 @@
   value: 'Local time:'
   description: A label for footer client time.
 
-- name: CLOSE_BUTTON_TOOLTIP
-  value: Close
-  description: Close button tooltip
-- name: LOGIN_PAGE_USERNAME
-  value: Username
-  description: Username for input label
-- name: LOGIN_PAGE_PASSWORD
-  value: Password
-  description: Password for input label
+- name: APP_GOOGLE_RECAPTCHA_COPYRIGHT
+  value: This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer noopener">Terms of Service</a> apply.
+
+- name: LOGIN_PAGE_LOGIN_TYPE_LABEL
+  value: Sign in method
+  description: A label for sign in type choice.
+
+- name: LOGIN_PAGE_FORGOT_PASSWORD
+  value: Forgot password
+  description: A string for forgot language.
+
+- name: LOGIN_PAGE_NO_SUCH_USER_ERROR
+  value: No such user
+  description: A string for no such user error.
+
+- name: LOGIN_PAGE_WRONG_PASSWORD_ERROR
+  value: Wrong password
+  description: A string for wrong password error.

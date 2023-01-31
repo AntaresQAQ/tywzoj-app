@@ -1,11 +1,13 @@
 import { format, Link, useTheme } from "@fluentui/react";
-import React from "react";
+import * as React from "react";
 
 import { getSiteName } from "@/Common/Environment/Selectors";
 import { useMomentFormatter } from "@/Common/Hooks/Moment";
-import { getFooterStyles } from "@/Common/Layout/Styles/FooterStyles";
+import { useRecaptchaCopyrightMessage } from "@/Common/Hooks/Recaptcha";
 import { useLocalizedStrings } from "@/Common/LocalizedString/Hooks";
 import { useAppSelector } from "@/Store";
+
+import { getFooterStyles } from "./Styles/FooterStyles";
 
 export const AppFooter: React.FC = () => {
   const ls = useLocalizedStrings();
@@ -26,7 +28,15 @@ export const AppFooter: React.FC = () => {
 
   return (
     <div className={styles.root}>
-      <div className={styles.declaration}>{format(ls.LS_APP_FOOTER_POWERED_BY, siteName)}</div>
+      <div
+        className={styles.declaration}
+        dangerouslySetInnerHTML={{ __html: format(ls.LS_APP_FOOTER_POWERED_BY, siteName) }}
+      />
+      <div className={styles.time}>
+        <span>
+          {ls.LS_APP_FOOTER_SERVER_TIME_LABEL} {momentFormatter(clientTime - serverTimeDiff, "L LTS")}
+        </span>
+      </div>
       <div className={styles.version}>
         <span>
           {ls.LS_APP_FOOTER_SERVER_VERSION_LABEL} {version.server.hash}
@@ -36,15 +46,11 @@ export const AppFooter: React.FC = () => {
           {ls.LS_APP_FOOTER_CLIENT_VERSION_LABEL} {version.client.hash}
         </span>
       </div>
-      <div className={styles.time}>
-        <span>
-          {ls.LS_APP_FOOTER_SERVER_TIME_LABEL} {momentFormatter(clientTime - serverTimeDiff, "L LTS")}
-        </span>
-      </div>
+      {useRecaptchaCopyrightMessage(styles.recaptcha)}
       {domainIcpRecord && (
-        <div>
-          <Link href={"https://beian.miit.gov.cn"}>{domainIcpRecord}</Link>
-        </div>
+        <Link className={styles.domainIcpRecord} href={"https://beian.miit.gov.cn"} target="_blank">
+          {domainIcpRecord}
+        </Link>
       )}
     </div>
   );

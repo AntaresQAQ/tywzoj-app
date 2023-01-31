@@ -46,7 +46,9 @@ export async function requestAsync<T>(options: IRequestOptions): Promise<T> {
   }
 
   if ([200, 201].includes(response.status)) {
-    return (typeof response.data === "string" ? JSON.parse(response.data) : response.data) as unknown as T;
+    return response.headers["content-type"]?.includes("application/json") && typeof response.data === "string"
+      ? JSON.parse(response.data)
+      : response.data;
   }
 
   let error: IResponseError;
@@ -56,6 +58,7 @@ export async function requestAsync<T>(options: IRequestOptions): Promise<T> {
     } else {
       error = response.data as unknown as IResponseError;
     }
+
     if (!error.code) error.code = CE_ErrorCode.Unknow;
   } catch (e) {
     error = { code: CE_ErrorCode.Unknow };

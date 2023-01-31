@@ -1,5 +1,6 @@
 import { ITheme, memoizeFunction, mergeStyleSets } from "@fluentui/react";
 
+import { themedAnchorStyle } from "@/Common/Styles/Anchor";
 import { flex } from "@/Common/Styles/Flex";
 
 export const getFooterStyles = memoizeFunction((theme: ITheme) =>
@@ -7,16 +8,20 @@ export const getFooterStyles = memoizeFunction((theme: ITheme) =>
     root: {
       ...flex({
         flexDirection: "column",
-        justifyContent: "center",
+        justifyContent: "flex-end",
         alignItems: "center",
       }),
+      flexGrow: 2,
       gap: 5,
-      padding: "20px",
+      padding: "20px 0 40px",
       color: theme.palette.neutralTertiary,
+      minWidth: 290,
     },
     declaration: {
       ...flex({}),
+      ...themedAnchorStyle(theme),
       fontWeight: 600,
+      marginBottom: 3,
     },
     version: {
       ...flex({}),
@@ -29,6 +34,14 @@ export const getFooterStyles = memoizeFunction((theme: ITheme) =>
     },
     time: {
       ...flex({}),
+      fontSize: 12,
+    },
+    domainIcpRecord: {
+      ...themedAnchorStyle(theme),
+      fontSize: 12,
+    },
+    recaptcha: {
+      ...themedAnchorStyle(theme),
       fontSize: 12,
     },
   }),
