@@ -1,5 +1,11 @@
-import React from "react";
+import * as React from "react";
 
-export const ErrorPage: React.FC = () => {
+import { CE_ErrorCode } from "@/Common/Error/Code";
+
+interface IErrorPageProps {
+  code: CE_ErrorCode;
+}
+
+export const ErrorPage: React.FC<IErrorPageProps> = () => {
   return <div />;
 };

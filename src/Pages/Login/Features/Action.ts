@@ -3,7 +3,6 @@ import { createAction } from "@reduxjs/toolkit";
 import { CE_RecaptchaAction } from "@/Common/Enums/RecaptchaAction";
 import { setCurrentUser, setEnvApiBearerToken } from "@/Common/Environment/Action";
 import { CE_ErrorCode } from "@/Common/Error/Code";
-import { AppException } from "@/Common/Error/Exception";
 import { getLocalizedStrings } from "@/Common/LocalizedString/Selectors";
 import { postLoginRequestAsync } from "@/Pages/Login/Features/Request";
 import {
@@ -12,7 +11,7 @@ import {
   getLoginPagePassword,
   getLoginPageUsername,
 } from "@/Pages/Login/Features/Selectors";
-import { CE_LoginType, ILoginPageState, IPostLoginResponse } from "@/Pages/Login/Features/Types";
+import { CE_LoginType, ILoginPageState, IPostLoginRequestBody } from "@/Pages/Login/Features/Types";
 import { IAppDispatch, IRootState } from "@/Store";
 
 const UPDATE_LOGIN_PAGE = "LoginPage/Update";
@@ -62,33 +61,35 @@ export const loginAction =
 
     const state = getState();
     const loginType = getLoginPageLoginType(state);
+    const username = getLoginPageUsername(state);
+    const email = getLoginPageEmail(state);
     const password = getLoginPagePassword(state);
-
     const recaptchaToken = await recaptcha(CE_RecaptchaAction.Login);
-    let response: IPostLoginResponse;
-    try {
-      if (loginType === CE_LoginType.Username) {
-        const username = getLoginPageUsername(state);
-        response = await postLoginRequestAsync({ username, password }, recaptchaToken);
-      } else if (loginType === CE_LoginType.Email) {
-        const email = getLoginPageEmail(state);
-        response = await postLoginRequestAsync({ email, password }, recaptchaToken);
-      }
-      dispatch(setEnvApiBearerToken(response.token));
-      dispatch(setCurrentUser(response.userBaseDetail));
-      return true;
-    } catch (e) {
-      if (e instanceof AppException) {
-        const ls = getLocalizedStrings(state);
-        if (e.code === CE_ErrorCode.Auth_NoSuchUser) {
-          dispatch(setLoginPageState({ uError: ls.LS_LOGIN_PAGE_NO_SUCH_USER_ERROR }));
-        } else if (e.code === CE_ErrorCode.Auth_WrongPassword) {
-          dispatch(setLoginPageState({ pError: ls.LS_LOGIN_PAGE_WRONG_PASSWORD_ERROR }));
-        } else {
-          throw e;
-        }
-      }
+
+    let body: IPostLoginRequestBody;
+    if (loginType === CE_LoginType.Username) {
+      body = { username, password };
+    } else if (loginType === CE_LoginType.Email) {
+      body = { email, password };
+    } else {
+      dispatch(setLoginPageState({ loading: false }));
+      return false;
     }
-    dispatch(setLoginPageState({ loading: false }));
-    return false;
+
+    const { data, error } = await postLoginRequestAsync(body, recaptchaToken);
+
+    if (error) {
+      const ls = getLocalizedStrings(state);
+      if (error.code === CE_ErrorCode.Auth_NoSuchUser) {
+        dispatch(setLoginPageState({ uError: ls.LS_LOGIN_PAGE_NO_SUCH_USER_ERROR }));
+      } else if (error.code === CE_ErrorCode.Auth_WrongPassword) {
+        dispatch(setLoginPageState({ pError: ls.LS_LOGIN_PAGE_WRONG_PASSWORD_ERROR }));
+      }
+      dispatch(setLoginPageState({ loading: false }));
+      return false;
+    }
+
+    dispatch(setEnvApiBearerToken(data.token));
+    dispatch(setCurrentUser(data.userBaseDetail));
+    return true;
   };

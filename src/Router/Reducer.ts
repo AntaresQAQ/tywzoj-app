@@ -5,7 +5,7 @@ import { IRouterState } from "@/Router/Types";
 
 const routerInitialState: IRouterState = {
   path: "/",
-  query: {},
+  queries: {},
   hash: null,
 };
 

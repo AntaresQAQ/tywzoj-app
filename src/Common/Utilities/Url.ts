@@ -3,9 +3,9 @@ import { XOR } from "@/Common/Utilities/Types";
 
 import { CE_PagePath } from "../Enums/PagePath";
 
-type IMakeUrlProps = XOR<{ origin: string }, { base: CE_PagePath }> & {
+type IMakeUrlProps = XOR<{ origin?: string }, { base?: CE_PagePath }> & {
   path?: string;
-  query?: IQueryObj;
+  queries?: IQueryObj;
   hash?: string;
 };
 export function makeUrl(props: IMakeUrlProps) {
@@ -18,15 +18,15 @@ export function makeUrl(props: IMakeUrlProps) {
   }
 
   if (props.path) {
-    if (!props.path.startsWith("/")) url += "/";
+    if (!props.path.startsWith("/") && !url.endsWith("/")) url += "/";
     url += props.path
       .split("/")
       .map(x => encodeURIComponent(x.trim()))
       .join("/");
   }
 
-  if (props.query) {
-    url += `?${toQueryString(props.query)}`;
+  if (props.queries) {
+    url += `?${toQueryString(props.queries)}`;
   }
 
   if (props.hash) {

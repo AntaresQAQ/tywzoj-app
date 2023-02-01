@@ -17,9 +17,9 @@ export const AppRoutes: React.FC = () => {
   React.useEffect(() => {
     dispatch(
       setRouter({
-        path: pathname,
-        hash: hash.substring(1),
-        query: parseQuery(search),
+        path: decodeURIComponent(pathname),
+        hash: decodeURIComponent(hash.substring(1)),
+        queries: parseQuery(search),
       }),
     );
   }, [dispatch, hash, pathname, search]);

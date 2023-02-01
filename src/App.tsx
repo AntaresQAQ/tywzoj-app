@@ -4,6 +4,7 @@ import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { BrowserRouter } from "react-router-dom";
 
 import { getIsRtl, getRecaptchaKey, getSiteName, getThemeName } from "@/Common/Environment/Selectors";
+import { AppErrorBoundary } from "@/Common/Error/ErrorBoundary";
 import { AppLayout } from "@/Common/Layout/Layout";
 import { fluentUILanguageMap, recaptchaLanguageMap } from "@/Common/LocalizedString/Locales";
 import { getLanguage } from "@/Common/LocalizedString/Selectors";
@@ -34,7 +35,9 @@ export const App: React.FC = () => {
       <ThemeProvider theme={getTheme(themeName)} style={{ height: "100%" }} dir={isRtl ? "rtl" : "ltr"}>
         <BrowserRouter>
           <AppLayout>
-            <AppRoutes />
+            <AppErrorBoundary>
+              <AppRoutes />
+            </AppErrorBoundary>
           </AppLayout>
         </BrowserRouter>
       </ThemeProvider>

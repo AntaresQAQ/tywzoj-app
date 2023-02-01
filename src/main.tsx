@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { initEnv } from "@/Common/Environment";
 import { setCurrentUser, setEnv, setPagination, setServerVersion } from "@/Common/Environment/Action";
 import { getApiBearerToken } from "@/Common/Environment/Selectors";
-import { ErrorBoundary } from "@/Common/Error/ErrorBoundary";
+import { GlobalErrorBoundary } from "@/Common/Error/ErrorBoundary";
 import { setLocale } from "@/Common/LocalizedString/Action";
 import { getIsRtlLanguage, getPreferLanguage, loadLocaleAsync } from "@/Common/LocalizedString/Utils";
 import { getSessionInfoRequestAsync } from "@/Common/Request/Common";
@@ -17,11 +17,11 @@ import { store } from "./Store";
 function render() {
   createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-      <ErrorBoundary>
+      <GlobalErrorBoundary>
         <Provider store={store}>
           <App />
         </Provider>
-      </ErrorBoundary>
+      </GlobalErrorBoundary>
     </React.StrictMode>,
   );
 }

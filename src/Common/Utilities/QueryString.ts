@@ -1,6 +1,6 @@
 export type IQueryObj = { [key: string]: string | number | boolean };
 
-export function parseQuery(qs: string): IQueryObj {
+export function parseQuery(qs: string, decode = true): IQueryObj {
   try {
     const rawObj = Object.fromEntries(new URLSearchParams(qs));
     return Object.keys(rawObj).reduce((pre, cur) => {
@@ -15,7 +15,7 @@ export function parseQuery(qs: string): IQueryObj {
       } else if (!Number.isNaN(Number(rawValue))) {
         value = Number(rawValue);
       } else {
-        value = rawValue;
+        value = decode ? decodeURIComponent(rawValue).trim() : rawValue;
       }
 
       return {
@@ -34,7 +34,7 @@ export function toQueryString(obj: IQueryObj): string {
       Object.keys(obj).reduce(
         (pre, cur) => ({
           ...pre,
-          [cur.trim()]: obj[cur].toString().trim(),
+          [encodeURIComponent(cur.trim())]: encodeURIComponent(obj[cur].toString().trim()),
         }),
         {},
       ),
