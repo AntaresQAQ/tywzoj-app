@@ -5,14 +5,14 @@ import { CE_RecaptchaAction } from "@/Common/Enums/RecaptchaAction";
 import { setCurrentUser, setEnvApiBearerToken } from "@/Features/Environment/Action";
 import { getLocalizedStrings } from "@/Features/LocalizedString/Selectors";
 import { IAppDispatch, IRootState } from "@/Features/Store";
-import { postLoginRequestAsync } from "@/Pages/Login/Features/Request";
+import { postLoginRequestAsync } from "@/Pages/Auth/Features/LoginPage/Request";
 import {
   getLoginPageEmail,
   getLoginPageLoginType,
   getLoginPagePassword,
   getLoginPageUsername,
-} from "@/Pages/Login/Features/Selectors";
-import { CE_LoginType, ILoginPageState, IPostLoginRequestBody } from "@/Pages/Login/Features/Types";
+} from "@/Pages/Auth/Features/LoginPage/Selectors";
+import { CE_LoginType, ILoginPageState, IPostLoginRequestBody } from "@/Pages/Auth/Features/LoginPage/Types";
 
 const UPDATE_LOGIN_PAGE = "LoginPage/Update";
 

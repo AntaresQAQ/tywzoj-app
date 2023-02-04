@@ -1,4 +1,3 @@
-import { initializeIcons } from "@fluentui/react";
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
@@ -11,15 +10,18 @@ import { GlobalErrorBoundary } from "@/Features/Error/ErrorBoundary";
 import { setLocale } from "@/Features/LocalizedString/Action";
 import { getIsRtlLanguage, getPreferLanguage, loadLocaleAsync } from "@/Features/LocalizedString/Utils";
 
-import { App } from "./App";
 import { store } from "./Features/Store";
+
+const AppLazy = React.lazy(() => import("./App").then(({ App }) => ({ default: App })));
 
 function render() {
   createRoot(document.getElementById("root")).render(
     <React.StrictMode>
       <GlobalErrorBoundary>
         <Provider store={store}>
-          <App />
+          <React.Suspense fallback={null}>
+            <AppLazy />
+          </React.Suspense>
         </Provider>
       </GlobalErrorBoundary>
     </React.StrictMode>,
@@ -65,7 +67,6 @@ function initLocalizeStringAsync() {
 }
 
 function launch() {
-  initializeIcons();
   store.dispatch(initEnv);
   Promise.all([initSessionInfoAsync(), initLocalizeStringAsync()]).then(render);
 }

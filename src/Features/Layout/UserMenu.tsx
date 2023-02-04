@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   ActionButton,
   ContextualMenu,
@@ -8,6 +9,15 @@ import {
   useTheme,
 } from "@fluentui/react";
 import { useEventCallback } from "@fluentui/react-hooks";
+import {
+  AddFriendIcon,
+  ContactInfoIcon,
+  EditContactIcon,
+  PlayerSettingsIcon,
+  SettingsIcon,
+  SigninIcon,
+  SignOutIcon,
+} from "@fluentui/react-icons-mdl2";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +37,7 @@ export const AppUserMenu: React.FC = () => {
   const currentUser = useCurrentUser();
   const theme = useTheme();
   const isMobile = useIsMobile();
-  const gravatar = useGravatar();
+  const gravatar = useGravatar(40);
   const navigate = useNavigate();
   const ls = useLocalizedStrings();
   const styles = getUserMenuStyles(theme, isMobile);
@@ -71,17 +81,20 @@ export const AppUserMenu: React.FC = () => {
       {
         key: "profile",
         text: ls.LS_APP_HEADER_USER_MENU_PROFILE,
-        iconProps: { iconName: "ContactInfo" },
+        iconProps: {},
+        onRenderIcon: props => <ContactInfoIcon className={props.classNames.icon} />,
       },
       {
         key: "edit",
         text: ls.LS_APP_HEADER_USER_MENU_EDIT,
-        iconProps: { iconName: "EditContact" },
+        iconProps: {},
+        onRenderIcon: props => <EditContactIcon className={props.classNames.icon} />,
       },
       {
         key: "setting",
         text: ls.LS_APP_HEADER_USER_MENU_SETTINGS,
-        iconProps: { iconName: "PlayerSettings" },
+        iconProps: {},
+        onRenderIcon: props => <PlayerSettingsIcon className={props.classNames.icon} />,
       },
     ];
 
@@ -94,7 +107,8 @@ export const AppUserMenu: React.FC = () => {
         {
           key: "manage_site",
           text: ls.LS_APP_HEADER_USER_MENU_MANAGE_SITE,
-          iconProps: { iconName: "Settings" },
+          iconProps: {},
+          onRenderIcon: props => <SettingsIcon className={props.classNames.icon} />,
         },
       );
     }
@@ -107,7 +121,8 @@ export const AppUserMenu: React.FC = () => {
       {
         key: "sign_out",
         text: ls.LS_COMMON_SIGN_OUT_TITLE,
-        iconProps: { iconName: "SignOut" },
+        iconProps: {},
+        onRenderIcon: props => <SignOutIcon className={props.classNames.icon} />,
         onClick: onSignOutClick,
       },
     );
@@ -119,14 +134,14 @@ export const AppUserMenu: React.FC = () => {
     <div className={styles.root} ref={userContainerRef}>
       {currentUser ? (
         <>
-          <a tabIndex={0} onClick={onUserClick} href="src/Features/Layout#">
+          <a tabIndex={0} onClick={onUserClick} href="#">
             <Persona
               size={PersonaSize.size40}
               imageAlt={currentUser.username}
               text={currentUser.username}
               secondaryText={currentUser.nickname}
               hidePersonaDetails={isMobile}
-              imageUrl={gravatar(currentUser.avatar, 40)}
+              imageUrl={gravatar(currentUser.avatar)}
               showInitialsUntilImageLoads={true}
             />
           </a>
@@ -137,14 +152,15 @@ export const AppUserMenu: React.FC = () => {
             onDismiss={hideUserMenu}
             onItemClick={hideUserMenu}
             shouldFocusOnMount={true}
+            styles={{ container: { overflow: "hidden" } }}
           />
         </>
       ) : (
         <>
-          <ActionButton iconProps={{ iconName: "Signin" }} onClick={onSignInClick}>
+          <ActionButton onRenderIcon={() => <SigninIcon className={styles.icon} />} onClick={onSignInClick}>
             {ls.LS_COMMON_SIGN_IN_TITLE}
           </ActionButton>
-          <ActionButton iconProps={{ iconName: "AddFriend" }} onClick={onSignUpClick}>
+          <ActionButton onRenderIcon={() => <AddFriendIcon className={styles.icon} />} onClick={onSignUpClick}>
             {ls.LS_COMMON_SIGN_UP_TITLE}
           </ActionButton>
         </>

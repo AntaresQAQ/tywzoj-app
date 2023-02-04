@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import { setLoginPageState } from "@/Pages/Login/Features/Action";
+import { setLoginPageState } from "@/Pages/Auth/Features/LoginPage/Action";
 
 import { CE_LoginType, ILoginPageState } from "./Types";
 

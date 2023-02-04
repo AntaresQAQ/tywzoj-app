@@ -1,5 +1,6 @@
-import { IconButton, Panel, PanelType, Spinner, SpinnerSize, useTheme } from "@fluentui/react";
+import { IconButton, Panel, PanelType, registerIcons, Spinner, SpinnerSize, useTheme } from "@fluentui/react";
 import { useEventCallback } from "@fluentui/react-hooks";
+import { CancelIcon, GlobalNavButtonIcon } from "@fluentui/react-icons-mdl2";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -10,14 +11,22 @@ import { getAppLogoUrl } from "@/Features/Environment/Settings/BuildEnv";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppSelector } from "@/Features/Store";
 
-import { AppFooter } from "./Footer";
-import { AppNav } from "./Nav";
+import { loadFooter, loadNav, loadUserMenu } from "./DynamicImport";
 import { getLayoutStyles } from "./Styles/LayoutStyles";
-import { AppUserMenu } from "./UserMenu";
 
 export interface IAppLayoutProps {
   children: React.ReactElement;
 }
+
+registerIcons({
+  icons: {
+    Cancel: <CancelIcon />,
+  },
+});
+
+const NavLazy = React.lazy(loadNav);
+const FooterLazy = React.lazy(loadFooter);
+const UserMenuLazy = React.lazy(loadUserMenu);
 
 export const AppLayout: React.FC<IAppLayoutProps> = props => {
   const ls = useLocalizedStrings();
@@ -38,8 +47,7 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
             <div className={styles.navButtonContainer}>
               <IconButton
                 className={styles.navButton}
-                iconProps={{ iconName: "GlobalNavButton" }}
-                styles={{ icon: { fontSize: 20 } }}
+                onRenderIcon={() => <GlobalNavButtonIcon />}
                 tabIndex={0}
                 onClick={openNavPanel}
                 ariaLabel={ls.LS_APP_NAV_TITLE}
@@ -51,7 +59,9 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
           </>
         )}
         <div className={styles.userMenuContainer}>
-          <AppUserMenu />
+          <React.Suspense fallback={null}>
+            <UserMenuLazy />
+          </React.Suspense>
         </div>
       </div>
       {isMobile ? (
@@ -63,7 +73,9 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
           closeButtonAriaLabel={ls.LS_COMMON_CLOSE_BUTTON_TITLE}
           headerText={ls.LS_APP_NAV_TITLE}
         >
-          <AppNav onNavLinkClick={closeNavPanel} />
+          <React.Suspense fallback={null}>
+            <NavLazy onNavLinkClick={closeNavPanel} />
+          </React.Suspense>
         </Panel>
       ) : (
         <div className={styles.navbar}>
@@ -72,14 +84,18 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
               <img src={getAppLogoUrl()} alt={siteName} />
             </NavLink>
           </div>
-          <AppNav />
+          <React.Suspense fallback={null}>
+            <NavLazy />
+          </React.Suspense>
         </div>
       )}
       <div className={styles.mainContainer}>
         <React.Suspense fallback={<Spinner size={SpinnerSize.large} className={styles.spinner} />}>
           <div className={styles.mainContent}>{props.children}</div>
         </React.Suspense>
-        <AppFooter />
+        <React.Suspense fallback={null}>
+          <FooterLazy />
+        </React.Suspense>
       </div>
     </div>
   );

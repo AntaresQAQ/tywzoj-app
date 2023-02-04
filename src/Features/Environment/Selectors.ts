@@ -5,6 +5,8 @@ export const getApiBearerToken = (state: IRootState) => state.env.apiBearerToken
 export const getApiEndPoint = (state: IRootState) => state.env.apiEndPoint;
 export const getIsRtl = (state: IRootState) => state.env.isRtl;
 export const getIsSmallScreen = (state: IRootState) => state.env.isSmallScreen;
+export const getIsMiniScreen = (state: IRootState) => state.env.isMiniScreen;
+export const getIsMiddleScreen = (state: IRootState) => state.env.isMiddleScreen;
 export const getIsMobile = (state: IRootState) => state.env.isMobile;
 export const getPageName = (state: IRootState) => state.env.pageName;
 export const getRecaptchaEnabled = (state: IRootState) => state.env.recaptchaEnabled;

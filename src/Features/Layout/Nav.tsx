@@ -1,4 +1,12 @@
-import { Icon, useTheme } from "@fluentui/react";
+import { useTheme } from "@fluentui/react";
+import {
+  BulletedListIcon,
+  ChartIcon,
+  ContactListIcon,
+  HomeIcon,
+  LibraryIcon,
+  WaitlistConfirmIcon,
+} from "@fluentui/react-icons-mdl2";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
@@ -17,7 +25,7 @@ export interface IAppNavProps {
 interface INavItem {
   name: string;
   to: CE_PagePath;
-  icon: string;
+  icon: JSX.Element;
 }
 
 export const AppNav: React.FC<IAppNavProps> = props => {
@@ -33,7 +41,7 @@ export const AppNav: React.FC<IAppNavProps> = props => {
       {
         name: ls.LS_APP_NAV_PAGE_NAME_HOME_PAGE,
         to: CE_PagePath.Home,
-        icon: "Home",
+        icon: <HomeIcon />,
       },
     ];
 
@@ -43,17 +51,12 @@ export const AppNav: React.FC<IAppNavProps> = props => {
           {
             name: ls.LS_APP_NAV_PAGE_NAME_PROBLEM_PAGE,
             to: CE_PagePath.Problem,
-            icon: "BulletedList",
+            icon: <BulletedListIcon />,
           },
           {
             name: ls.LS_APP_NAV_PAGE_NAME_PROBLEM_SET_PAGE,
             to: CE_PagePath.ProblemSet,
-            icon: "Library",
-          },
-          {
-            name: ls.LS_APP_NAV_PAGE_NAME_CONTEST_PAGE,
-            to: CE_PagePath.Contest,
-            icon: "Chart",
+            icon: <LibraryIcon />,
           },
         );
       }
@@ -62,8 +65,23 @@ export const AppNav: React.FC<IAppNavProps> = props => {
         items.push({
           name: ls.LS_APP_NAV_PAGE_NAME_HOMEWORK_PAGE,
           to: CE_PagePath.Homework,
-          icon: "WaitlistConfirm",
+          icon: <WaitlistConfirmIcon />,
         });
+      }
+
+      if (checkIsAllowed(currentUser.level, CE_Permissions.AccessSite)) {
+        items.push(
+          {
+            name: ls.LS_APP_NAV_PAGE_NAME_CONTEST_PAGE,
+            to: CE_PagePath.Contest,
+            icon: <ChartIcon />,
+          },
+          {
+            name: ls.LS_APP_NAV_PAGE_NAME_USER_PAGE,
+            to: CE_PagePath.User,
+            icon: <ContactListIcon />,
+          },
+        );
       }
     }
 
@@ -80,7 +98,7 @@ export const AppNav: React.FC<IAppNavProps> = props => {
           onClick={onNavLinkClick}
           key={index}
         >
-          <Icon className={styles.navIcon} iconName={navItem.icon} />
+          <span className={styles.navIcon}>{navItem.icon}</span>
           {navItem.name}
         </NavLink>
       ))}

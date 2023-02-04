@@ -82,6 +82,10 @@
   value: 比赛
   description: A name for page.
   raw: Contest
+- name: APP_NAV_PAGE_NAME_USER_PAGE
+  value: null
+  description: A name for page.
+  raw: Members
 - name: APP_HEADER_USER_MENU_PROFILE
   value: 个人资料
   description: The header user menu item
@@ -149,3 +153,7 @@
   value: 密码错误
   description: A string for wrong password error.
   raw: Wrong password
+- name: USER_DETAIL_PAGE_TITLE
+  value: null
+  description: A page title for user detail page.
+  raw: Profile

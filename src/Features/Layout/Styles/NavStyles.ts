@@ -30,9 +30,8 @@ export const getNavStyles = memoizeFunction((theme: ITheme) =>
       },
     },
     navIcon: {
-      maxWidth: 20,
-      maxHeight: 20,
-      overflow: "hidden",
+      position: "relative",
+      top: -3,
       fontSize: 20,
       marginRight: 8,
     },
