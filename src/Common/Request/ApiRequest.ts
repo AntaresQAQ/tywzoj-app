@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 
+import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 import { getApiBearerToken, getApiEndPoint } from "@/Common/Environment/Selectors";
 import { catchError } from "@/Common/Error/Action";
-import { CE_ErrorCode } from "@/Common/Error/Code";
 import { XOR } from "@/Common/Utilities/Types";
 import { store } from "@/Store";
 
@@ -53,7 +53,7 @@ export async function requestAsync<T>(
       console.error(e);
       store.dispatch(catchError(CE_ErrorCode.Unknown));
     }
-    return null;
+    return { error: { code: CE_ErrorCode.Unknown } };
   }
 
   if ([200, 201].includes(response.status)) {

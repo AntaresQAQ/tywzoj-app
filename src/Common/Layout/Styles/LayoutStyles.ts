@@ -96,6 +96,7 @@ export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean
         ...flex({
           flexDirection: "column",
         }),
+        minWidth: 350,
         height: "100%",
         width: "100%",
         overflow: "auto",

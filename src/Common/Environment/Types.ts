@@ -1,12 +1,16 @@
-import { IPaginationPreferenceConfig, IServerVersion } from "@/Common/ServerType/Common";
+import {
+  IMiscPreferenceConfig,
+  IPaginationPreferenceConfig,
+  ISecurityPreferenceConfig,
+  IServerVersion,
+} from "@/Common/ServerType/Common";
 import { IUserBaseEntity } from "@/Common/ServerType/User";
 import { CE_ThemeName } from "@/Common/Theme";
 
-export interface IEnvState {
+export interface IEnvState extends IMiscPreferenceConfig, ISecurityPreferenceConfig {
   apiBearerToken: string;
   apiEndPoint: string;
   domainIcpRecordInformation: string;
-  gravatarCdn: string;
   isAndroid: boolean;
   isChrome: boolean;
   isEdge: boolean;
@@ -18,16 +22,10 @@ export interface IEnvState {
   isRtl: boolean;
   isSafari: boolean;
   isSmallScreen: boolean;
-  recaptchaEnabled: boolean;
-  recaptchaKey: string;
-  renderMarkdownInUserBio: boolean;
-  renderMarkdownInUserListBio: boolean;
-  requireEmailVerification: boolean;
+  pageName: string;
   serverTimeDiff: number;
   siteName: string;
-  sortUserBy: "id" | "rating" | "acceptedProblemCount";
   themeName: CE_ThemeName;
-  useRecaptchaNet: boolean;
 }
 
 export type IServerVersionState = IServerVersion;

@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
+import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 import { catchError, clearError } from "@/Common/Error/Action";
-import { CE_ErrorCode } from "@/Common/Error/Code";
 import { IErrorState } from "@/Common/Error/Types";
 
 export const initialErrorState: IErrorState = {

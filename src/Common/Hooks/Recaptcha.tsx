@@ -22,7 +22,7 @@ export const useRecaptcha = () => {
     : async () => "";
 };
 
-export const useRecaptchaCopyrightMessage = (className: string) => {
+export const useRecaptchaCopyrightMessage = (className?: string) => {
   const recaptchaEnabled = useAppSelector(getRecaptchaEnabled);
   const ls = useLocalizedStrings();
   return recaptchaEnabled ? (

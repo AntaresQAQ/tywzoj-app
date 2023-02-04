@@ -1,8 +1,8 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
+import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 import { clearError } from "@/Common/Error/Action";
-import { CE_ErrorCode } from "@/Common/Error/Code";
 import { ErrorPage } from "@/Common/Error/ErrorPage";
 import { getErrorCode } from "@/Common/Error/Selectors";
 import { makeUrl } from "@/Common/Utilities/Url";
@@ -33,19 +33,25 @@ export const AppErrorBoundary: React.FC<IProps> = props => {
   const path = useAppSelector(getPath);
   const queries = useAppSelector(getQueries);
   const hash = useAppSelector(getHash);
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [shown, setShown] = React.useState(false);
 
+  // Clear error on route changed.
   React.useEffect(() => {
-    if (errorCode === CE_ErrorCode.AuthRequired) {
+    if (shown) {
       dispatch(clearError());
-      const url = makeUrl({ path, queries, hash });
-      navigate(url);
+      setShown(false);
     }
-  }, [dispatch, errorCode, hash, navigate, path, queries]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hash, path, queries]);
+
+  // Redirect to login page on AuthRequiredError
+  if (errorCode === CE_ErrorCode.AuthRequired) {
+    return <Navigate to={makeUrl({ path, queries, hash })} />;
+  }
 
   if (errorCode) {
-    return <ErrorPage code={errorCode} />;
+    return <ErrorPage code={errorCode} onShow={() => setShown(true)} />;
   }
 
   return props.children;

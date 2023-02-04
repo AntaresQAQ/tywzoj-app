@@ -1,8 +1,8 @@
 import { createAction } from "@reduxjs/toolkit";
 
+import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 import { CE_RecaptchaAction } from "@/Common/Enums/RecaptchaAction";
 import { setCurrentUser, setEnvApiBearerToken } from "@/Common/Environment/Action";
-import { CE_ErrorCode } from "@/Common/Error/Code";
 import { getLocalizedStrings } from "@/Common/LocalizedString/Selectors";
 import { postLoginRequestAsync } from "@/Pages/Login/Features/Request";
 import {
@@ -23,9 +23,10 @@ export const setLoginPageState = createAction(UPDATE_LOGIN_PAGE, (props: Partial
 export const initLoginPageState = (dispatch: IAppDispatch) => {
   dispatch(
     setLoginPageState({
+      loading: false,
       uError: "",
       pError: "",
-      loading: false,
+      password: "",
     }),
   );
 };
@@ -91,5 +92,6 @@ export const loginAction =
 
     dispatch(setEnvApiBearerToken(data.token));
     dispatch(setCurrentUser(data.userBaseDetail));
+    dispatch(setLoginPageState({ loading: false, password: "" }));
     return true;
   };

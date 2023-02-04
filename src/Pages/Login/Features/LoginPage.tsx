@@ -11,6 +11,9 @@ import * as React from "react";
 
 import { FluentRouterLink } from "@/Common/Components/FluentLink";
 import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { setPageName } from "@/Common/Environment/Action";
+import { useIsSmallScreen } from "@/Common/Environment/Hooks";
+import { useRecaptchaCopyrightMessage } from "@/Common/Hooks/Recaptcha";
 import { useLocalizedStrings } from "@/Common/LocalizedString/Hooks";
 import { runOnce } from "@/Common/Utilities/Tools";
 import { makeUrl } from "@/Common/Utilities/Url";
@@ -26,10 +29,8 @@ import { CE_LoginType } from "./Types";
 const configureStore = runOnce(() => {
   injectDynamicReducer({ loginPage: loginPageReducer });
 });
-
+configureStore();
 export const LoginPage: React.FC = () => {
-  configureStore();
-
   const {
     loginType,
     usernameOrEmail,
@@ -45,11 +46,17 @@ export const LoginPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const ls = useLocalizedStrings();
   const theme = useTheme();
+  const isSmallScreen = useIsSmallScreen();
   const styles = getLoginPageStyles(theme);
+  const recaptchaMsg = useRecaptchaCopyrightMessage();
 
   React.useEffect(() => {
     dispatch(initLoginPageState);
   }, [dispatch]);
+
+  React.useEffect(() => {
+    dispatch(setPageName(ls.LS_COMMON_SIGN_IN_TITLE));
+  }, [dispatch, ls]);
 
   const loginTypeOptions = React.useMemo(
     (): IChoiceGroupOption[] => [
@@ -100,6 +107,7 @@ export const LoginPage: React.FC = () => {
           </FluentRouterLink>
           <FluentRouterLink to={makeUrl({ base: CE_PagePath.Register })}>{ls.LS_COMMON_SIGN_UP_TITLE}</FluentRouterLink>
         </div>
+        {isSmallScreen && <div className={styles.recaptcha}>{recaptchaMsg}</div>}
       </div>
     </div>
   );

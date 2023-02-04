@@ -1,4 +1,4 @@
-import { CE_ErrorCode } from "@/Common/Error/Code";
+import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 import { requestAsync } from "@/Common/Request/ApiRequest";
 import { IPostLoginRequestBody, IPostLoginResponse } from "@/Pages/Login/Features/Types";
 

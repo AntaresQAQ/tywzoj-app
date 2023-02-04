@@ -15,7 +15,6 @@ export const getFooterStyles = memoizeFunction((theme: ITheme) =>
       gap: 5,
       padding: "20px 0 40px",
       color: theme.palette.neutralTertiary,
-      minWidth: 290,
     },
     declaration: {
       ...flex({}),

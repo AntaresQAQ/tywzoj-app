@@ -25,8 +25,12 @@ export const setEnvApiBearerToken = (token: string) => (dispatch: IAppDispatch) 
   saveToken(CE_TokenName.ApiBearerToken, token);
 };
 
-export const updateTheme = (themeName: CE_ThemeName) => (dispatch: IAppDispatch) => {
+export const setTheme = (themeName: CE_ThemeName) => (dispatch: IAppDispatch) => {
   dispatch(setEnv({ themeName }));
+};
+
+export const setPageName = (pageName: string) => (dispatch: IAppDispatch) => {
+  dispatch(setEnv({ pageName }));
 };
 
 export const setServerVersion = createAction(UPDATE_SERVER_VERSION, (props: IServerVersionState) => ({

@@ -1,5 +1,6 @@
 import { ITheme, memoizeFunction, mergeStyleSets } from "@fluentui/react";
 
+import { themedAnchorStyle } from "@/Common/Styles/Anchor";
 import { flex } from "@/Common/Styles/Flex";
 
 export const getLoginPageStyles = memoizeFunction((theme: ITheme) =>
@@ -14,7 +15,6 @@ export const getLoginPageStyles = memoizeFunction((theme: ITheme) =>
     container: {
       width: "100%",
       maxWidth: 400,
-      minWidth: 200,
       backgroundColor: theme.palette.white,
       borderRadius: 6,
       border: `solid 1px ${theme.palette.neutralLight}`,
@@ -46,7 +46,14 @@ export const getLoginPageStyles = memoizeFunction((theme: ITheme) =>
         justifyContent: "center",
       }),
       gap: 30,
-      margin: 25,
+      margin: "25px 0",
+    },
+    recaptcha: {
+      color: theme.palette.neutralTertiary,
+      marginBottom: 25,
+      padding: "0 20px",
+      fontSize: 12,
+      ...themedAnchorStyle(theme),
     },
   }),
 );

@@ -34,6 +34,30 @@
   value: 不可留空
   description: An error message for empty field
   raw: Cannot be empty
+- name: ERROR_UNKNOWN_MESSAGE
+  value: null
+  description: Error message.
+  raw: Unknown error.
+- name: ERROR_403_MESSAGE
+  value: null
+  description: Error message.
+  raw: Permission denied
+- name: ERROR_500_MESSAGE
+  value: null
+  description: Error message.
+  raw: Internal server error
+- name: ERROR_1000_MESSAGE
+  value: null
+  description: Error message.
+  raw: Recaptcha error.
+- name: ERROR_1001_MESSAGE
+  value: null
+  description: Error message.
+  raw: Data validation failed
+- name: ERROR_1002_MESSAGE
+  value: null
+  description: Error message.
+  raw: Too many requested items.
 - name: APP_NAV_TITLE
   value: 导航
   description: A string for navigation button's tooltip and aria-label.

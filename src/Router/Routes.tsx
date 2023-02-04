@@ -1,34 +1,20 @@
 import * as React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { CE_PagePath } from "@/Common/Enums/PagePath";
-import { parseQuery } from "@/Common/Utilities/QueryString";
 import { makeUrl } from "@/Common/Utilities/Url";
 import { useHomePageRoutes } from "@/Pages/Home/Routes";
 import { useLoginPageRoutes } from "@/Pages/Login/Routes";
 import { useRegisterPageRoutes } from "@/Pages/Register/Routes";
-import { setRouter } from "@/Router/Action";
-import { useAppDispatch } from "@/Store";
+import { useUserPageRoutes } from "@/Pages/User/Routes";
 
 export const AppRoutes: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { pathname, hash, search } = useLocation();
-
-  React.useEffect(() => {
-    dispatch(
-      setRouter({
-        path: decodeURIComponent(pathname),
-        hash: decodeURIComponent(hash.substring(1)),
-        queries: parseQuery(search),
-      }),
-    );
-  }, [dispatch, hash, pathname, search]);
-
   return (
     <Routes>
       {useHomePageRoutes()}
       {useLoginPageRoutes()}
       {useRegisterPageRoutes()}
+      {useUserPageRoutes()}
       <Route path={makeUrl({ base: CE_PagePath.ForgotPassword })} />
       <Route path="*" />
     </Routes>

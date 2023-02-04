@@ -1,6 +1,7 @@
 import { format, Link, useTheme } from "@fluentui/react";
 import * as React from "react";
 
+import { useIsSmallScreen } from "@/Common/Environment/Hooks";
 import { getSiteName } from "@/Common/Environment/Selectors";
 import { useMomentFormatter } from "@/Common/Hooks/Moment";
 import { useRecaptchaCopyrightMessage } from "@/Common/Hooks/Recaptcha";
@@ -12,11 +13,13 @@ import { getFooterStyles } from "./Styles/FooterStyles";
 export const AppFooter: React.FC = () => {
   const ls = useLocalizedStrings();
   const theme = useTheme();
+  const isSmallScreen = useIsSmallScreen();
   const styles = getFooterStyles(theme);
   const siteName = useAppSelector(getSiteName);
   const version = useAppSelector(state => state.version);
   const domainIcpRecord = useAppSelector(state => state.env.domainIcpRecordInformation);
   const serverTimeDiff = useAppSelector(state => state.env.serverTimeDiff);
+  const recaptchaMessage = useRecaptchaCopyrightMessage(styles.recaptcha);
   const momentFormatter = useMomentFormatter();
 
   const [clientTime, setClientTime] = React.useState(Date.now());
@@ -46,7 +49,7 @@ export const AppFooter: React.FC = () => {
           {ls.LS_APP_FOOTER_CLIENT_VERSION_LABEL} {version.client.hash}
         </span>
       </div>
-      {useRecaptchaCopyrightMessage(styles.recaptcha)}
+      {!isSmallScreen && recaptchaMessage}
       {domainIcpRecord && (
         <Link className={styles.domainIcpRecord} href={"https://beian.miit.gov.cn"} target="_blank">
           {domainIcpRecord}

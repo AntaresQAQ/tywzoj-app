@@ -11,8 +11,5 @@ export async function getSessionInfoRequestAsync(token?: string) {
 }
 
 export async function postLogoutRequestAsync() {
-  return await requestAsync({
-    path: "auth/logout",
-    method: "POST",
-  });
+  await requestAsync({ path: "auth/logout", method: "POST" });
 }

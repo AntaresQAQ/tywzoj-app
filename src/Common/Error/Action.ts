@@ -1,6 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
 
-import { CE_ErrorCode } from "@/Common/Error/Code";
+import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 
 const CATCH_ERROR = "Error/Catch";
 const CLEAR_ERROR = "Error/Clear";
