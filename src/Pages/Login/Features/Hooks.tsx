@@ -1,8 +1,8 @@
 import * as React from "react";
 
 import { useRecaptcha } from "@/Common/Hooks/Recaptcha";
+import { useAppDispatch, useAppSelector } from "@/Features/Store";
 import { CE_LoginType } from "@/Pages/Login/Features/Types";
-import { useAppDispatch, useAppSelector } from "@/Store";
 
 import { loginAction, setLoginPageState } from "./Action";
 import { getLoginPageEmail, getLoginPageLoginType, getLoginPagePassword, getLoginPageUsername } from "./Selectors";

@@ -3,15 +3,15 @@ import * as React from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import { BrowserRouter } from "react-router-dom";
 
-import { getIsRtl, getPageName, getRecaptchaKey, getSiteName, getThemeName } from "@/Common/Environment/Selectors";
-import { AppErrorBoundary } from "@/Common/Error/ErrorBoundary";
-import { AppLayout } from "@/Common/Layout/Layout";
-import { fluentUILanguageMap, recaptchaLanguageMap } from "@/Common/LocalizedString/Locales";
-import { getLanguage } from "@/Common/LocalizedString/Selectors";
 import { getTheme } from "@/Common/Theme";
-import { RouterStateWatcher } from "@/Router/RouterStateWatcher";
-import { AppRoutes } from "@/Router/Routes";
-import { useAppSelector } from "@/Store";
+import { getIsRtl, getPageName, getRecaptchaKey, getSiteName, getThemeName } from "@/Features/Environment/Selectors";
+import { AppErrorBoundary } from "@/Features/Error/ErrorBoundary";
+import { AppLayout } from "@/Features/Layout/Layout";
+import { fluentUILanguageMap, recaptchaLanguageMap } from "@/Features/LocalizedString/Locales";
+import { getLanguage } from "@/Features/LocalizedString/Selectors";
+import { RouterStateWatcher } from "@/Features/Router/RouterStateWatcher";
+import { AppRoutes } from "@/Features/Router/Routes";
+import { useAppSelector } from "@/Features/Store";
 
 export const App: React.FC = () => {
   const themeName = useAppSelector(getThemeName);

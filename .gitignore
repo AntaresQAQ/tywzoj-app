@@ -25,5 +25,5 @@ tsconfig.tsbuildinfo
 *.sw?
 
 # Auto-generated files
-src/Common/LocalizedString/locale.d.ts
+src/Features/LocalizedString/locale.d.ts
 src/assets/locale/

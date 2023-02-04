@@ -3,16 +3,16 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
-import { initEnv } from "@/Common/Environment";
-import { setCurrentUser, setEnv, setPagination, setServerVersion } from "@/Common/Environment/Action";
-import { getApiBearerToken } from "@/Common/Environment/Selectors";
-import { GlobalErrorBoundary } from "@/Common/Error/ErrorBoundary";
-import { setLocale } from "@/Common/LocalizedString/Action";
-import { getIsRtlLanguage, getPreferLanguage, loadLocaleAsync } from "@/Common/LocalizedString/Utils";
 import { getSessionInfoRequestAsync } from "@/Common/Request/Common";
+import { initEnv } from "@/Features/Environment";
+import { setCurrentUser, setEnv, setPagination, setServerVersion } from "@/Features/Environment/Action";
+import { getApiBearerToken } from "@/Features/Environment/Selectors";
+import { GlobalErrorBoundary } from "@/Features/Error/ErrorBoundary";
+import { setLocale } from "@/Features/LocalizedString/Action";
+import { getIsRtlLanguage, getPreferLanguage, loadLocaleAsync } from "@/Features/LocalizedString/Utils";
 
 import { App } from "./App";
-import { store } from "./Store";
+import { store } from "./Features/Store";
 
 function render() {
   createRoot(document.getElementById("root")).render(

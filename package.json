@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{js,ts,tsx}\"",
     "lint": "eslint \"{src,apps,libs}/**/*.{ts,tsx}\" --fix",
-    "locstring": "node scripts/localized-string.cjs && prettier --write src/Common/LocalizedString/locale.d.ts"
+    "locstring": "node scripts/localized-string.cjs && prettier --write src/Features/LocalizedString/locale.d.ts"
   },
   "devDependencies": {
     "@fluentui/react": "^8.104.7",

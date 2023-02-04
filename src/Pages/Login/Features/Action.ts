@@ -2,8 +2,9 @@ import { createAction } from "@reduxjs/toolkit";
 
 import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 import { CE_RecaptchaAction } from "@/Common/Enums/RecaptchaAction";
-import { setCurrentUser, setEnvApiBearerToken } from "@/Common/Environment/Action";
-import { getLocalizedStrings } from "@/Common/LocalizedString/Selectors";
+import { setCurrentUser, setEnvApiBearerToken } from "@/Features/Environment/Action";
+import { getLocalizedStrings } from "@/Features/LocalizedString/Selectors";
+import { IAppDispatch, IRootState } from "@/Features/Store";
 import { postLoginRequestAsync } from "@/Pages/Login/Features/Request";
 import {
   getLoginPageEmail,
@@ -12,7 +13,6 @@ import {
   getLoginPageUsername,
 } from "@/Pages/Login/Features/Selectors";
 import { CE_LoginType, ILoginPageState, IPostLoginRequestBody } from "@/Pages/Login/Features/Types";
-import { IAppDispatch, IRootState } from "@/Store";
 
 const UPDATE_LOGIN_PAGE = "LoginPage/Update";
 

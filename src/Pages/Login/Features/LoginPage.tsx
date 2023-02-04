@@ -11,14 +11,14 @@ import * as React from "react";
 
 import { FluentRouterLink } from "@/Common/Components/FluentLink";
 import { CE_PagePath } from "@/Common/Enums/PagePath";
-import { setPageName } from "@/Common/Environment/Action";
-import { useIsSmallScreen } from "@/Common/Environment/Hooks";
 import { useRecaptchaCopyrightMessage } from "@/Common/Hooks/Recaptcha";
-import { useLocalizedStrings } from "@/Common/LocalizedString/Hooks";
 import { runOnce } from "@/Common/Utilities/Tools";
 import { makeUrl } from "@/Common/Utilities/Url";
-import { useAppDispatch } from "@/Store";
-import { injectDynamicReducer } from "@/Store/Helper";
+import { setPageName } from "@/Features/Environment/Action";
+import { useIsSmallScreen } from "@/Features/Environment/Hooks";
+import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
+import { useAppDispatch } from "@/Features/Store";
+import { injectDynamicReducer } from "@/Features/Store/Helper";
 
 import { initLoginPageState } from "./Action";
 import { useLoginProps } from "./Hooks";

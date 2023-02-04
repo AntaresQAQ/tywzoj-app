@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 
 import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
-import { getApiBearerToken, getApiEndPoint } from "@/Common/Environment/Selectors";
-import { catchError } from "@/Common/Error/Action";
 import { XOR } from "@/Common/Utilities/Types";
-import { store } from "@/Store";
+import { getApiBearerToken, getApiEndPoint } from "@/Features/Environment/Selectors";
+import { catchError } from "@/Features/Error/Action";
+import { store } from "@/Features/Store";
 
 type IQueryType = { [k: string]: string | number | boolean };
 type IBodyType = { [k: string]: unknown };
