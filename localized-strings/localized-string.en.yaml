@@ -39,25 +39,33 @@
   description: Error message.
   raw: Unknown error.
 - name: ERROR_403_MESSAGE
-  value: Permission denied
+  value: Permission denied.
   description: Error message.
-  raw: Permission denied
+  raw: Permission denied.
 - name: ERROR_500_MESSAGE
-  value: Internal server error
+  value: Internal server error.
   description: Error message.
-  raw: Internal server error
+  raw: Internal server error.
 - name: ERROR_1000_MESSAGE
   value: Recaptcha error.
   description: Error message.
   raw: Recaptcha error.
 - name: ERROR_1001_MESSAGE
-  value: Data validation failed
+  value: Data validation failed.
   description: Error message.
-  raw: Data validation failed
+  raw: Data validation failed.
 - name: ERROR_1002_MESSAGE
   value: Too many requested items.
   description: Error message.
   raw: Too many requested items.
+- name: ERROR_5100_MESSAGE
+  value: No such user, please check username or id.
+  description: Error message.
+  raw: No such user, please check username or id.
+- name: COMMON_ERROR_PAGE_TITLE
+  value: Error
+  description: Error page title.
+  raw: Error
 - name: APP_NAV_TITLE
   value: Navigation
   description: A string for navigation button's tooltip and aria-label.

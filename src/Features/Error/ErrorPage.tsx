@@ -1,19 +1,49 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
-import { MessageBar, MessageBarType } from "@fluentui/react";
+import { mergeStyles, MessageBar, MessageBarType } from "@fluentui/react";
 import * as React from "react";
 
 import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
+import { registerBlocked2Icon, registerErrorBadgeIcon, registerWarningIcon } from "@/Common/IconRegistration";
+import { flex } from "@/Common/Styles/Flex";
+import { setPageName } from "@/Features/Environment/Action";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
+import { useAppDispatch } from "@/Features/Store";
+
+registerErrorBadgeIcon();
+registerBlocked2Icon();
+registerWarningIcon();
 
 interface IErrorPageProps {
   code: CE_ErrorCode;
   onShow: () => void;
 }
 
+const messageStyle = mergeStyles({
+  padding: "15px 25px",
+  ".ms-MessageBar-content": {
+    ...flex({
+      alignItems: "center",
+    }),
+  },
+  ".ms-MessageBar-icon": {
+    fontSize: 30,
+    margin: "0 0 10px 0",
+  },
+  ".ms-MessageBar-text": {
+    fontSize: 16,
+    margin: "0 0 0 15px",
+  },
+});
+
 export const ErrorPage: React.FC<IErrorPageProps> = props => {
   const { code, onShow } = props;
   const ls = useLocalizedStrings();
+  const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    dispatch(setPageName(ls.LS_COMMON_ERROR_PAGE_TITLE));
+  }, [dispatch, ls]);
 
   React.useEffect(() => {
     let timeout = setTimeout(() => {
@@ -30,6 +60,8 @@ export const ErrorPage: React.FC<IErrorPageProps> = props => {
     switch (code) {
       case CE_ErrorCode.PermissionDenied:
         return MessageBarType.blocked;
+      case CE_ErrorCode.RecaptchaError:
+        return MessageBarType.severeWarning;
 
       default:
         return MessageBarType.error;
@@ -50,5 +82,9 @@ export const ErrorPage: React.FC<IErrorPageProps> = props => {
     }
   }, [code, ls]);
 
-  return <MessageBar messageBarType={msgType}>{msgContent}</MessageBar>;
+  return (
+    <MessageBar className={messageStyle} messageBarType={msgType} isMultiline={true}>
+      {msgContent}
+    </MessageBar>
+  );
 };

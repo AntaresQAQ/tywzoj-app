@@ -61,7 +61,12 @@ export const UserDetailPage: React.FC = () => {
       <div className={styles.mainContainer}>
         <div className={styles.headerBox}>
           <div className={styles.avatarContainer}>
-            <Image className={styles.avatar} src={gravatar(userDetail.avatar)} imageFit={ImageFit.contain} />
+            <Image
+              className={styles.avatar}
+              src={gravatar(userDetail.avatar)}
+              imageFit={ImageFit.contain}
+              loading={"lazy"}
+            />
           </div>
           <div className={styles.infoContainer}>
             <div className={styles.info}>

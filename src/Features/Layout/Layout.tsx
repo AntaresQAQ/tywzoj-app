@@ -1,10 +1,10 @@
-import { IconButton, Panel, PanelType, registerIcons, Spinner, SpinnerSize, useTheme } from "@fluentui/react";
+import { IconButton, Panel, PanelType, Spinner, SpinnerSize, useTheme } from "@fluentui/react";
 import { useEventCallback } from "@fluentui/react-hooks";
-import { CancelIcon, GlobalNavButtonIcon } from "@fluentui/react-icons-mdl2";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
 import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { registerCancelIcon, registerGlobalNavButtonIcon } from "@/Common/IconRegistration";
 import { useIsMobile } from "@/Features/Environment/Hooks";
 import { getSiteName } from "@/Features/Environment/Selectors";
 import { getAppLogoUrl } from "@/Features/Environment/Settings/BuildEnv";
@@ -18,11 +18,8 @@ export interface IAppLayoutProps {
   children: React.ReactElement;
 }
 
-registerIcons({
-  icons: {
-    Cancel: <CancelIcon />,
-  },
-});
+registerCancelIcon();
+const globalNavButtonIconName = registerGlobalNavButtonIcon();
 
 const NavLazy = React.lazy(loadNav);
 const FooterLazy = React.lazy(loadFooter);
@@ -47,7 +44,7 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
             <div className={styles.navButtonContainer}>
               <IconButton
                 className={styles.navButton}
-                onRenderIcon={() => <GlobalNavButtonIcon />}
+                iconProps={{ iconName: globalNavButtonIconName }}
                 tabIndex={0}
                 onClick={openNavPanel}
                 ariaLabel={ls.LS_APP_NAV_TITLE}

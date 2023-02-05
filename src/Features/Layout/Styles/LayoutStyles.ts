@@ -48,8 +48,14 @@ export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean
       navButton: {
         height: headerHeight,
         width: 50,
-        color: theme.palette.neutralPrimary,
-        fontSize: 20,
+        ".ms-Button-icon": {
+          color: theme.palette.neutralPrimary,
+          fontSize: 20,
+          height: 20,
+          span: {
+            verticalAlign: "unset",
+          },
+        },
       },
       navPanel: {
         ".ms-Panel-commands": {

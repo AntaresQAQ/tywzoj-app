@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
   ActionButton,
   ContextualMenu,
@@ -9,28 +8,37 @@ import {
   useTheme,
 } from "@fluentui/react";
 import { useEventCallback } from "@fluentui/react-hooks";
-import {
-  AddFriendIcon,
-  ContactInfoIcon,
-  EditContactIcon,
-  PlayerSettingsIcon,
-  SettingsIcon,
-  SigninIcon,
-  SignOutIcon,
-} from "@fluentui/react-icons-mdl2";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CE_PagePath } from "@/Common/Enums/PagePath";
 import { CE_Permissions } from "@/Common/Enums/Permissions";
 import { useGravatar } from "@/Common/Hooks/Gravatar";
+import {
+  registerAddFriendIcon,
+  registerContactInfoIcon,
+  registerEditContactIcon,
+  registerPlayerSettingsIcon,
+  registerSettingsIcon,
+  registerSigninIcon,
+  registerSignOutIcon,
+} from "@/Common/IconRegistration";
 import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
 import { makeUrl } from "@/Common/Utilities/Url";
 import { useCurrentUser, useIsMobile } from "@/Features/Environment/Hooks";
-import { logoutAction } from "@/Features/Layout/Action";
-import { getUserMenuStyles } from "@/Features/Layout/Styles/UserMenuStyles";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppDispatch } from "@/Features/Store";
+
+import { logoutAction } from "./Action";
+import { getUserMenuStyles } from "./Styles/UserMenuStyles";
+
+const contactInfoIconName = registerContactInfoIcon();
+const editContactIconName = registerEditContactIcon();
+const playerSettingsIconName = registerPlayerSettingsIcon();
+const settingsIconName = registerSettingsIcon();
+const signOutIconName = registerSignOutIcon();
+const signinIconName = registerSigninIcon();
+const addFriendIconName = registerAddFriendIcon();
 
 export const AppUserMenu: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -81,20 +89,17 @@ export const AppUserMenu: React.FC = () => {
       {
         key: "profile",
         text: ls.LS_APP_HEADER_USER_MENU_PROFILE,
-        iconProps: {},
-        onRenderIcon: props => <ContactInfoIcon className={props.classNames.icon} />,
+        iconProps: { iconName: contactInfoIconName },
       },
       {
         key: "edit",
         text: ls.LS_APP_HEADER_USER_MENU_EDIT,
-        iconProps: {},
-        onRenderIcon: props => <EditContactIcon className={props.classNames.icon} />,
+        iconProps: { iconName: editContactIconName },
       },
       {
         key: "setting",
         text: ls.LS_APP_HEADER_USER_MENU_SETTINGS,
-        iconProps: {},
-        onRenderIcon: props => <PlayerSettingsIcon className={props.classNames.icon} />,
+        iconProps: { iconName: playerSettingsIconName },
       },
     ];
 
@@ -107,8 +112,7 @@ export const AppUserMenu: React.FC = () => {
         {
           key: "manage_site",
           text: ls.LS_APP_HEADER_USER_MENU_MANAGE_SITE,
-          iconProps: {},
-          onRenderIcon: props => <SettingsIcon className={props.classNames.icon} />,
+          iconProps: { iconName: settingsIconName },
         },
       );
     }
@@ -121,8 +125,7 @@ export const AppUserMenu: React.FC = () => {
       {
         key: "sign_out",
         text: ls.LS_COMMON_SIGN_OUT_TITLE,
-        iconProps: {},
-        onRenderIcon: props => <SignOutIcon className={props.classNames.icon} />,
+        iconProps: { iconName: signOutIconName },
         onClick: onSignOutClick,
       },
     );
@@ -157,10 +160,10 @@ export const AppUserMenu: React.FC = () => {
         </>
       ) : (
         <>
-          <ActionButton onRenderIcon={() => <SigninIcon className={styles.icon} />} onClick={onSignInClick}>
+          <ActionButton iconProps={{ iconName: signinIconName }} onClick={onSignInClick}>
             {ls.LS_COMMON_SIGN_IN_TITLE}
           </ActionButton>
-          <ActionButton onRenderIcon={() => <AddFriendIcon className={styles.icon} />} onClick={onSignUpClick}>
+          <ActionButton iconProps={{ iconName: addFriendIconName }} onClick={onSignUpClick}>
             {ls.LS_COMMON_SIGN_UP_TITLE}
           </ActionButton>
         </>
