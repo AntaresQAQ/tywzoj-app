@@ -1,6 +1,6 @@
-import { ILoginPageState } from "@/Pages/Auth/Features/LoginPage/Types";
-import { IUserDetailPageState } from "@/Pages/User/Features/UserDetailPage/Types";
-import { IUserListPageState } from "@/Pages/User/Features/UserListPage/Types";
+import { ILoginPageState } from "./Auth/LoginPage/Types";
+import { IUserDetailPageState } from "./User/UserDetailPage/Types";
+import { IUserListPageState } from "./User/UserListPage/Types";
 
 export interface IPagesState {
   homePage: unknown;

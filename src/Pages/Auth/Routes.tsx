@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import { AuthedRedirect } from "@/Common/Components/AuthedRedirect";
 import { CE_PagePath } from "@/Common/Enums/PagePath";
 
-import { loadForgotPasswordPage, loadLoginPage, loadRegisterPage } from "./Features/DynamicImport";
+import { loadForgotPasswordPage, loadLoginPage, loadRegisterPage } from "./DynamicImport";
 
 const LoginPageLazy = React.lazy(loadLoginPage);
 const RegisterPageLazy = React.lazy(loadRegisterPage);

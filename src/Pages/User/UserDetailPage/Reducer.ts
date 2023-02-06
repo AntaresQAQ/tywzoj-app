@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import { setUserDetailPage } from "@/Pages/User/Features/UserDetailPage/Action";
-import { IUserDetailPageState } from "@/Pages/User/Features/UserDetailPage/Types";
+import { setUserDetailPage } from "@/Pages/User/UserDetailPage/Action";
+import { IUserDetailPageState } from "@/Pages/User/UserDetailPage/Types";
 
 const initialUserDetailPageState: IUserDetailPageState = {
   userDetail: {},

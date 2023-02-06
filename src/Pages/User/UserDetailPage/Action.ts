@@ -1,7 +1,7 @@
 import { createAction } from "@reduxjs/toolkit";
 
 import { IAppDispatch } from "@/Features/Store";
-import { getUserDetailRequestAsync } from "@/Pages/User/Features/UserDetailPage/Request";
+import { getUserDetailRequestAsync } from "@/Pages/User/UserDetailPage/Request";
 
 import { IUserDetailPageState } from "./Types";
 

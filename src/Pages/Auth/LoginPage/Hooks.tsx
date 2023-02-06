@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { useRecaptcha } from "@/Common/Hooks/Recaptcha";
 import { useAppDispatch, useAppSelector } from "@/Features/Store";
-import { CE_LoginType } from "@/Pages/Auth/Features/LoginPage/Types";
+import { CE_LoginType } from "@/Pages/Auth/LoginPage/Types";
 
 import { loginAction, setLoginPageState } from "./Action";
 import { getLoginPageEmail, getLoginPageLoginType, getLoginPagePassword, getLoginPageUsername } from "./Selectors";

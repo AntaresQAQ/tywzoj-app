@@ -2,9 +2,10 @@ import * as React from "react";
 
 import { PageLoading } from "@/Common/Components/PageLoading";
 import { useAppDispatch } from "@/Features/Store";
-import { fetchUserDetailAction } from "@/Pages/User/Features/UserDetailPage/Action";
-import { UserDetailPage } from "@/Pages/User/Features/UserDetailPage/UserDetailPage";
 import { useUserPageParams } from "@/Pages/User/Routes";
+
+import { fetchUserDetailAction } from "./Action";
+import { UserDetailPage } from "./UserDetailPage";
 
 const Wrapper: React.FC = () => {
   const [dataFetched, setDataFetched] = React.useState(false);

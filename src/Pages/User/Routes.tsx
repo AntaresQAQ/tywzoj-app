@@ -3,7 +3,7 @@ import { Route, useParams } from "react-router-dom";
 
 import { CE_PagePath } from "@/Common/Enums/PagePath";
 
-import { loadUserDetailPage, loadUserEditPage, loadUserListPage, loadUserSettingPage } from "./Features/DynamicImport";
+import { loadUserDetailPage, loadUserEditPage, loadUserListPage, loadUserSettingPage } from "./DynamicImport";
 
 const UserListPageLazy = React.lazy(loadUserListPage);
 const UserDetailPageLazy = React.lazy(loadUserDetailPage);
