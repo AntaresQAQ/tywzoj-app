@@ -46,14 +46,7 @@ export const ErrorPage: React.FC<IErrorPageProps> = props => {
   }, [dispatch, ls]);
 
   React.useEffect(() => {
-    let timeout = setTimeout(() => {
-      timeout = null;
-      onShow();
-    }, 100);
-
-    return () => {
-      timeout && clearTimeout(timeout);
-    };
+    onShow();
   }, [onShow]);
 
   const msgType = React.useMemo((): MessageBarType => {

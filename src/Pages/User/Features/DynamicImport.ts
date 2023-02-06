@@ -1,15 +1,15 @@
 export function loadUserListPage() {
-  return import("./UserListPage/UserListPage").then(({ UserListPage }) => ({ default: UserListPage }));
+  return import("./UserListPage");
 }
 
 export function loadUserDetailPage() {
-  return import("./UserDetailPage/UserDetailPage").then(({ UserDetailPage }) => ({ default: UserDetailPage }));
+  return import("./UserDetailPage");
 }
 
 export function loadUserEditPage() {
-  return import("./UserEditPage/UserEditPage").then(({ UserEditPage }) => ({ default: UserEditPage }));
+  return import("./UserEditPage");
 }
 
 export function loadUserSettingPage() {
-  return import("./UserSettingPage/UserSettingPage").then(({ UserSettingPage }) => ({ default: UserSettingPage }));
+  return import("./UserSettingPage");
 }

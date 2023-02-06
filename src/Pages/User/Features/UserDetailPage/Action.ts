@@ -12,10 +12,12 @@ export const setUserDetailPage = createAction(UPDATE_USER_DETAIL_PAGE, (props: P
 }));
 
 export const fetchUserDetailAction = (id: string) => async (dispatch: IAppDispatch) => {
-  const { data } = await getUserDetailRequestAsync(id);
+  const { data, error } = await getUserDetailRequestAsync(id);
+  if (error) return false;
   dispatch(
     setUserDetailPage({
       userDetail: data,
     }),
   );
+  return true;
 };

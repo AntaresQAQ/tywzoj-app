@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
+import { CE_PagePath } from "@/Common/Enums/PagePath";
 import { makeUrl } from "@/Common/Utilities/Url";
 import { clearError } from "@/Features/Error/Action";
 import { ErrorPage } from "@/Features/Error/ErrorPage";
@@ -33,25 +34,41 @@ export const AppErrorBoundary: React.FC<IProps> = props => {
   const path = useAppSelector(getPath);
   const queries = useAppSelector(getQueries);
   const hash = useAppSelector(getHash);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [shown, setShown] = React.useState(false);
+  const shown = React.useRef(false);
+  const redirecting = React.useRef(false);
+
+  React.useEffect(() => {
+    if (errorCode === CE_ErrorCode.AuthRequired && !redirecting.current) {
+      redirecting.current = true;
+      const url = makeUrl({ path, queries, hash });
+      navigate(
+        makeUrl({
+          base: CE_PagePath.Login,
+          queries: {
+            redirect: url,
+          },
+        }),
+      );
+    }
+  }, [dispatch, errorCode, hash, navigate, path, queries]);
 
   // Clear error on route changed.
   React.useEffect(() => {
-    if (shown) {
+    if (shown.current || redirecting.current) {
       dispatch(clearError());
-      setShown(false);
+      shown.current = false;
+      redirecting.current = false;
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hash, path, queries]);
+  }, [dispatch, hash, path, queries]);
 
-  // Redirect to login page on AuthRequiredError
   if (errorCode === CE_ErrorCode.AuthRequired) {
-    return <Navigate to={makeUrl({ path, queries, hash })} />;
+    return null;
   }
 
   if (errorCode) {
-    return <ErrorPage code={errorCode} onShow={() => setShown(true)} />;
+    return <ErrorPage code={errorCode} onShow={() => (shown.current = true)} />;
   }
 
   return props.children;

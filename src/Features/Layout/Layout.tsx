@@ -1,17 +1,9 @@
-import {
-  IconButton,
-  Panel,
-  PanelType,
-  Spinner,
-  SpinnerSize,
-  TooltipDelay,
-  TooltipHost,
-  useTheme,
-} from "@fluentui/react";
+import { IconButton, Panel, PanelType, TooltipDelay, TooltipHost, useTheme } from "@fluentui/react";
 import { useEventCallback, useId } from "@fluentui/react-hooks";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
+import { PageLoading } from "@/Common/Components/PageLoading";
 import { CE_PagePath } from "@/Common/Enums/PagePath";
 import { registerCancelIcon, registerGlobalNavButtonIcon } from "@/Common/IconRegistration";
 import { useIsMobileView } from "@/Features/Environment/Hooks";
@@ -100,7 +92,7 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
         </div>
       )}
       <div className={styles.mainContainer}>
-        <React.Suspense fallback={<Spinner size={SpinnerSize.large} className={styles.spinner} />}>
+        <React.Suspense fallback={<PageLoading />}>
           <div className={styles.mainContent}>{props.children}</div>
         </React.Suspense>
         <React.Suspense fallback={null}>

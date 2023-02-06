@@ -8,10 +8,8 @@ export const getFooterStyles = memoizeFunction((theme: ITheme) =>
     root: {
       ...flex({
         flexDirection: "column",
-        justifyContent: "flex-end",
         alignItems: "center",
       }),
-      flexGrow: 2,
       gap: 5,
       padding: "20px 0 40px",
       color: theme.palette.neutralTertiary,

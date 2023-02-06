@@ -20,14 +20,13 @@ export interface IRequestOptions {
 export interface IResponseError {
   code: CE_ErrorCode;
   msg?: string;
-  extra?: unknown;
 }
 
 export type IResponseData<T> = XOR<{ data: T }, { error: IResponseError }>;
 
 export async function requestAsync<T>(
   options: IRequestOptions,
-  errors: CE_ErrorCode[] = [],
+  filteredErrors: CE_ErrorCode[] = [],
 ): Promise<IResponseData<T>> {
   const appState = store.getState();
   const apiBearerToken = getApiBearerToken(appState);
@@ -66,19 +65,30 @@ export async function requestAsync<T>(
   }
 
   let error: IResponseError;
-  try {
-    if (response.headers["content-type"]?.includes("application/json") && typeof response.data === "string") {
-      error = JSON.parse(response.data) as unknown as IResponseError;
-    } else {
-      error = response.data as unknown as IResponseError;
-    }
 
-    if (!error.code) error.code = CE_ErrorCode.Unknown;
-  } catch (e) {
-    error = { code: CE_ErrorCode.Unknown };
+  if (response.headers["content-type"]?.includes("application/json") && typeof response.data === "string") {
+    error = JSON.parse(response.data) as unknown as IResponseError;
+  } else if (typeof response.data === "object") {
+    error = response.data as unknown as IResponseError;
+  } else {
+    error = { msg: String(response.data) } as unknown as IResponseError;
   }
 
-  if (!errors.includes(error.code)) {
+  if (!error.code) {
+    switch (response.status) {
+      case 401:
+        error.code = CE_ErrorCode.AuthRequired;
+        break;
+      case 500:
+        error.code = CE_ErrorCode.ServerError;
+        break;
+      default:
+        error.code = CE_ErrorCode.Unknown;
+        break;
+    }
+  }
+
+  if (!filteredErrors.includes(error.code)) {
     store.dispatch(catchError(error.code, error.msg));
   }
   return { error };

@@ -12,24 +12,19 @@ import * as React from "react";
 import { FluentRouterLink } from "@/Common/Components/FluentLink";
 import { CE_PagePath } from "@/Common/Enums/PagePath";
 import { useRecaptchaCopyrightMessage } from "@/Common/Hooks/Recaptcha";
-import { runOnce } from "@/Common/Utilities/Tools";
+import { registerHideIcon, registerRedEyeIcon } from "@/Common/IconRegistration";
 import { makeUrl } from "@/Common/Utilities/Url";
 import { setPageName } from "@/Features/Environment/Action";
 import { useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppDispatch } from "@/Features/Store";
-import { injectDynamicReducer } from "@/Features/Store/Helper";
 
-import { initLoginPageState } from "./Action";
 import { useLoginProps } from "./Hooks";
 import { getLoginPageStyles } from "./LoginPageStyles";
-import { loginPageReducer } from "./Reducer";
 import { CE_LoginType } from "./Types";
 
-const configureStore = runOnce(() => {
-  injectDynamicReducer({ loginPage: loginPageReducer });
-});
-configureStore();
+registerRedEyeIcon();
+registerHideIcon();
 export const LoginPage: React.FC = () => {
   const {
     loginType,
@@ -49,10 +44,6 @@ export const LoginPage: React.FC = () => {
   const isSmallScreen = useIsSmallScreen();
   const styles = getLoginPageStyles(theme);
   const recaptchaMsg = useRecaptchaCopyrightMessage();
-
-  React.useEffect(() => {
-    dispatch(initLoginPageState);
-  }, [dispatch]);
 
   React.useEffect(() => {
     dispatch(setPageName(ls.LS_COMMON_SIGN_IN_TITLE));

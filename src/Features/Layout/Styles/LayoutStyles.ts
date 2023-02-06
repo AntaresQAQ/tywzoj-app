@@ -111,10 +111,11 @@ export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean
         overflow: "auto",
       },
       mainContent: {
+        ...flex({
+          flexDirection: "column",
+        }),
         margin: 20,
-      },
-      spinner: {
-        flexGrow: 1000,
+        flexGrow: 1,
       },
     },
     isMobile && {

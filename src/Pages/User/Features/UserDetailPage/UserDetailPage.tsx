@@ -1,24 +1,24 @@
 import { DefaultButton, format, Image, ImageFit, Link, TooltipHost, useTheme } from "@fluentui/react";
 import { useId } from "@fluentui/react-hooks";
 import * as React from "react";
-import { useParams } from "react-router-dom";
 
 import { IconButton } from "@/Common/Components/IconButton";
 import { UserLevelLabel } from "@/Common/Components/UserLevelLabel";
+import { CE_Permissions } from "@/Common/Enums/Permissions";
 import { useGravatar } from "@/Common/Hooks/Gravatar";
 import { useMomentFormatter } from "@/Common/Hooks/Moment";
 import { registerEditIcon } from "@/Common/IconRegistration";
+import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
 import { runOnce } from "@/Common/Utilities/Tools";
 import { setPageName } from "@/Features/Environment/Action";
-import { useIsMiddleScreen, useIsMobileView, useIsSmallScreen } from "@/Features/Environment/Hooks";
+import { useCurrentUser, useIsMiddleScreen, useIsMobileView, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppDispatch, useAppSelector } from "@/Features/Store";
 import { injectDynamicReducer } from "@/Features/Store/Helper";
 
-import { fetchUserDetailAction } from "./Action";
 import { userDetailPageReducer } from "./Reducer";
 import { getUserDetail } from "./Selectors";
-import { getUserDetailPageStyles } from "./UserDetailPageStyles";
+import { getUserDetailPageStyles } from "./Styles/UserDetailPageStyles";
 
 const configureStore = runOnce(() => {
   injectDynamicReducer({
@@ -30,7 +30,6 @@ configureStore();
 const editIconName = registerEditIcon();
 
 export const UserDetailPage: React.FC = () => {
-  const { id } = useParams();
   const dispatch = useAppDispatch();
   const theme = useTheme();
   const isSmallScreen = useIsSmallScreen();
@@ -42,12 +41,12 @@ export const UserDetailPage: React.FC = () => {
   const styles = getUserDetailPageStyles(theme, isMiddleScreen, isSmallScreen, isMobileView);
   const editButtonTooltipId = useId("tooltip_edit");
   const momentFormatter = useMomentFormatter();
+  const currentUser = useCurrentUser();
 
-  // Fetch data
-  React.useEffect(() => {
-    dispatch(fetchUserDetailAction(id));
-  }, [dispatch, id]);
+  const allowedEdit =
+    currentUser && (currentUser.id === userDetail.id || checkIsAllowed(currentUser.level, CE_Permissions.ManageUser));
 
+  // Update page name
   React.useEffect(() => {
     dispatch(setPageName(`${userDetail.username} - ${ls.LS_USER_DETAIL_PAGE_TITLE}`));
   }, [dispatch, ls, userDetail]);
@@ -109,7 +108,7 @@ export const UserDetailPage: React.FC = () => {
               </div>
             )}
           </div>
-          <div className={styles.editButtonContainer}>{editButton}</div>
+          {allowedEdit && <div className={styles.editButtonContainer}>{editButton}</div>}
         </div>
         {isSmallScreen && (
           <div className={styles.middle}>

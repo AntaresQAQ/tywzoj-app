@@ -184,7 +184,7 @@ export const getUserDetailPageStyles = memoizeFunction(
   (theme: ITheme, isMiddleScreen: boolean, isSmallScreen: boolean, isMobileView: boolean) =>
     mergeStyleSets(
       getBasicStyle(theme),
-      isMiddleScreen && getMiddleScreenStyles(theme),
+      isMiddleScreen && getMiddleScreenStyles(),
       isSmallScreen && getSmallScreenStyles(theme, isMobileView),
     ),
 );
