@@ -1,11 +1,20 @@
-import { IconButton, Panel, PanelType, Spinner, SpinnerSize, useTheme } from "@fluentui/react";
-import { useEventCallback } from "@fluentui/react-hooks";
+import {
+  IconButton,
+  Panel,
+  PanelType,
+  Spinner,
+  SpinnerSize,
+  TooltipDelay,
+  TooltipHost,
+  useTheme,
+} from "@fluentui/react";
+import { useEventCallback, useId } from "@fluentui/react-hooks";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
 import { CE_PagePath } from "@/Common/Enums/PagePath";
 import { registerCancelIcon, registerGlobalNavButtonIcon } from "@/Common/IconRegistration";
-import { useIsMobile } from "@/Features/Environment/Hooks";
+import { useIsMobileView } from "@/Features/Environment/Hooks";
 import { getSiteName } from "@/Features/Environment/Selectors";
 import { getAppLogoUrl } from "@/Features/Environment/Settings/BuildEnv";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
@@ -28,9 +37,10 @@ const UserMenuLazy = React.lazy(loadUserMenu);
 export const AppLayout: React.FC<IAppLayoutProps> = props => {
   const ls = useLocalizedStrings();
   const theme = useTheme();
-  const isMobile = useIsMobile();
-  const styles = getLayoutStyles(theme, isMobile);
+  const isMobileView = useIsMobileView();
+  const styles = getLayoutStyles(theme, isMobileView);
   const siteName = useAppSelector(getSiteName);
+  const navTooltipId = useId("nav_tooltip");
 
   const [isNavPanelOpen, setIsNavPanelOpen] = React.useState(false);
   const openNavPanel = useEventCallback(() => setIsNavPanelOpen(true));
@@ -39,16 +49,19 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        {isMobile && (
+        {isMobileView && (
           <>
             <div className={styles.navButtonContainer}>
-              <IconButton
-                className={styles.navButton}
-                iconProps={{ iconName: globalNavButtonIconName }}
-                tabIndex={0}
-                onClick={openNavPanel}
-                ariaLabel={ls.LS_APP_NAV_TITLE}
-              />
+              <TooltipHost content={ls.LS_APP_NAV_TITLE} id={navTooltipId} delay={TooltipDelay.long}>
+                <IconButton
+                  className={styles.navButton}
+                  iconProps={{ iconName: globalNavButtonIconName }}
+                  tabIndex={0}
+                  onClick={openNavPanel}
+                  ariaLabel={ls.LS_APP_NAV_TITLE}
+                  aria-describedby={navTooltipId}
+                />
+              </TooltipHost>
             </div>
             <div className={styles.logo}>
               <img src={getAppLogoUrl()} alt={siteName} />
@@ -61,7 +74,7 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
           </React.Suspense>
         </div>
       </div>
-      {isMobile ? (
+      {isMobileView ? (
         <Panel
           className={styles.navPanel}
           type={PanelType.customNear}

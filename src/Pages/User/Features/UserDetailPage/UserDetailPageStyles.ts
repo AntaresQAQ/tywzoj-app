@@ -19,85 +19,172 @@ const getBasicStyle = memoizeFunction((theme: ITheme) => ({
     maxWidth: 1000,
     width: "100%",
   },
-  headerBox: {
+  top: {
     ...flex({
       flexDirection: "column",
+      alignItems: "flex-start",
     }),
     backgroundColor: theme.palette.white,
     boxShadow: theme.effects.elevation16,
-    width: 250,
-    borderRadius: 8,
+    borderRadius: 6,
+    width: 280,
+    padding: 20,
+    gap: 20,
   },
-  avatarContainer: {},
-  avatar: {
-    margin: 20,
-    borderRadius: "5%",
+  topLeft: {
+    ...flex({
+      alignItems: "center",
+      justifyContent: "center",
+    }),
   },
-  infoContainer: {},
-  info: {
+  topRight: {
     ...flex({
       flexDirection: "column",
     }),
-    margin: "0 20px 20px",
+    gap: 5,
   },
-  infoRow1: {
+  editButtonContainer: {
     ...flex({
-      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
     }),
+    width: "100%",
   },
-  tabsBox: {
+  bottom: {
     backgroundColor: theme.palette.white,
     boxShadow: theme.effects.elevation16,
-    height: 500,
-    borderRadius: 8,
+    borderRadius: 6,
+    height: 200,
     flexGrow: 1,
+  },
+  avatar: {
+    borderRadius: "6%",
+  },
+  unmLblRow: {
+    ...flex({
+      alignItems: "center",
+    }),
+    gap: 15,
+  },
+  username: {
+    fontWeight: 600,
+    fontSize: 22,
+    wordBreak: "break-all",
+  },
+  nickname: {
+    ...flex({}),
+    color: theme.palette.neutralTertiary,
+    wordBreak: "break-all",
+    fontSize: 14,
+    gap: 7,
+    span: { wordBreak: "keep-all" },
+  },
+  email: {
+    ...flex({}),
+    color: theme.palette.neutralSecondary,
+    gap: 7,
+    span: { wordBreak: "keep-all" },
+  },
+  registrationTime: {
+    color: theme.palette.neutralSecondary,
+  },
+  editButton: {
+    width: "100%",
   },
 }));
 
-const getMiddleScreenStyles = memoizeFunction((theme: ITheme, isSmallScreen: boolean) => ({
+const getMiddleScreenStyles = memoizeFunction(() => ({
   mainContainer: {
     ...flex({
       flexDirection: "column",
+      alignItems: "flex-start",
     }),
   },
-  headerBox: {
+  top: {
     ...flex({
       flexDirection: "row",
+      alignItems: "center",
     }),
+    boxSizing: "border-box",
     width: "100%",
-    height: "initial",
-    backgroundColor: "",
-    boxShadow: "initial",
-    gap: 15,
   },
-  avatarContainer: {
-    backgroundColor: theme.palette.white,
-    boxShadow: theme.effects.elevation16,
-    width: isSmallScreen ? 130 : 200,
-    height: isSmallScreen ? 130 : 200,
-    borderRadius: 8,
+  topRight: {
+    flexGrow: 1,
+  },
+  editButtonContainer: {
+    ...flex({
+      justifyContent: "center",
+      alignItems: "center",
+    }),
+    width: "initial",
+  },
+  bottom: {
+    width: "100%",
   },
   avatar: {
-    margin: isSmallScreen ? 10 : 15,
+    height: 200,
+    width: 200,
   },
-  infoContainer: {
+  editButton: {
+    fontSize: 24,
+    height: 40,
+    width: 40,
+  },
+}));
+
+const getSmallScreenStyles = memoizeFunction((theme: ITheme, isMobileView: boolean) => ({
+  top: {
+    gap: 12,
+  },
+  middle: {
+    ...flex({
+      flexDirection: "column",
+    }),
     backgroundColor: theme.palette.white,
     boxShadow: theme.effects.elevation16,
-    height: isSmallScreen ? 130 : 200,
-    borderRadius: 8,
-    flexGrow: 1,
-    margin: 0,
-  },
-  info: {
-    margin: 10,
-  },
-  tabsBox: {
+    borderRadius: 6,
     width: "100%",
-    flexGrow: "initial",
+    boxSizing: "border-box",
+    padding: 20,
+    gap: 5,
+  },
+  avatar: {
+    height: isMobileView ? 80 : 120,
+    width: isMobileView ? 80 : 120,
+  },
+  unmLblRow: {
+    ...(isMobileView && {
+      ...flex({
+        flexDirection: "column",
+        alignItems: "flex-start",
+      }),
+      gap: 5,
+    }),
+  },
+  username: {
+    fontSize: 20,
+  },
+  nickname: {
+    ...(isMobileView && { color: theme.palette.neutralPrimary }),
+  },
+  email: {
+    color: theme.palette.neutralPrimary,
+  },
+  registrationTime: {
+    color: theme.palette.neutralPrimary,
+  },
+  editButton: {
+    fontSize: 22,
+    height: 36,
+    width: 36,
   },
 }));
 
 export const getUserDetailPageStyles = memoizeFunction(
-  (theme: ITheme, isMiddleScreen: boolean, isSmallScreen: boolean) =>
-    mergeStyleSets(getBasicStyle(theme), isMiddleScreen && getMiddleScreenStyles(theme, isSmallScreen)),
+  (theme: ITheme, isMiddleScreen: boolean, isSmallScreen: boolean, isMobileView: boolean) =>
+    mergeStyleSets(
+      getBasicStyle(theme),
+      isMiddleScreen && getMiddleScreenStyles(theme),
+      isSmallScreen && getSmallScreenStyles(theme, isMobileView),
+    ),
 );

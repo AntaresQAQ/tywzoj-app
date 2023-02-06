@@ -1,4 +1,4 @@
-import { format, Link, useTheme } from "@fluentui/react";
+import { format, Link, TooltipHost, useTheme } from "@fluentui/react";
 import * as React from "react";
 
 import { useMomentFormatter } from "@/Common/Hooks/Moment";
@@ -41,13 +41,17 @@ export const AppFooter: React.FC = () => {
         </span>
       </div>
       <div className={styles.version}>
-        <span>
-          {ls.LS_APP_FOOTER_SERVER_VERSION_LABEL} {version.server.hash}
-        </span>
+        <TooltipHost content={momentFormatter(version.server.date, "lll")}>
+          <span>
+            {ls.LS_APP_FOOTER_SERVER_VERSION_LABEL} {version.server.hash}
+          </span>
+        </TooltipHost>
         |
-        <span>
-          {ls.LS_APP_FOOTER_CLIENT_VERSION_LABEL} {version.client.hash}
-        </span>
+        <TooltipHost content={momentFormatter(version.client.date, "lll")}>
+          <span>
+            {ls.LS_APP_FOOTER_CLIENT_VERSION_LABEL} {version.client.hash}
+          </span>
+        </TooltipHost>
       </div>
       {!isSmallScreen && recaptchaMessage}
       {domainIcpRecord && (

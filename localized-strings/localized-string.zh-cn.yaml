@@ -34,36 +34,64 @@
   value: 不可留空
   description: An error message for empty field
   raw: Cannot be empty
+- name: COMMON_USER_LEVEL_ADMIN_NAME
+  value: 全站管理员
+  description: The highest administrator name.
+  raw: Admin
+- name: COMMON_USER_LEVEL_MANAGER_NAME
+  value: 普通管理员
+  description: The common administrator name.
+  raw: Manager
+- name: COMMON_USER_LEVEL_INTERNAL_NAME
+  value: 内部用户
+  description: The internal user name.
+  raw: Internal
+- name: COMMON_USER_LEVEL_PAID_NAME
+  value: 付费用户
+  description: The paid user name.
+  raw: Paid
+- name: COMMON_USER_LEVEL_GENERAL_NAME
+  value: 普通用户
+  description: The general user name.
+  raw: General
+- name: COMMON_USER_LEVEL_BLOCKED_NAME
+  value: 封禁用户
+  description: The blocked user name.
+  raw: Blocked
+- name: USER_LEVEL_LABEL_TOOLTIP
+  value: 用户等级为{0}
+  description: An aria-label and tool tip for user level label
+  raw: The user level is {0}.
 - name: ERROR_UNKNOWN_MESSAGE
-  value: null
+  value: 未知错误。
   description: Error message.
   raw: Unknown error.
 - name: ERROR_403_MESSAGE
-  value: null
+  value: 没有权限。
   description: Error message.
   raw: Permission denied.
 - name: ERROR_500_MESSAGE
-  value: null
+  value: 服务器错误。
   description: Error message.
   raw: Internal server error.
 - name: ERROR_1000_MESSAGE
-  value: null
+  value: 人机验证失败。
   description: Error message.
   raw: Recaptcha error.
 - name: ERROR_1001_MESSAGE
-  value: null
+  value: 数据格式验证错误。
   description: Error message.
   raw: Data validation failed.
 - name: ERROR_1002_MESSAGE
-  value: null
+  value: 请求项目过多。
   description: Error message.
   raw: Too many requested items.
 - name: ERROR_5100_MESSAGE
-  value: null
+  value: 没有这个用户，请检查用户名或ID。
   description: Error message.
   raw: No such user, please check username or id.
 - name: COMMON_ERROR_PAGE_TITLE
-  value: null
+  value: 错误
   description: Error page title.
   raw: Error
 - name: APP_NAV_TITLE
@@ -91,7 +119,7 @@
   description: A name for page.
   raw: Contest
 - name: APP_NAV_PAGE_NAME_USER_PAGE
-  value: null
+  value: 用户
   description: A name for page.
   raw: Members
 - name: APP_HEADER_USER_MENU_PROFILE
@@ -162,6 +190,30 @@
   description: A string for wrong password error.
   raw: Wrong password
 - name: USER_DETAIL_PAGE_TITLE
-  value: null
+  value: 资料
   description: A page title for user detail page.
   raw: Profile
+- name: USER_DETAIL_PAGE_USERNAME_ARIA_LABEL
+  value: '用户名: {0}'
+  description: A aria label for username, {0} is username string.
+  raw: 'Username: {0}'
+- name: USER_DETAIL_PAGE_NICKNAME_ARIA_LABEL
+  value: '昵称: {0}'
+  description: A aria label for nickname, {0} is nickname string.
+  raw: 'Nickname: {0}'
+- name: USER_DETAIL_PAGE_EMAIL_ARIA_LABEL
+  value: '电子邮箱: {0}'
+  description: A aria label for email, {0} is email string.
+  raw: 'Email: {0}'
+- name: USER_DETAIL_PAGE_NICKNAME
+  value: '昵称:'
+  description: A string for nickname.
+  raw: 'Nickname:'
+- name: USER_DETAIL_PAGE_EMAIL
+  value: '电子邮箱:'
+  description: A string for email.
+  raw: 'Email:'
+- name: USER_DETAIL_PAGE_REG_TIME
+  value: 注册于 {0}。
+  description: A string for registration time, {0} is the time string.
+  raw: Registered at {0}.

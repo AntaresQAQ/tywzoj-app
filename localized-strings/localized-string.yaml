@@ -34,6 +34,34 @@
   value: Cannot be empty
   description: An error message for empty field
 
+- name: COMMON_USER_LEVEL_ADMIN_NAME
+  value: Admin
+  description: The highest administrator name.
+
+- name: COMMON_USER_LEVEL_MANAGER_NAME
+  value: Manager
+  description: The common administrator name.
+
+- name: COMMON_USER_LEVEL_INTERNAL_NAME
+  value: Internal
+  description: The internal user name.
+
+- name: COMMON_USER_LEVEL_PAID_NAME
+  value: Paid
+  description: The paid user name.
+
+- name: COMMON_USER_LEVEL_GENERAL_NAME
+  value: General
+  description: The general user name.
+
+- name: COMMON_USER_LEVEL_BLOCKED_NAME
+  value: Blocked
+  description: The blocked user name.
+
+- name: USER_LEVEL_LABEL_TOOLTIP
+  value: The user level is {0}.
+  description: An aria-label and tool tip for user level label
+
 - name: ERROR_UNKNOWN_MESSAGE
   value: Unknown error.
   description: Error message.
@@ -152,3 +180,27 @@
 - name: USER_DETAIL_PAGE_TITLE
   value: Profile
   description: A page title for user detail page.
+
+- name: USER_DETAIL_PAGE_USERNAME_ARIA_LABEL
+  value: 'Username: {0}'
+  description: A aria label for username, {0} is username string.
+
+- name: USER_DETAIL_PAGE_NICKNAME_ARIA_LABEL
+  value: 'Nickname: {0}'
+  description: A aria label for nickname, {0} is nickname string.
+
+- name: USER_DETAIL_PAGE_EMAIL_ARIA_LABEL
+  value: 'Email: {0}'
+  description: A aria label for email, {0} is email string.
+
+- name: USER_DETAIL_PAGE_NICKNAME
+  value: 'Nickname:'
+  description: A string for nickname.
+
+- name: USER_DETAIL_PAGE_EMAIL
+  value: 'Email:'
+  description: A string for email.
+
+- name: USER_DETAIL_PAGE_REG_TIME
+  value: 'Registered at {0}.'
+  description: A string for registration time, {0} is the time string.

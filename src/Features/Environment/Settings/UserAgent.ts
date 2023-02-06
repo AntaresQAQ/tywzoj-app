@@ -1,6 +1,6 @@
-const MAX_MINI_SCREEN_WIDTH = 480;
-const MAX_SMALL_SCREEN_WIDTH = 640;
-const MAX_MIDDLE_SCREEN_WIDTH = 720;
+const MAX_MINI_SCREEN_WIDTH = 480 + 130;
+const MAX_SMALL_SCREEN_WIDTH = 640 + 130;
+const MAX_MIDDLE_SCREEN_WIDTH = 860 + 130;
 
 function getUserAgent(): string {
   return navigator.userAgent.toLocaleLowerCase();
@@ -34,6 +34,10 @@ export function isSmallScreen(): boolean {
 
 export function isMiddleScreen(): boolean {
   return getWindowWidth() <= MAX_MIDDLE_SCREEN_WIDTH;
+}
+
+export function isMobileView(): boolean {
+  return (isMobile() && isSmallScreen()) || isMiniScreen();
 }
 
 export function isChrome(): boolean {

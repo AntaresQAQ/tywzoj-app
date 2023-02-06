@@ -7,7 +7,7 @@ const supportedLanguages = [
   "en",
   // "fr",
   // "ko",
-  "zh-cn"
+  "zh-cn",
   // "zh-hk"
 ];
 const defaultLanguage = "en";
@@ -23,7 +23,7 @@ function loadLanguageYaml(lang) {
   const filePath = path.join(localeDir, `localized-string.${lang}.yaml`);
   if (fs.existsSync(filePath)) {
     const arr = yaml.load(fs.readFileSync(filePath).toString()) || [];
-    arr.forEach((item) => {
+    arr.forEach(item => {
       obj[item.name] = item;
     });
   }
@@ -47,14 +47,14 @@ function generateLanguageYamlFiles() {
       if (languageYaml[item.name]?.value && languageYaml[item.name].raw === item.value) {
         obj[item.name] = {
           ...languageYaml[item.name],
-          index
+          index,
         };
       } else {
         obj[item.name] = {
           ...item,
           value: lang === defaultLanguage ? item.value : null,
           raw: item.value,
-          index
+          index,
         };
       }
     });

@@ -19,6 +19,7 @@ export interface IEnvState extends IMiscPreferenceConfig, ISecurityPreferenceCon
   isMiddleScreen: boolean;
   isMiniScreen: boolean;
   isMobile: boolean;
+  isMobileView: boolean;
   isRtl: boolean;
   isSafari: boolean;
   isSmallScreen: boolean;

@@ -13,6 +13,7 @@ import {
   isMiddleScreen,
   isMiniScreen,
   isMobile,
+  isMobileView,
   isSafari,
   isSmallScreen,
 } from "./Settings/UserAgent";
@@ -26,6 +27,7 @@ export function initEnv(dispatch: IAppDispatch) {
       isMiniScreen: isMiniScreen(),
       isSmallScreen: isSmallScreen(),
       isMiddleScreen: isMiddleScreen(),
+      isMobileView: isMobileView(),
       isAndroid: isAndroid(),
       isIOS: isIOS(),
       isChrome: isChrome(),
@@ -46,6 +48,7 @@ function bindWindowListener(dispatch: IAppDispatch) {
         isMiniScreen: isMiniScreen(),
         isSmallScreen: isSmallScreen(),
         isMiddleScreen: isMiddleScreen(),
+        isMobileView: isMobileView(),
       }),
     ),
   );

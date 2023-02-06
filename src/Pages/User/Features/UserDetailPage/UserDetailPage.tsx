@@ -1,12 +1,16 @@
-import { Image, ImageFit, useTheme } from "@fluentui/react";
+import { DefaultButton, format, Image, ImageFit, Link, TooltipHost, useTheme } from "@fluentui/react";
+import { useId } from "@fluentui/react-hooks";
 import * as React from "react";
 import { useParams } from "react-router-dom";
 
+import { IconButton } from "@/Common/Components/IconButton";
+import { UserLevelLabel } from "@/Common/Components/UserLevelLabel";
 import { useGravatar } from "@/Common/Hooks/Gravatar";
-import { CE_UserGender } from "@/Common/ServerType/User";
+import { useMomentFormatter } from "@/Common/Hooks/Moment";
+import { registerEditIcon } from "@/Common/IconRegistration";
 import { runOnce } from "@/Common/Utilities/Tools";
 import { setPageName } from "@/Features/Environment/Action";
-import { useIsMiddleScreen, useIsSmallScreen } from "@/Features/Environment/Hooks";
+import { useIsMiddleScreen, useIsMobileView, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppDispatch, useAppSelector } from "@/Features/Store";
 import { injectDynamicReducer } from "@/Features/Store/Helper";
@@ -23,16 +27,21 @@ const configureStore = runOnce(() => {
 });
 configureStore();
 
+const editIconName = registerEditIcon();
+
 export const UserDetailPage: React.FC = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const theme = useTheme();
   const isSmallScreen = useIsSmallScreen();
   const isMiddleScreen = useIsMiddleScreen();
+  const isMobileView = useIsMobileView();
   const ls = useLocalizedStrings();
   const userDetail = useAppSelector(getUserDetail);
   const gravatar = useGravatar(1024, "wavatar");
-  const styles = getUserDetailPageStyles(theme, isMiddleScreen, isSmallScreen);
+  const styles = getUserDetailPageStyles(theme, isMiddleScreen, isSmallScreen, isMobileView);
+  const editButtonTooltipId = useId("tooltip_edit");
+  const momentFormatter = useMomentFormatter();
 
   // Fetch data
   React.useEffect(() => {
@@ -43,43 +52,88 @@ export const UserDetailPage: React.FC = () => {
     dispatch(setPageName(`${userDetail.username} - ${ls.LS_USER_DETAIL_PAGE_TITLE}`));
   }, [dispatch, ls, userDetail]);
 
-  const gender = React.useMemo(() => {
-    switch (userDetail.gender) {
-      case CE_UserGender.Female:
-        return null;
-      case CE_UserGender.Male:
-        return null;
-      case CE_UserGender.Other:
-        return null;
-      default:
-        return null;
-    }
-  }, [userDetail]);
+  const editButton = React.useMemo(() => {
+    return isMiddleScreen ? (
+      <TooltipHost content={ls.LS_APP_HEADER_USER_MENU_EDIT} id={editButtonTooltipId}>
+        <IconButton
+          className={styles.editButton}
+          iconProps={{ iconName: editIconName }}
+          ariaLabel={ls.LS_APP_HEADER_USER_MENU_EDIT}
+          aria-describedby={editButtonTooltipId}
+        />
+      </TooltipHost>
+    ) : (
+      <DefaultButton className={styles.editButton}>{ls.LS_APP_HEADER_USER_MENU_EDIT}</DefaultButton>
+    );
+  }, [editButtonTooltipId, isMiddleScreen, ls, styles]);
 
   return (
     <div className={styles.root}>
       <div className={styles.mainContainer}>
-        <div className={styles.headerBox}>
-          <div className={styles.avatarContainer}>
+        <div className={styles.top}>
+          <div className={styles.topLeft}>
             <Image
               className={styles.avatar}
               src={gravatar(userDetail.avatar)}
-              imageFit={ImageFit.contain}
+              imageFit={ImageFit.cover}
               loading={"lazy"}
             />
           </div>
-          <div className={styles.infoContainer}>
-            <div className={styles.info}>
-              <div className={styles.infoRow1}>
-                <span>{userDetail.username}</span>
-                {gender}
+          <div className={styles.topRight}>
+            <div className={styles.unmLblRow}>
+              <div
+                className={styles.username}
+                aria-label={format(ls.LS_USER_DETAIL_PAGE_USERNAME_ARIA_LABEL, userDetail.username)}
+              >
+                {userDetail.username}
               </div>
-              <span>{userDetail.nickname}</span>
-              <span>{userDetail.registrationTime}</span>
+              <UserLevelLabel level={userDetail.level} />
+            </div>
+            {!isMobileView && userDetail.nickname && (
+              <div
+                className={styles.nickname}
+                aria-label={format(ls.LS_USER_DETAIL_PAGE_NICKNAME_ARIA_LABEL, userDetail.nickname)}
+              >
+                {userDetail.nickname}
+              </div>
+            )}
+            {!isSmallScreen && userDetail.email && (
+              <div className={styles.email}>
+                <span>{ls.LS_USER_DETAIL_PAGE_EMAIL}</span>
+                <Link href={`mailto:${userDetail.email}`}>{userDetail.email}</Link>
+              </div>
+            )}
+            {!isSmallScreen && (
+              <div className={styles.registrationTime}>
+                {format(ls.LS_USER_DETAIL_PAGE_REG_TIME, momentFormatter(userDetail.registrationTime, "lll"))}
+              </div>
+            )}
+          </div>
+          <div className={styles.editButtonContainer}>{editButton}</div>
+        </div>
+        {isSmallScreen && (
+          <div className={styles.middle}>
+            {isMobileView && userDetail.nickname && (
+              <div
+                className={styles.nickname}
+                aria-label={format(ls.LS_USER_DETAIL_PAGE_NICKNAME_ARIA_LABEL, userDetail.nickname)}
+              >
+                <span>{ls.LS_USER_DETAIL_PAGE_NICKNAME}</span>
+                {userDetail.nickname}
+              </div>
+            )}
+            {userDetail.email && (
+              <div className={styles.email}>
+                <span>{ls.LS_USER_DETAIL_PAGE_EMAIL}</span>
+                <Link href={`mailto:${userDetail.email}`}>{userDetail.email}</Link>
+              </div>
+            )}
+            <div className={styles.registrationTime}>
+              {format(ls.LS_USER_DETAIL_PAGE_REG_TIME, momentFormatter(userDetail.registrationTime, "lll"))}
             </div>
           </div>
-        </div>
-        <div className={styles.tabsBox}></div>
+        )}
+        <div className={styles.bottom}></div>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ export const getIsSmallScreen = (state: IRootState) => state.env.isSmallScreen;
 export const getIsMiniScreen = (state: IRootState) => state.env.isMiniScreen;
 export const getIsMiddleScreen = (state: IRootState) => state.env.isMiddleScreen;
 export const getIsMobile = (state: IRootState) => state.env.isMobile;
+export const getIsMobileView = (state: IRootState) => state.env.isMobileView;
 export const getPageName = (state: IRootState) => state.env.pageName;
 export const getRecaptchaEnabled = (state: IRootState) => state.env.recaptchaEnabled;
 export const getRecaptchaKey = (state: IRootState) => state.env.recaptchaKey;

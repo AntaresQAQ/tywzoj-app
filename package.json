@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "yarn locstring && vite",
-    "qbuild": "tsc && vite build",
+    "fast-dev": "vite",
+    "froce-dev": "yarn locstring && vite --force",
     "build": "yarn locstring && tsc && vite build",
+    "fast-build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.{js,ts,tsx}\"",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.{js,cjs,ts,tsx}\"",
     "lint": "eslint \"{src,apps,libs}/**/*.{ts,tsx}\" --fix",
     "locstring": "node scripts/localized-string.cjs && prettier --write src/Features/LocalizedString/locale.d.ts"
   },

@@ -25,7 +25,7 @@ import {
 } from "@/Common/IconRegistration";
 import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
 import { makeUrl } from "@/Common/Utilities/Url";
-import { useCurrentUser, useIsMobile } from "@/Features/Environment/Hooks";
+import { useCurrentUser, useIsMobileView } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppDispatch } from "@/Features/Store";
 
@@ -44,11 +44,11 @@ export const AppUserMenu: React.FC = () => {
   const dispatch = useAppDispatch();
   const currentUser = useCurrentUser();
   const theme = useTheme();
-  const isMobile = useIsMobile();
+  const isMobileView = useIsMobileView();
   const gravatar = useGravatar(40);
   const navigate = useNavigate();
   const ls = useLocalizedStrings();
-  const styles = getUserMenuStyles(theme, isMobile);
+  const styles = getUserMenuStyles(theme, isMobileView);
 
   const userContainerRef = React.useRef<HTMLDivElement>(null);
   const [isShowUserMenu, setIsShowUserMenu] = React.useState(false);
@@ -84,22 +84,24 @@ export const AppUserMenu: React.FC = () => {
   const userMenuItems = React.useMemo(() => {
     if (!currentUser) return [];
 
-    // TODO: navigator need to be finished.
     const items: IContextualMenuItem[] = [
       {
         key: "profile",
         text: ls.LS_APP_HEADER_USER_MENU_PROFILE,
         iconProps: { iconName: contactInfoIconName },
+        onClick: () => navigate(makeUrl({ base: CE_PagePath.User, path: `${currentUser.id}` })),
       },
       {
         key: "edit",
         text: ls.LS_APP_HEADER_USER_MENU_EDIT,
         iconProps: { iconName: editContactIconName },
+        onClick: () => navigate(makeUrl({ base: CE_PagePath.User, path: `${currentUser.id}/edit` })),
       },
       {
         key: "setting",
         text: ls.LS_APP_HEADER_USER_MENU_SETTINGS,
         iconProps: { iconName: playerSettingsIconName },
+        onClick: () => navigate(makeUrl({ base: CE_PagePath.User, path: `${currentUser.id}/setting` })),
       },
     ];
 
@@ -113,6 +115,7 @@ export const AppUserMenu: React.FC = () => {
           key: "manage_site",
           text: ls.LS_APP_HEADER_USER_MENU_MANAGE_SITE,
           iconProps: { iconName: settingsIconName },
+          // TODO: navigator need to be finished.
         },
       );
     }
@@ -131,7 +134,7 @@ export const AppUserMenu: React.FC = () => {
     );
 
     return items;
-  }, [currentUser, ls, onSignOutClick]);
+  }, [currentUser, ls, navigate, onSignOutClick]);
 
   return (
     <div className={styles.root} ref={userContainerRef}>
@@ -143,7 +146,7 @@ export const AppUserMenu: React.FC = () => {
               imageAlt={currentUser.username}
               text={currentUser.username}
               secondaryText={currentUser.nickname}
-              hidePersonaDetails={isMobile}
+              hidePersonaDetails={isMobileView}
               imageUrl={gravatar(currentUser.avatar)}
               showInitialsUntilImageLoads={true}
             />
