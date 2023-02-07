@@ -9,29 +9,35 @@ type IMakeUrlProps = XOR<{ origin?: string }, { base?: CE_PagePath }> & {
   hash?: string;
 };
 export function makeUrl(props: IMakeUrlProps) {
+  const { origin, base, path, queries, hash } = props;
   let url = "";
 
-  if (props.origin) {
-    url += `${location.protocol}//${props.origin}`;
-  } else if (props.base) {
-    url += props.base;
+  if (origin) {
+    url += `${location.protocol}//${origin}`;
+  } else if (base) {
+    url += base;
   }
 
-  if (props.path) {
-    if (!props.path.startsWith("/") && !url.endsWith("/")) url += "/";
-    url += props.path
+  if (path) {
+    if (!path.startsWith("/") && !url.endsWith("/")) url += "/";
+    url += path
       .split("/")
       .map(x => encodeURIComponent(x.trim()))
       .join("/");
   }
 
-  if (props.queries) {
-    url += `?${toQueryString(props.queries)}`;
+  if (queries) {
+    if (!url.endsWith("?")) url += "?";
+    url += toQueryString(queries);
   }
 
-  if (props.hash) {
-    url += `#${encodeURIComponent(props.hash)}`;
+  if (hash) {
+    url += `#${encodeURIComponent(hash.startsWith("#") ? hash.substring(1) : hash)}`;
   }
 
   return url;
+}
+
+export function makeEmailUrl(address: string) {
+  return `mailto:${address}`;
 }

@@ -10,6 +10,7 @@ import { useMomentFormatter } from "@/Common/Hooks/Moment";
 import { registerEditIcon } from "@/Common/IconRegistration";
 import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
 import { runOnce } from "@/Common/Utilities/Tools";
+import { makeEmailUrl } from "@/Common/Utilities/Url";
 import { setPageName } from "@/Features/Environment/Action";
 import { useCurrentUser, useIsMiddleScreen, useIsMobileView, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
@@ -124,7 +125,7 @@ export const UserDetailPage: React.FC = () => {
             {userDetail.email && (
               <div className={styles.email}>
                 <span>{ls.LS_USER_DETAIL_PAGE_EMAIL}</span>
-                <Link href={`mailto:${userDetail.email}`}>{userDetail.email}</Link>
+                <Link href={makeEmailUrl(userDetail.email)}>{userDetail.email}</Link>
               </div>
             )}
             <div className={styles.registrationTime}>

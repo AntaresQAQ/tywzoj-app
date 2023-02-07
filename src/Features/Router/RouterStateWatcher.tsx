@@ -16,7 +16,7 @@ export const RouterStateWatcher: React.FC<IProps> = props => {
   React.useEffect(() => {
     dispatch(
       setRouter({
-        path: decodeURIComponent(pathname),
+        path: decodeURIComponent(pathname.endsWith("?") ? pathname.substring(0, pathname.length - 1) : pathname),
         hash: decodeURIComponent(hash.substring(1)),
         queries: parseQuery(search, true),
       }),
