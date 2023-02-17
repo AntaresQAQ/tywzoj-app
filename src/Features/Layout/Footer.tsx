@@ -3,6 +3,7 @@ import * as React from "react";
 
 import { useMomentFormatter } from "@/Common/Hooks/Moment";
 import { useRecaptchaCopyrightMessage } from "@/Common/Hooks/Recaptcha";
+import { makeUrl } from "@/Common/Utilities/Url";
 import { useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { getSiteName } from "@/Features/Environment/Selectors";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
@@ -55,7 +56,7 @@ export const AppFooter: React.FC = () => {
       </div>
       {!isSmallScreen && recaptchaMessage}
       {domainIcpRecord && (
-        <Link className={styles.domainIcpRecord} href={"https://beian.miit.gov.cn"} target="_blank">
+        <Link className={styles.domainIcpRecord} href={makeUrl({ origin: "beian.miit.gov.cn" })} target="_blank">
           {domainIcpRecord}
         </Link>
       )}

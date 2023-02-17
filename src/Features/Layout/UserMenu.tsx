@@ -11,7 +11,7 @@ import { useEventCallback } from "@fluentui/react-hooks";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { CE_Page } from "@/Common/Enums/PagePath";
 import { CE_Permissions } from "@/Common/Enums/Permissions";
 import { useGravatar } from "@/Common/Hooks/Gravatar";
 import {
@@ -68,16 +68,16 @@ export const AppUserMenu: React.FC = () => {
   );
 
   const onSignInClick = React.useCallback(() => {
-    navigate(makeUrl({ base: CE_PagePath.Login }));
+    navigate(makeUrl({ page: CE_Page.Login }));
   }, [navigate]);
 
   const onSignUpClick = React.useCallback(() => {
-    navigate(makeUrl({ base: CE_PagePath.Register }));
+    navigate(makeUrl({ page: CE_Page.Register }));
   }, [navigate]);
 
   const onSignOutClick = React.useCallback(() => {
     dispatch(logoutAction()).then(() => {
-      navigate(makeUrl({ base: CE_PagePath.Home }));
+      navigate(makeUrl({ page: CE_Page.Home }));
     });
   }, [dispatch, navigate]);
 
@@ -89,19 +89,19 @@ export const AppUserMenu: React.FC = () => {
         key: "profile",
         text: ls.LS_APP_HEADER_USER_MENU_PROFILE,
         iconProps: { iconName: contactInfoIconName },
-        onClick: () => navigate(makeUrl({ base: CE_PagePath.User, path: `${currentUser.id}` })),
+        onClick: () => navigate(makeUrl({ page: CE_Page.UserDetail, params: { id: currentUser.id } })),
       },
       {
         key: "edit",
         text: ls.LS_APP_HEADER_USER_MENU_EDIT,
         iconProps: { iconName: editContactIconName },
-        onClick: () => navigate(makeUrl({ base: CE_PagePath.User, path: `${currentUser.id}/edit` })),
+        onClick: () => navigate(makeUrl({ page: CE_Page.UserEdit, params: { id: currentUser.id } })),
       },
       {
         key: "setting",
         text: ls.LS_APP_HEADER_USER_MENU_SETTINGS,
         iconProps: { iconName: playerSettingsIconName },
-        onClick: () => navigate(makeUrl({ base: CE_PagePath.User, path: `${currentUser.id}/setting` })),
+        onClick: () => navigate(makeUrl({ page: CE_Page.UserSetting, params: { id: currentUser.id } })),
       },
     ];
 

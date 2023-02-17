@@ -1,16 +1,18 @@
 import { DefaultButton, format, Image, ImageFit, Link, TooltipHost, useTheme } from "@fluentui/react";
 import { useId } from "@fluentui/react-hooks";
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { IconButton } from "@/Common/Components/IconButton";
 import { UserLevelLabel } from "@/Common/Components/UserLevelLabel";
+import { CE_Page } from "@/Common/Enums/PagePath";
 import { CE_Permissions } from "@/Common/Enums/Permissions";
 import { useGravatar } from "@/Common/Hooks/Gravatar";
 import { useMomentFormatter } from "@/Common/Hooks/Moment";
 import { registerEditIcon } from "@/Common/IconRegistration";
 import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
 import { runOnce } from "@/Common/Utilities/Tools";
-import { makeEmailUrl } from "@/Common/Utilities/Url";
+import { makeEmailUrl, makeUrl } from "@/Common/Utilities/Url";
 import { setPageName } from "@/Features/Environment/Action";
 import { useCurrentUser, useIsMiddleScreen, useIsMobileView, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
@@ -43,6 +45,7 @@ export const UserDetailPage: React.FC = () => {
   const editButtonTooltipId = useId("tooltip_edit");
   const momentFormatter = useMomentFormatter();
   const currentUser = useCurrentUser();
+  const navigate = useNavigate();
 
   const allowedEdit =
     currentUser && (currentUser.id === userDetail.id || checkIsAllowed(currentUser.level, CE_Permissions.ManageUser));
@@ -53,6 +56,8 @@ export const UserDetailPage: React.FC = () => {
   }, [dispatch, ls, userDetail]);
 
   const editButton = React.useMemo(() => {
+    const onClick = () => navigate(makeUrl({ page: CE_Page.UserEdit, params: { id: userDetail.id } }));
+
     return isMiddleScreen ? (
       <TooltipHost content={ls.LS_APP_HEADER_USER_MENU_EDIT} id={editButtonTooltipId}>
         <IconButton
@@ -60,12 +65,15 @@ export const UserDetailPage: React.FC = () => {
           iconProps={{ iconName: editIconName }}
           ariaLabel={ls.LS_APP_HEADER_USER_MENU_EDIT}
           aria-describedby={editButtonTooltipId}
+          onClick={onClick}
         />
       </TooltipHost>
     ) : (
-      <DefaultButton className={styles.editButton}>{ls.LS_APP_HEADER_USER_MENU_EDIT}</DefaultButton>
+      <DefaultButton className={styles.editButton} onClick={onClick}>
+        {ls.LS_APP_HEADER_USER_MENU_EDIT}
+      </DefaultButton>
     );
-  }, [editButtonTooltipId, isMiddleScreen, ls, styles]);
+  }, [editButtonTooltipId, isMiddleScreen, ls, navigate, styles, userDetail]);
 
   return (
     <div className={styles.root}>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Route, useParams } from "react-router-dom";
 
-import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { CE_Page } from "@/Common/Enums/PagePath";
 
 import { loadUserDetailPage, loadUserEditPage, loadUserListPage, loadUserSettingPage } from "./DynamicImport";
 
@@ -13,10 +13,10 @@ const UserSettingPageLazy = React.lazy(loadUserSettingPage);
 export const useUserPageRoutes = () => {
   return (
     <>
-      <Route path={`${CE_PagePath.User}/:id/edit`} element={<UserEditPageLazy />} />
-      <Route path={`${CE_PagePath.User}/:id/setting`} element={<UserSettingPageLazy />} />
-      <Route path={`${CE_PagePath.User}/:id`} element={<UserDetailPageLazy />} />
-      <Route path={CE_PagePath.User} element={<UserListPageLazy />} />
+      <Route path={CE_Page.UserEdit} element={<UserEditPageLazy />} />
+      <Route path={CE_Page.UserSetting} element={<UserSettingPageLazy />} />
+      <Route path={CE_Page.UserDetail} element={<UserDetailPageLazy />} />
+      <Route path={CE_Page.User} element={<UserListPageLazy />} />
     </>
   );
 };

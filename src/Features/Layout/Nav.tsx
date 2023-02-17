@@ -10,7 +10,7 @@ import {
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 
-import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { CE_Page } from "@/Common/Enums/PagePath";
 import { CE_Permissions } from "@/Common/Enums/Permissions";
 import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
 import { useCurrentUser } from "@/Features/Environment/Hooks";
@@ -24,7 +24,7 @@ export interface IAppNavProps {
 
 interface INavItem {
   name: string;
-  to: CE_PagePath;
+  to: CE_Page;
   icon: JSX.Element;
 }
 
@@ -40,7 +40,7 @@ export const AppNav: React.FC<IAppNavProps> = props => {
     const items: INavItem[] = [
       {
         name: ls.LS_APP_NAV_PAGE_NAME_HOME_PAGE,
-        to: CE_PagePath.Home,
+        to: CE_Page.Home,
         icon: <HomeIcon />,
       },
     ];
@@ -50,12 +50,12 @@ export const AppNav: React.FC<IAppNavProps> = props => {
         items.push(
           {
             name: ls.LS_APP_NAV_PAGE_NAME_PROBLEM_PAGE,
-            to: CE_PagePath.Problem,
+            to: CE_Page.Problem,
             icon: <BulletedListIcon />,
           },
           {
             name: ls.LS_APP_NAV_PAGE_NAME_PROBLEM_SET_PAGE,
-            to: CE_PagePath.ProblemSet,
+            to: CE_Page.ProblemSet,
             icon: <LibraryIcon />,
           },
         );
@@ -64,7 +64,7 @@ export const AppNav: React.FC<IAppNavProps> = props => {
       if (checkIsAllowed(currentUser.level, CE_Permissions.AccessHomework)) {
         items.push({
           name: ls.LS_APP_NAV_PAGE_NAME_HOMEWORK_PAGE,
-          to: CE_PagePath.Homework,
+          to: CE_Page.Homework,
           icon: <WaitlistConfirmIcon />,
         });
       }
@@ -73,12 +73,12 @@ export const AppNav: React.FC<IAppNavProps> = props => {
         items.push(
           {
             name: ls.LS_APP_NAV_PAGE_NAME_CONTEST_PAGE,
-            to: CE_PagePath.Contest,
+            to: CE_Page.Contest,
             icon: <ChartIcon />,
           },
           {
             name: ls.LS_APP_NAV_PAGE_NAME_USER_PAGE,
-            to: CE_PagePath.User,
+            to: CE_Page.User,
             icon: <ContactListIcon />,
           },
         );

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
-import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { CE_Page } from "@/Common/Enums/PagePath";
 import { CE_QueryKey } from "@/Common/Enums/QueryKeys";
 import { makeUrl } from "@/Common/Utilities/Url";
 import { clearError } from "@/Features/Error/Action";
@@ -46,7 +46,7 @@ export const AppErrorBoundary: React.FC<IProps> = props => {
       const url = makeUrl({ path, queries, hash });
       navigate(
         makeUrl({
-          base: CE_PagePath.Login,
+          base: CE_Page.Login,
           queries: {
             [CE_QueryKey.LoginRedirect]: url,
           },

@@ -43,7 +43,7 @@ export const rtlLanguages = [
   "ur", // Urdu
 ];
 
-export const fluentUILanguageMap = {
+export const fluentUILanguageMap: { [k in CE_Language]: string } = {
   [CE_Language.ar]: "ar",
   [CE_Language.en]: "en",
   [CE_Language.fr]: "fr",
@@ -53,7 +53,7 @@ export const fluentUILanguageMap = {
   [CE_Language.zh_hk]: "ch-ZHT",
 };
 
-export const recaptchaLanguageMap = {
+export const recaptchaLanguageMap: { [k in CE_Language]: string } = {
   [CE_Language.ar]: "ar",
   [CE_Language.en]: "en",
   [CE_Language.fr]: "fr",

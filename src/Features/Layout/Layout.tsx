@@ -4,7 +4,7 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 
 import { PageLoading } from "@/Common/Components/PageLoading";
-import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { CE_Page } from "@/Common/Enums/PagePath";
 import { registerCancelIcon, registerGlobalNavButtonIcon } from "@/Common/IconRegistration";
 import { useIsMobileView } from "@/Features/Environment/Hooks";
 import { getSiteName } from "@/Features/Environment/Selectors";
@@ -82,7 +82,7 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
       ) : (
         <div className={styles.navbar}>
           <div className={styles.logo}>
-            <NavLink to={CE_PagePath.Home}>
+            <NavLink to={CE_Page.Home}>
               <img src={getAppLogoUrl()} alt={siteName} />
             </NavLink>
           </div>

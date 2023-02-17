@@ -2,7 +2,7 @@ import * as React from "react";
 import { Route } from "react-router-dom";
 
 import { AuthedRedirect } from "@/Common/Components/AuthedRedirect";
-import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { CE_Page } from "@/Common/Enums/PagePath";
 
 import { loadForgotPasswordPage, loadLoginPage, loadRegisterPage } from "./DynamicImport";
 
@@ -14,7 +14,7 @@ export const useAuthPageRoutes = () => {
   return (
     <>
       <Route
-        path={CE_PagePath.Login}
+        path={CE_Page.Login}
         element={
           <AuthedRedirect>
             <LoginPageLazy />
@@ -22,7 +22,7 @@ export const useAuthPageRoutes = () => {
         }
       />
       <Route
-        path={CE_PagePath.Register}
+        path={CE_Page.Register}
         element={
           <AuthedRedirect>
             <RegisterPageLazy />
@@ -30,7 +30,7 @@ export const useAuthPageRoutes = () => {
         }
       />
       <Route
-        path={CE_PagePath.ForgotPassword}
+        path={CE_Page.ForgotPassword}
         element={
           <AuthedRedirect>
             <ForgotPasswordPageLazy />

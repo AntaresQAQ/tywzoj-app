@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
 
-import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { CE_Page } from "@/Common/Enums/PagePath";
 
 export const useHomePageRoutes = () => {
-  return <Route path={CE_PagePath.Home} />;
+  return <Route path={CE_Page.Home} />;
 };

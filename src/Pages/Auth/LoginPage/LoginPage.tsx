@@ -10,7 +10,7 @@ import {
 import * as React from "react";
 
 import { FluentRouterLink } from "@/Common/Components/FluentLink";
-import { CE_PagePath } from "@/Common/Enums/PagePath";
+import { CE_Page } from "@/Common/Enums/PagePath";
 import { useRecaptchaCopyrightMessage } from "@/Common/Hooks/Recaptcha";
 import { registerHideIcon, registerRedEyeIcon } from "@/Common/IconRegistration";
 import { makeUrl } from "@/Common/Utilities/Url";
@@ -93,10 +93,10 @@ export const LoginPage: React.FC = () => {
           </PrimaryButton>
         </form>
         <div className={styles.footer}>
-          <FluentRouterLink to={makeUrl({ base: CE_PagePath.ForgotPassword })}>
+          <FluentRouterLink to={makeUrl({ base: CE_Page.ForgotPassword })}>
             {ls.LS_LOGIN_PAGE_FORGOT_PASSWORD}
           </FluentRouterLink>
-          <FluentRouterLink to={makeUrl({ base: CE_PagePath.Register })}>{ls.LS_COMMON_SIGN_UP_TITLE}</FluentRouterLink>
+          <FluentRouterLink to={makeUrl({ base: CE_Page.Register })}>{ls.LS_COMMON_SIGN_UP_TITLE}</FluentRouterLink>
         </div>
         {isSmallScreen && <div className={styles.recaptcha}>{recaptchaMsg}</div>}
       </div>
