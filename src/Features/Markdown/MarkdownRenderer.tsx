@@ -1,4 +1,4 @@
-import { ITheme, Spinner, SpinnerSize, useTheme } from "@fluentui/react";
+import { Spinner, SpinnerSize, useTheme } from "@fluentui/react";
 import type * as MarkdownIt from "markdown-it";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,6 @@ import { CE_ThemeName } from "@/Common/Theme";
 import { combineAttributes } from "@/Common/Utilities/Attributes";
 import { PromiseInnerType } from "@/Common/Utilities/Types";
 import { parseUrlIfSameOrigin } from "@/Common/Utilities/Url";
-import { getCodeBoxStyle } from "@/Features/CodeBox/Styles";
 import { getThemeName } from "@/Features/Environment/Selectors";
 import { loadHighlighter } from "@/Features/Highlight/DynamicImport";
 import { useAppSelector } from "@/Features/Store";
@@ -44,7 +43,7 @@ export const MarkdownRenderer: React.FC<IMarkdownRendererProps> = props => {
   const cls = getMarkdownContentStyles(theme);
 
   const [wrapperElement, setWrapperElement] = React.useState<HTMLDivElement>();
-  const [html, pending] = useAsyncFunctionResult(renderAsync, [content, noSanitize, patcher, theme, themeName]);
+  const [html, pending] = useAsyncFunctionResult(renderAsync, [content, noSanitize, patcher, themeName]);
 
   React.useEffect(() => {
     if (!wrapperElement) return;
@@ -94,7 +93,6 @@ async function renderAsync(
   content: string,
   noSanitize: boolean,
   patcher: IMarkdownContentPatcher,
-  theme: ITheme,
   themeName: CE_ThemeName,
 ) {
   const { onPatchRenderer, onXssFilterAttr } = patcher;
@@ -128,20 +126,7 @@ async function renderAsync(
     if (!parseUrlIfSameOrigin(a.href)) a.target = "_blank";
   });
 
-  patchStyles(wrapper, theme);
-
   return wrapper.innerHTML;
 }
 
-// Patch rendered-markdown's styles for semantic-ui
-function patchStyles(wrapper: HTMLDivElement, theme: ITheme) {
-  // Wrap <pre> tags with segments
-  Array.from(wrapper.getElementsByTagName("pre")).forEach(element => {
-    // Wrap
-    const segment = document.createElement("div");
-    segment.className = getCodeBoxStyle(theme);
-    element.parentNode.replaceChild(segment, element);
-    segment.appendChild(element);
-  });
-}
 export default MarkdownRenderer;

@@ -16,7 +16,7 @@ const getBasicStyle = memoizeFunction((theme: ITheme) => ({
       alignItems: "flex-start",
     }),
     gap: 20,
-    maxWidth: 1000,
+    maxWidth: 1200,
     width: "100%",
   },
   top: {

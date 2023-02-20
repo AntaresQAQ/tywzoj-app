@@ -2,7 +2,7 @@ import { ITheme, memoizeFunction, mergeStyles } from "@fluentui/react";
 
 export const getCodeBoxStyle = memoizeFunction((theme: ITheme) =>
   mergeStyles({
-    margin: 10,
+    margin: 15,
     pre: {
       boxShadow: theme.effects.elevation16,
       borderRadius: theme.effects.roundedCorner4,
