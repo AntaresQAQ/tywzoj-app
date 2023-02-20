@@ -8,6 +8,12 @@ export function getApiEndPoint() {
   return apiEndPoint;
 }
 
-export function getAppLogoUrl() {
-  return getAppBuildEnv().TYWZOJ_LOGO_URL;
+export function getAppLogoUrl(isDarkMode: boolean) {
+  return isDarkMode ? getAppBuildEnv().TYWZOJ_DARK_LOGO_URL : getAppBuildEnv().TYWZOJ_LIGHT_LOGO_URL;
+}
+
+export function getBaseUrl() {
+  let baseUrl = getAppBuildEnv().BASE_URL;
+  if (!baseUrl.endsWith("/")) baseUrl += "/";
+  return baseUrl;
 }

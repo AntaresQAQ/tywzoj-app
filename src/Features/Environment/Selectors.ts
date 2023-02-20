@@ -1,3 +1,4 @@
+import { CE_ThemeName } from "@/Common/Theme";
 import { IRootState } from "@/Features/Store";
 
 export const getEnv = (state: IRootState) => state.env;
@@ -14,5 +15,5 @@ export const getRecaptchaEnabled = (state: IRootState) => state.env.recaptchaEna
 export const getRecaptchaKey = (state: IRootState) => state.env.recaptchaKey;
 export const getSiteName = (state: IRootState) => state.env.siteName;
 export const getThemeName = (state: IRootState) => state.env.themeName;
-
+export const getIsDarkMode = (state: IRootState) => state.env.themeName !== CE_ThemeName.Light;
 export const getCurrentUser = (state: IRootState) => state.currentUser;
