@@ -217,3 +217,15 @@
   value: 注册于 {0}。
   description: A string for registration time, {0} is the time string.
   raw: Registered at {0}.
+- name: USER_DETAIL_PAGE_INFO_TAB
+  value: 个人简介
+  description: A title for user information tab.
+  raw: Biography
+- name: USER_DETAIL_PAGE_ANALYSIS_TAB
+  value: 做题分析
+  description: A title for user submission analysis tab.
+  raw: Analysis
+- name: USER_DETAIL_PAGE_RATING_TAB
+  value: 比赛积分
+  description: A title for user rating history tab.
+  raw: Rating

@@ -204,3 +204,15 @@
 - name: USER_DETAIL_PAGE_REG_TIME
   value: 'Registered at {0}.'
   description: A string for registration time, {0} is the time string.
+
+- name: USER_DETAIL_PAGE_INFO_TAB
+  value: Biography
+  description: A title for user information tab.
+
+- name: USER_DETAIL_PAGE_ANALYSIS_TAB
+  value: Analysis
+  description: A title for user submission analysis tab.
+
+- name: USER_DETAIL_PAGE_RATING_TAB
+  value: Rating
+  description: A title for user rating history tab.
