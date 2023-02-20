@@ -1,4 +1,16 @@
-import { DefaultButton, format, Image, ImageFit, Link, TooltipHost, useTheme } from "@fluentui/react";
+import {
+  DefaultButton,
+  format,
+  Image,
+  ImageFit,
+  Link,
+  Pivot,
+  PivotItem,
+  Spinner,
+  SpinnerSize,
+  TooltipHost,
+  useTheme,
+} from "@fluentui/react";
 import { useId } from "@fluentui/react-hooks";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +34,9 @@ import { injectDynamicReducer } from "@/Features/Store/Helper";
 import { userDetailPageReducer } from "./Reducer";
 import { getUserDetail } from "./Selectors";
 import { getUserDetailPageStyles } from "./Styles/UserDetailPageStyles";
+import { UserInfoShimmer } from "./UserInfoShimmer";
+
+const loadUserInformationRenderer = () => import("./UserInformationRenderer");
 
 const configureStore = runOnce(() => {
   injectDynamicReducer({
@@ -31,6 +46,8 @@ const configureStore = runOnce(() => {
 configureStore();
 
 const editIconName = registerEditIcon();
+
+const UserInformationRendererLazy = React.lazy(loadUserInformationRenderer);
 
 export const UserDetailPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -141,7 +158,33 @@ export const UserDetailPage: React.FC = () => {
             </div>
           </div>
         )}
-        <div className={styles.bottom}></div>
+        <div className={styles.bottom}>
+          <Pivot>
+            {userDetail.information && (
+              <PivotItem headerText={ls.LS_USER_DETAIL_PAGE_INFO_TAB} ariaLabel={ls.LS_USER_DETAIL_PAGE_INFO_TAB}>
+                <div className={styles.tabContainer}>
+                  <React.Suspense fallback={<UserInfoShimmer />}>
+                    <UserInformationRendererLazy content={userDetail.information} />
+                  </React.Suspense>
+                </div>
+              </PivotItem>
+            )}
+            <PivotItem headerText={ls.LS_USER_DETAIL_PAGE_ANALYSIS_TAB} ariaLabel={ls.LS_USER_DETAIL_PAGE_ANALYSIS_TAB}>
+              <div className={styles.tabContainer}>
+                <React.Suspense fallback={<Spinner size={SpinnerSize.large} />}>
+                  {/*  TODO: Submissions analysis tab */}
+                </React.Suspense>
+              </div>
+            </PivotItem>
+            <PivotItem headerText={ls.LS_USER_DETAIL_PAGE_RATING_TAB} ariaLabel={ls.LS_USER_DETAIL_PAGE_RATING_TAB}>
+              <div className={styles.tabContainer}>
+                <React.Suspense fallback={<Spinner size={SpinnerSize.large} />}>
+                  {/*  TODO: Rating history tab */}
+                </React.Suspense>
+              </div>
+            </PivotItem>
+          </Pivot>
+        </div>
       </div>
     </div>
   );

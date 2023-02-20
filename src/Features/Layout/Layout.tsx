@@ -7,7 +7,7 @@ import { PageLoading } from "@/Common/Components/PageLoading";
 import { CE_Page } from "@/Common/Enums/PagePath";
 import { registerCancelIcon, registerGlobalNavButtonIcon } from "@/Common/IconRegistration";
 import { useIsMobileView } from "@/Features/Environment/Hooks";
-import { getSiteName } from "@/Features/Environment/Selectors";
+import { getIsDarkMode, getSiteName } from "@/Features/Environment/Selectors";
 import { getAppLogoUrl } from "@/Features/Environment/Settings/BuildEnv";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppSelector } from "@/Features/Store";
@@ -32,6 +32,7 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
   const isMobileView = useIsMobileView();
   const styles = getLayoutStyles(theme, isMobileView);
   const siteName = useAppSelector(getSiteName);
+  const isDarkMode = useAppSelector(getIsDarkMode);
   const navTooltipId = useId("nav_tooltip");
 
   const [isNavPanelOpen, setIsNavPanelOpen] = React.useState(false);
@@ -56,7 +57,7 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
               </TooltipHost>
             </div>
             <div className={styles.logo}>
-              <img src={getAppLogoUrl()} alt={siteName} />
+              <img src={getAppLogoUrl(isDarkMode)} alt={siteName} />
             </div>
           </>
         )}
@@ -83,7 +84,7 @@ export const AppLayout: React.FC<IAppLayoutProps> = props => {
         <div className={styles.navbar}>
           <div className={styles.logo}>
             <NavLink to={CE_Page.Home}>
-              <img src={getAppLogoUrl()} alt={siteName} />
+              <img src={getAppLogoUrl(isDarkMode)} alt={siteName} />
             </NavLink>
           </div>
           <React.Suspense fallback={null}>

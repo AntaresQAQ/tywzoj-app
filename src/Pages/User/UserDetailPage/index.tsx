@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { PageLoading } from "@/Common/Components/PageLoading";
+import { useAsyncFunctionResult } from "@/Common/Hooks/Async";
 import { useAppDispatch } from "@/Features/Store";
 import { useUserPageParams } from "@/Pages/User/Routes";
 
@@ -8,20 +9,12 @@ import { fetchUserDetailAction } from "./Action";
 import { UserDetailPage } from "./UserDetailPage";
 
 const Wrapper: React.FC = () => {
-  const [dataFetched, setDataFetched] = React.useState(false);
   const { id } = useUserPageParams();
   const dispatch = useAppDispatch();
 
-  // Fetch data
-  React.useEffect(() => {
-    dispatch(fetchUserDetailAction(id)).then(succeed => {
-      if (succeed) {
-        setDataFetched(true);
-      }
-    });
-  }, [dispatch, id]);
+  const [, pending] = useAsyncFunctionResult((id: string) => dispatch(fetchUserDetailAction(id)), [id]);
 
-  return dataFetched ? <UserDetailPage /> : <PageLoading />;
+  return pending ? <PageLoading /> : <UserDetailPage />;
 };
 
 export default Wrapper;

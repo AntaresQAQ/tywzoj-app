@@ -54,8 +54,11 @@ const getBasicStyle = memoizeFunction((theme: ITheme) => ({
     backgroundColor: theme.palette.white,
     boxShadow: theme.effects.elevation16,
     borderRadius: 6,
-    height: 200,
     flexGrow: 1,
+    padding: 15,
+  },
+  tabContainer: {
+    margin: "15px 5px 5px",
   },
   avatar: {
     borderRadius: "6%",
@@ -120,6 +123,7 @@ const getMiddleScreenStyles = memoizeFunction(() => ({
   },
   bottom: {
     width: "100%",
+    boxSizing: "border-box",
   },
   avatar: {
     height: 200,

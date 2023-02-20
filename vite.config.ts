@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { createHtmlPlugin } from "vite-plugin-html";
+import { prismjsPlugin } from "vite-plugin-prismjs";
 import gitRepoInfo from "git-repo-info";
 
 const repoInfo = gitRepoInfo();
@@ -32,6 +33,9 @@ export default defineConfig({
           },
         },
       },
+    }),
+    prismjsPlugin({
+      languages: "all",
     }),
   ],
 });
