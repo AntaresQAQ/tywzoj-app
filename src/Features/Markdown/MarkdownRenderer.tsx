@@ -11,10 +11,12 @@ import { parseUrlIfSameOrigin } from "@/Common/Utilities/Url";
 import { getCodeBoxStyle } from "@/Features/CodeBox/Styles";
 import { getThemeName } from "@/Features/Environment/Selectors";
 import { loadHighlighter } from "@/Features/Highlight/DynamicImport";
-import { findPlaceholderElement, renderMarkdown } from "@/Features/Markdown/Markdown";
-import { sanitize } from "@/Features/Markdown/Sanitize";
-import { getMarkdownContentStyles } from "@/Features/Markdown/Styles";
 import { useAppSelector } from "@/Features/Store";
+
+import { loadMathRenderer } from "./DynamicImport";
+import { findPlaceholderElement, renderMarkdown } from "./Markdown";
+import { sanitize } from "./Sanitize";
+import { getMarkdownContentStyles } from "./Styles";
 
 export interface IMarkdownContentPatcher {
   onPatchRenderer?: (renderer: MarkdownIt) => void;
@@ -86,6 +88,7 @@ export const MarkdownRenderer: React.FC<IMarkdownRendererProps> = props => {
 };
 
 let highlighterModule: PromiseInnerType<ReturnType<typeof loadHighlighter>>;
+let mathRendererModule: PromiseInnerType<ReturnType<typeof loadMathRenderer>>;
 
 async function renderAsync(
   content: string,
@@ -111,6 +114,12 @@ async function renderAsync(
   }
 
   if (mathPlaceholders.length > 0) {
+    const { renderMathAsync } = mathRendererModule ?? (mathRendererModule = await loadMathRenderer());
+
+    for (const placeholder of mathPlaceholders) {
+      const element = findPlaceholderElement(wrapper, placeholder.id);
+      element.outerHTML = await renderMathAsync(placeholder.math, placeholder.display);
+    }
   }
 
   // Patch <a> tags for security reason

@@ -2,7 +2,7 @@ import { requestAsync } from "@/Common/Request/ApiRequest";
 import { ISessionInfo } from "@/Common/ServerType/Auth";
 
 export async function getSessionInfoRequestAsync(token?: string) {
-  const { data } = await requestAsync<ISessionInfo>({
+  const { data } = await requestAsync<ISessionInfo, { token: string }>({
     path: "auth/sessionInfo",
     method: "GET",
     ...(token && { query: { token } }),

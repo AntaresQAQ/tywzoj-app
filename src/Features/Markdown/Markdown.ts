@@ -13,7 +13,7 @@ export interface IMarkdownHighlightPlaceholder {
 
 export interface IMarkdownMathPlaceholder {
   id: string;
-  code: string;
+  math: string;
   display: boolean;
 }
 
@@ -63,21 +63,21 @@ export function renderMarkdown(
     inlineClose: "$",
     blockOpen: "$$",
     blockClose: "$$",
-    inlineRenderer: (code: string) => {
+    inlineRenderer: (math: string) => {
       const id = uuidV4();
       mathPlaceholders.push({
         id,
-        code,
+        math,
         display: false,
       });
 
       return generatePlaceholder(id);
     },
-    blockRenderer: (code: string) => {
+    blockRenderer: (math: string) => {
       const id = uuidV4();
       mathPlaceholders.push({
         id,
-        code,
+        math,
         display: true,
       });
 

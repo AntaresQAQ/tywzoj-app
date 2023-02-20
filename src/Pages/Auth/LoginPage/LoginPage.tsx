@@ -93,10 +93,10 @@ export const LoginPage: React.FC = () => {
           </PrimaryButton>
         </form>
         <div className={styles.footer}>
-          <FluentRouterLink to={makeUrl({ base: CE_Page.ForgotPassword })}>
+          <FluentRouterLink to={makeUrl({ page: CE_Page.ForgotPassword })}>
             {ls.LS_LOGIN_PAGE_FORGOT_PASSWORD}
           </FluentRouterLink>
-          <FluentRouterLink to={makeUrl({ base: CE_Page.Register })}>{ls.LS_COMMON_SIGN_UP_TITLE}</FluentRouterLink>
+          <FluentRouterLink to={makeUrl({ page: CE_Page.Register })}>{ls.LS_COMMON_SIGN_UP_TITLE}</FluentRouterLink>
         </div>
         {isSmallScreen && <div className={styles.recaptcha}>{recaptchaMsg}</div>}
       </div>
