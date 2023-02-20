@@ -1,8 +1,9 @@
 import { CE_ThemeName } from "@/Common/Theme";
 import { escapeHtml } from "@/Common/Utilities/Html";
 import { PromiseInnerType } from "@/Common/Utilities/Types";
-import { loadPrism } from "@/Features/Highlight/DynamicImport";
-import { injectStyles } from "@/Features/Highlight/Styles";
+
+import { loadPrism } from "./DynamicImport";
+import { injectStyles } from "./Styles";
 
 let prismModule: PromiseInnerType<ReturnType<typeof loadPrism>>;
 
