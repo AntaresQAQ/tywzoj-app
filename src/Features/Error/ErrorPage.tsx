@@ -16,7 +16,7 @@ registerWarningIcon();
 
 interface IErrorPageProps {
   code: CE_ErrorCode;
-  onShow: () => void;
+  onShow?: () => void;
 }
 
 const messageStyle = mergeStyles({
@@ -46,7 +46,7 @@ export const ErrorPage: React.FC<IErrorPageProps> = props => {
   }, [dispatch, ls]);
 
   React.useEffect(() => {
-    onShow();
+    onShow && onShow();
   }, [onShow]);
 
   const msgType = React.useMemo((): MessageBarType => {

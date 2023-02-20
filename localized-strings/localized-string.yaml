@@ -70,6 +70,10 @@
   value: Permission denied.
   description: Error message.
 
+- name: ERROR_404_MESSAGE
+  value: No such page.
+  description: Error message.
+
 - name: ERROR_500_MESSAGE
   value: Internal server error.
   description: Error message.

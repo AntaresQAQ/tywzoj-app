@@ -4,6 +4,7 @@ export const enum CE_ErrorCode {
   Unknown = -1,
   AuthRequired = 401,
   PermissionDenied = 403,
+  NotFound = 404,
   ServerError = 500,
   RecaptchaError = 1000,
   ValidationError = 1001,

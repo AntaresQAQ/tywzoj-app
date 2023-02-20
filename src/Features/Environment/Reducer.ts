@@ -16,7 +16,10 @@ const envInitialState: IEnvState = {
   themeName: CE_ThemeName.Light,
 } as unknown as IEnvState;
 const versionInitialState: IVersionState = {
-  server: {},
+  server: {
+    date: null,
+    hash: "N/A",
+  },
   client: {},
 } as unknown as IVersionState;
 const paginationInitialState: IPaginationState = null as unknown as IPaginationState;

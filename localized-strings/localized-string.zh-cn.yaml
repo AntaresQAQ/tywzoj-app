@@ -70,6 +70,10 @@
   value: 没有权限。
   description: Error message.
   raw: Permission denied.
+- name: ERROR_404_MESSAGE
+  value: 没有这个页面。
+  description: Error message.
+  raw: No such page.
 - name: ERROR_500_MESSAGE
   value: 服务器错误。
   description: Error message.

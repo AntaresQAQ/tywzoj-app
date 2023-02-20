@@ -29,6 +29,8 @@ function render() {
 function initSessionInfoAsync() {
   const token = getApiBearerToken(store.getState());
   return getSessionInfoRequestAsync(token).then(sessionInfo => {
+    if (!sessionInfo) return;
+
     store.dispatch(
       setEnv({
         ...sessionInfo.preference.misc,

@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Route, Routes } from "react-router-dom";
 
+import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
+import { ErrorPage } from "@/Features/Error/ErrorPage";
 import { useAuthPageRoutes } from "@/Pages/Auth/Routes";
 import { useHomePageRoutes } from "@/Pages/Home/Routes";
 import { useUserPageRoutes } from "@/Pages/User/Routes";
@@ -11,7 +13,7 @@ export const AppRoutes: React.FC = () => {
       {useHomePageRoutes()}
       {useAuthPageRoutes()}
       {useUserPageRoutes()}
-      <Route path="*" />
+      <Route path="*" element={<ErrorPage code={CE_ErrorCode.NotFound} />} />
     </Routes>
   );
 };
