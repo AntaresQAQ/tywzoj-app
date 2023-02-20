@@ -43,17 +43,17 @@ export const AppErrorBoundary: React.FC<IProps> = props => {
   React.useEffect(() => {
     if (errorCode === CE_ErrorCode.AuthRequired && !redirecting.current) {
       redirecting.current = true;
-      const url = makeUrl({ path, queries, hash });
+      const url = encodeURIComponent(location.pathname + location.search + location.hash);
       navigate(
         makeUrl({
-          base: CE_Page.Login,
+          page: CE_Page.Login,
           queries: {
             [CE_QueryKey.LoginRedirect]: url,
           },
         }),
       );
     }
-  }, [dispatch, errorCode, hash, navigate, path, queries]);
+  }, [errorCode, navigate]);
 
   // Clear error on route changed.
   React.useEffect(() => {

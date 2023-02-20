@@ -6,14 +6,11 @@ import { getApiBearerToken, getApiEndPoint } from "@/Features/Environment/Select
 import { catchError } from "@/Features/Error/Action";
 import { store } from "@/Features/Store";
 
-type IQueryType = { [k: string]: string | number | boolean };
-type IBodyType = { [k: string]: unknown };
-
-export interface IRequestOptions {
+export interface IRequestOptions<TQuery, TBody> {
   path: string;
   method: "GET" | "POST" | "PATCH" | "DELETE";
-  query?: IQueryType;
-  body?: IBodyType;
+  query?: TQuery;
+  body?: TBody;
   recaptchaToken?: string;
 }
 
@@ -24,8 +21,8 @@ export interface IResponseError {
 
 export type IResponseData<T> = XOR<{ data: T }, { error: IResponseError }>;
 
-export async function requestAsync<T>(
-  options: IRequestOptions,
+export async function requestAsync<T, U = undefined, V = undefined>(
+  options: IRequestOptions<U, V>,
   filteredErrors: CE_ErrorCode[] = [],
 ): Promise<IResponseData<T>> {
   const appState = store.getState();

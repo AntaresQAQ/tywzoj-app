@@ -65,3 +65,15 @@ export function applyParams<T extends CE_Page>(page: T, params?: IPageParams[T])
     });
   return p;
 }
+
+export function parseUrlIfSameOrigin(href: string) {
+  // `new URL` may throw an exception
+  try {
+    const url = new URL(href, document.location.href);
+    // Check internal links
+    if (url.origin === document.location.origin) {
+      return url;
+    }
+  } catch {}
+  return null;
+}

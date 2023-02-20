@@ -1,14 +1,15 @@
 export const enum CE_Page {
   Home = "/",
-  Problem = "/problem",
-  ProblemSet = "/set",
-  Homework = "/homework",
-  Contest = "/contest",
-  User = "/user",
-  UserDetail = "/user/:id",
-  UserSetting = "/user/:id/setting",
-  UserEdit = "/user/:id/edit",
+  Problem = "/p", // ProblemList
+  ProblemSet = "/s",
+  Homework = "/h",
+  Contest = "/c",
+  User = "/u", // UserList
+  UsernameRedirect = "/un/:username",
+  UserDetail = "/u/:id",
+  UserSetting = "/u/:id/setting",
+  UserEdit = "/u/:id/edit",
   Login = "/login",
   Register = "/register",
-  ForgotPassword = "/forgot",
+  ForgotPassword = "/forget",
 }
