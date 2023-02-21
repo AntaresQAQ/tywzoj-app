@@ -152,9 +152,9 @@ export const Paginate: React.FC<IPaginateProps> = props => {
   const queries = useAppSelector(getQueries);
   const hash = useAppSelector(getHash);
   const navigate = useNavigate();
-  const queryPage = useQuery(CE_QueryKey.Page);
+  const queryPage = useQuery<number>(CE_QueryKey.Page);
 
-  const currentPage = typeof queryPage === "number" ? queryPage : 1;
+  const currentPage = Number.isInteger(queryPage) ? queryPage : 1;
   const showPage = itemCount > takeCount;
   const pageCount = Math.ceil(itemCount / takeCount) || 1;
   const isFirstPage = currentPage <= 1;

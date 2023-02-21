@@ -1,5 +1,5 @@
 import { CE_Page } from "@/Common/Enums/PagePath";
-import { IPageParams } from "@/Common/Types/PageParams";
+import { IPageParams, IParam } from "@/Common/Types/PageParams";
 import { IQueryObj, toQueryString } from "@/Common/Utilities/QueryString";
 import { XOR } from "@/Common/Utilities/Types";
 
@@ -55,15 +55,12 @@ export function makeEmailUrl(address: string) {
   return `mailto:${address}`;
 }
 
-export function applyParams<T extends CE_Page>(page: T, params?: IPageParams[T]) {
-  let p = page as unknown as string;
+export function applyParams(page: string, params?: IParam) {
   params &&
     Object.keys(params).forEach(key => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      p = p.replaceAll(`:${key}`, `${params[key]}`);
+      page = page.replaceAll(`:${key}`, `${params[key]}`);
     });
-  return p;
+  return page;
 }
 
 export function parseUrlIfSameOrigin(href: string) {
