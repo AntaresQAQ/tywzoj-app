@@ -52,20 +52,11 @@ export const AppUserMenu: React.FC = () => {
 
   const userContainerRef = React.useRef<HTMLDivElement>(null);
   const [isShowUserMenu, setIsShowUserMenu] = React.useState(false);
-  const showUserMenu = useEventCallback(() => setIsShowUserMenu(true));
   const hideUserMenu = useEventCallback(() => setIsShowUserMenu(false));
-
-  const onUserClick = React.useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
-      if (isShowUserMenu) {
-        hideUserMenu();
-      } else {
-        showUserMenu();
-      }
-    },
-    [hideUserMenu, isShowUserMenu, showUserMenu],
-  );
+  const onUserClick = useEventCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsShowUserMenu(s => !s);
+  });
 
   const onSignInClick = React.useCallback(() => {
     navigate(makeUrl({ page: CE_Page.Login }));
