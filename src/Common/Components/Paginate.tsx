@@ -1,5 +1,6 @@
 import {
   ContextualMenu,
+  format,
   Icon,
   IContextualMenuItem,
   IContextualMenuStyleProps,
@@ -9,9 +10,10 @@ import {
   memoizeFunction,
   mergeStyles,
   mergeStyleSets,
+  TooltipHost,
   useTheme,
 } from "@fluentui/react";
-import { useEventCallback } from "@fluentui/react-hooks";
+import { useEventCallback, useId } from "@fluentui/react-hooks";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -23,6 +25,7 @@ import { flex } from "@/Common/Styles/Flex";
 import { range } from "@/Common/Utilities/Math";
 import { makeUrl } from "@/Common/Utilities/Url";
 import { useIsMiddleScreen, useIsMiniScreen, useIsSmallScreen } from "@/Features/Environment/Hooks";
+import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useQuery } from "@/Features/Router/Hooks";
 import { getHash, getPath, getQueries } from "@/Features/Router/Selectors";
 import { useAppSelector } from "@/Features/Store";
@@ -52,21 +55,24 @@ const getPageButtonStyles = memoizeFunction((theme: ITheme, isActive: boolean) =
   }),
 );
 
-export const moreStyles = mergeStyleSets({
-  linkButton: {
-    ...commonAnchorStyle,
-  },
-  icon: {
-    ...flex({
-      alignItems: "center",
-      justifyContent: "center",
-    }),
-    fontSize: 16,
-    width: 36,
-    height: 36,
-    cursor: "pointer",
-  },
-});
+export const getMoreStyles = memoizeFunction((theme: ITheme) =>
+  mergeStyleSets({
+    linkButton: {
+      ...commonAnchorStyle,
+    },
+    icon: {
+      ...flex({
+        alignItems: "center",
+        justifyContent: "center",
+      }),
+      color: theme.palette.neutralPrimary,
+      fontSize: 18,
+      width: 36,
+      height: 36,
+      cursor: "pointer",
+    },
+  }),
+);
 
 const pageStyle = mergeStyles({ ...flex({}) });
 
@@ -75,8 +81,11 @@ const PageButton: React.FC<{
   onClick?: () => void;
   isActive?: boolean;
   disabled?: boolean;
+  ariaLabel?: string;
+  tooltip?: string;
 }> = props => {
-  const { children, isActive = false, disabled = false, onClick } = props;
+  const { children, isActive = false, disabled = false, ariaLabel, tooltip, onClick } = props;
+  const tooltipId = useId();
   const theme = useTheme();
   const style = getPageButtonStyles(theme, isActive);
 
@@ -85,10 +94,27 @@ const PageButton: React.FC<{
     e.preventDefault();
   });
 
-  return (
-    <button className={style} onClick={onButtonClick} disabled={isActive || disabled}>
-      {children}
-    </button>
+  const inner = React.useMemo(
+    () => (
+      <button
+        className={style}
+        onClick={onButtonClick}
+        disabled={isActive || disabled}
+        aria-label={ariaLabel}
+        aria-describedby={tooltip ? tooltipId : undefined}
+      >
+        {children}
+      </button>
+    ),
+    [ariaLabel, children, disabled, isActive, onButtonClick, style, tooltip, tooltipId],
+  );
+
+  return tooltip ? (
+    <TooltipHost content={tooltip} id={tooltipId}>
+      {inner}
+    </TooltipHost>
+  ) : (
+    inner
   );
 };
 
@@ -98,16 +124,24 @@ const MoreButton: React.FC<{
   onPageClick: (p: number) => void;
 }> = props => {
   const { start, end, onPageClick } = props;
+  const ls = useLocalizedStrings();
+  const tooltipId = useId();
+
+  const theme = useTheme();
+  const styles = getMoreStyles(theme);
 
   const ref = React.useRef<HTMLAnchorElement>(null);
   const [show, setShow] = React.useState(false);
+
   const items = React.useMemo<IContextualMenuItem[]>(() => {
     return range(start, end + 1).map(p => ({
       key: p.toString(),
       text: p.toString(),
       onClick: () => onPageClick(p),
+      ariaLabel: format(ls.LS_COMMON_PAGINATE_PAGE_BTN_LABEL, p),
     }));
-  }, [end, onPageClick, start]);
+  }, [end, ls, onPageClick, start]);
+
   const onMoreClick = useEventCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setShow(s => !s);
@@ -115,24 +149,40 @@ const MoreButton: React.FC<{
 
   const menuStyles: IStyleFunctionOrObject<IContextualMenuStyleProps, IContextualMenuStyles> = {
     container: {
-      maxWidth: 100,
+      minWidth: 60,
       maxHeight: 300,
+    },
+    list: {
+      minWidth: 60,
+    },
+    root: {
+      minWidth: 60,
     },
   };
 
   return (
-    <a className={moreStyles.linkButton} tabIndex={0} onClick={onMoreClick} href={"#"} ref={ref}>
-      <Icon className={moreStyles.icon} iconName={moreIcon} />
-      <ContextualMenu
-        items={items}
-        hidden={!show}
-        onDismiss={() => setShow(false)}
-        onItemClick={() => setShow(false)}
-        target={ref}
-        styles={menuStyles}
-        isBeakVisible={true}
-      />
-    </a>
+    <TooltipHost content={ls.LS_COMMON_PAGINATE_MORE_BTN_TIP} id={tooltipId}>
+      <a
+        className={styles.linkButton}
+        tabIndex={0}
+        onClick={onMoreClick}
+        href={"#"}
+        ref={ref}
+        aria-label={ls.LS_COMMON_PAGINATE_MORE_BTN_TIP}
+        aria-describedby={tooltipId}
+      >
+        <Icon className={styles.icon} iconName={moreIcon} />
+        <ContextualMenu
+          items={items}
+          hidden={!show}
+          onDismiss={() => setShow(false)}
+          onItemClick={() => setShow(false)}
+          target={ref}
+          styles={menuStyles}
+          isBeakVisible={true}
+        />
+      </a>
+    </TooltipHost>
   );
 };
 
@@ -153,6 +203,7 @@ export const Paginate: React.FC<IPaginateProps> = props => {
   const hash = useAppSelector(getHash);
   const navigate = useNavigate();
   const queryPage = useQuery<number>(CE_QueryKey.Page);
+  const ls = useLocalizedStrings();
 
   const currentPage = Number.isInteger(queryPage) ? queryPage : 1;
   const showPage = itemCount > takeCount;
@@ -227,7 +278,12 @@ export const Paginate: React.FC<IPaginateProps> = props => {
   return (
     showPage && (
       <div className={pageStyle}>
-        <PageButton onClick={() => gotoPage(currentPage - 1)} disabled={isFirstPage}>
+        <PageButton
+          onClick={() => gotoPage(currentPage - 1)}
+          disabled={isFirstPage}
+          ariaLabel={ls.LS_COMMON_PAGINATE_PRE_BTN_TIP}
+          tooltip={!isFirstPage && ls.LS_COMMON_PAGINATE_PRE_BTN_TIP}
+        >
           <Icon iconName={chevronLeftIcon} />
         </PageButton>
         {!tiny && (
@@ -237,7 +293,15 @@ export const Paginate: React.FC<IPaginateProps> = props => {
             </PageButton>
             {omitLeft && <MoreButton start={2} end={currentPage - leftCount - 1} onPageClick={gotoPage} />}
             {range(currentPage - leftCount, currentPage + rightCount, 1).map(p => (
-              <PageButton onClick={() => gotoPage(p)} isActive={p === currentPage} key={p}>
+              <PageButton
+                onClick={() => gotoPage(p)}
+                isActive={p === currentPage}
+                key={p}
+                ariaLabel={format(
+                  p === currentPage ? ls.LS_COMMON_PAGINATE_ACTIVE_BTN_LABEL : ls.LS_COMMON_PAGINATE_PAGE_BTN_LABEL,
+                  p,
+                )}
+              >
                 {p}
               </PageButton>
             ))}
@@ -247,7 +311,12 @@ export const Paginate: React.FC<IPaginateProps> = props => {
             </PageButton>
           </>
         )}
-        <PageButton onClick={() => gotoPage(currentPage + 1)} disabled={isLastPage}>
+        <PageButton
+          onClick={() => gotoPage(currentPage + 1)}
+          disabled={isLastPage}
+          ariaLabel={ls.LS_COMMON_PAGINATE_NXT_BTN_TIP}
+          tooltip={!isLastPage && ls.LS_COMMON_PAGINATE_NXT_BTN_TIP}
+        >
           <Icon iconName={chevronRightIcon} />
         </PageButton>
       </div>
