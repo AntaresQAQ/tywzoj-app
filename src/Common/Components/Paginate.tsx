@@ -55,7 +55,7 @@ const getPageButtonStyles = memoizeFunction((theme: ITheme, isActive: boolean) =
   }),
 );
 
-export const getMoreStyles = memoizeFunction((theme: ITheme) =>
+export const getMoreStyles = memoizeFunction((theme: ITheme, disabled?: boolean) =>
   mergeStyleSets({
     linkButton: {
       ...commonAnchorStyle,
@@ -65,11 +65,11 @@ export const getMoreStyles = memoizeFunction((theme: ITheme) =>
         alignItems: "center",
         justifyContent: "center",
       }),
-      color: theme.palette.neutralPrimary,
+      color: disabled ? theme.palette.neutralTertiaryAlt : theme.palette.neutralPrimary,
       fontSize: 18,
       width: 36,
       height: 36,
-      cursor: "pointer",
+      cursor: disabled ? "default" : "pointer",
     },
   }),
 );
@@ -101,7 +101,7 @@ const PageButton: React.FC<{
         onClick={onButtonClick}
         disabled={isActive || disabled}
         aria-label={ariaLabel}
-        aria-describedby={tooltip ? tooltipId : undefined}
+        aria-describedby={tooltip && !disabled ? tooltipId : undefined}
       >
         {children}
       </button>
@@ -109,7 +109,7 @@ const PageButton: React.FC<{
     [ariaLabel, children, disabled, isActive, onButtonClick, style, tooltip, tooltipId],
   );
 
-  return tooltip ? (
+  return tooltip && !disabled ? (
     <TooltipHost content={tooltip} id={tooltipId}>
       {inner}
     </TooltipHost>
@@ -122,13 +122,14 @@ const MoreButton: React.FC<{
   start: number;
   end: number;
   onPageClick: (p: number) => void;
+  disabled?: boolean;
 }> = props => {
-  const { start, end, onPageClick } = props;
+  const { start, end, onPageClick, disabled } = props;
   const ls = useLocalizedStrings();
   const tooltipId = useId();
 
   const theme = useTheme();
-  const styles = getMoreStyles(theme);
+  const styles = getMoreStyles(theme, disabled);
 
   const ref = React.useRef<HTMLAnchorElement>(null);
   const [show, setShow] = React.useState(false);
@@ -142,10 +143,13 @@ const MoreButton: React.FC<{
     }));
   }, [end, ls, onPageClick, start]);
 
-  const onMoreClick = useEventCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    setShow(s => !s);
-  });
+  const onMoreClick = React.useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+      disabled || setShow(s => !s);
+    },
+    [disabled],
+  );
 
   const menuStyles: IStyleFunctionOrObject<IContextualMenuStyleProps, IContextualMenuStyles> = {
     container: {
@@ -190,10 +194,11 @@ export interface IPaginateProps {
   count: number;
   takeCount: number;
   tiny?: boolean;
+  disabled?: boolean;
 }
 
 export const Paginate: React.FC<IPaginateProps> = props => {
-  const { count: itemCount = 0, takeCount = 1, tiny = false } = props;
+  const { count: itemCount = 0, takeCount = 1, tiny = false, disabled = false } = props;
 
   const isMiniScreen = useIsMiniScreen();
   const isSmallScreen = useIsSmallScreen();
@@ -280,22 +285,25 @@ export const Paginate: React.FC<IPaginateProps> = props => {
       <div className={pageStyle}>
         <PageButton
           onClick={() => gotoPage(currentPage - 1)}
-          disabled={isFirstPage}
+          disabled={isFirstPage || disabled}
           ariaLabel={ls.LS_COMMON_PAGINATE_PRE_BTN_TIP}
-          tooltip={!isFirstPage && ls.LS_COMMON_PAGINATE_PRE_BTN_TIP}
+          tooltip={ls.LS_COMMON_PAGINATE_PRE_BTN_TIP}
         >
           <Icon iconName={chevronLeftIcon} />
         </PageButton>
         {!tiny && (
           <>
-            <PageButton onClick={() => gotoPage(1)} isActive={isFirstPage}>
+            <PageButton onClick={() => gotoPage(1)} isActive={isFirstPage} disabled={disabled}>
               1
             </PageButton>
-            {omitLeft && <MoreButton start={2} end={currentPage - leftCount - 1} onPageClick={gotoPage} />}
+            {omitLeft && (
+              <MoreButton start={2} end={currentPage - leftCount - 1} onPageClick={gotoPage} disabled={disabled} />
+            )}
             {range(currentPage - leftCount, currentPage + rightCount, 1).map(p => (
               <PageButton
                 onClick={() => gotoPage(p)}
                 isActive={p === currentPage}
+                disabled={disabled}
                 key={p}
                 ariaLabel={format(
                   p === currentPage ? ls.LS_COMMON_PAGINATE_ACTIVE_BTN_LABEL : ls.LS_COMMON_PAGINATE_PAGE_BTN_LABEL,
@@ -305,17 +313,24 @@ export const Paginate: React.FC<IPaginateProps> = props => {
                 {p}
               </PageButton>
             ))}
-            {omitRight && <MoreButton start={currentPage + rightCount} end={pageCount - 1} onPageClick={gotoPage} />}
-            <PageButton onClick={() => gotoPage(pageCount)} isActive={isLastPage}>
+            {omitRight && (
+              <MoreButton
+                start={currentPage + rightCount}
+                end={pageCount - 1}
+                onPageClick={gotoPage}
+                disabled={disabled}
+              />
+            )}
+            <PageButton onClick={() => gotoPage(pageCount)} isActive={isLastPage} disabled={disabled}>
               {pageCount}
             </PageButton>
           </>
         )}
         <PageButton
           onClick={() => gotoPage(currentPage + 1)}
-          disabled={isLastPage}
+          disabled={isLastPage || disabled}
           ariaLabel={ls.LS_COMMON_PAGINATE_NXT_BTN_TIP}
-          tooltip={!isLastPage && ls.LS_COMMON_PAGINATE_NXT_BTN_TIP}
+          tooltip={ls.LS_COMMON_PAGINATE_NXT_BTN_TIP}
         >
           <Icon iconName={chevronRightIcon} />
         </PageButton>
