@@ -58,6 +58,26 @@
   value: 封禁用户
   description: The blocked user name.
   raw: Blocked
+- name: COMMON_PAGINATE_PAGE_BTN_LABEL
+  value: 前往第 {0} 页。
+  description: An aria-label for page button.
+  raw: Go to page {0}.
+- name: COMMON_PAGINATE_ACTIVE_BTN_LABEL
+  value: 当前是第 {0} 页。
+  description: An aria-label for current active page.
+  raw: Current page is {0}.
+- name: COMMON_PAGINATE_MORE_BTN_TIP
+  value: 显示更多页面。
+  description: A aria-label and tooltip for more page button.
+  raw: Show more pages.
+- name: COMMON_PAGINATE_PRE_BTN_TIP
+  value: 前往上一页。
+  description: A aria-label and tooltip for previous page button.
+  raw: Go to previous page.
+- name: COMMON_PAGINATE_NXT_BTN_TIP
+  value: 前往下一页。
+  description: A aria-label and tooltip for next page button.
+  raw: Go to next page.
 - name: USER_LEVEL_LABEL_TOOLTIP
   value: 用户等级为{0}
   description: An aria-label and tool tip for user level label

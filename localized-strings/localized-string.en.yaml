@@ -58,6 +58,26 @@
   value: Blocked
   description: The blocked user name.
   raw: Blocked
+- name: COMMON_PAGINATE_PAGE_BTN_LABEL
+  value: Go to page {0}.
+  description: An aria-label for page button.
+  raw: Go to page {0}.
+- name: COMMON_PAGINATE_ACTIVE_BTN_LABEL
+  value: Current page is {0}.
+  description: An aria-label for current active page.
+  raw: Current page is {0}.
+- name: COMMON_PAGINATE_MORE_BTN_TIP
+  value: Show more pages.
+  description: A aria-label and tooltip for more page button.
+  raw: Show more pages.
+- name: COMMON_PAGINATE_PRE_BTN_TIP
+  value: Go to previous page.
+  description: A aria-label and tooltip for previous page button.
+  raw: Go to previous page.
+- name: COMMON_PAGINATE_NXT_BTN_TIP
+  value: Go to next page.
+  description: A aria-label and tooltip for next page button.
+  raw: Go to next page.
 - name: USER_LEVEL_LABEL_TOOLTIP
   value: The user level is {0}.
   description: An aria-label and tool tip for user level label
