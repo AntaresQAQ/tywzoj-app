@@ -17,7 +17,6 @@ import { useEventCallback, useId } from "@fluentui/react-hooks";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { CE_Page } from "@/Common/Enums/PagePath";
 import { CE_QueryKey } from "@/Common/Enums/QueryKeys";
 import { registerChevronLeftIcon, registerChevronRightIcon, registerMoreIcon } from "@/Common/IconRegistration";
 import { commonAnchorStyle } from "@/Common/Styles/Anchor";
@@ -26,9 +25,7 @@ import { range } from "@/Common/Utilities/Math";
 import { makeUrl } from "@/Common/Utilities/Url";
 import { useIsMiddleScreen, useIsMiniScreen, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
-import { useQuery } from "@/Features/Router/Hooks";
-import { getHash, getPath, getQueries } from "@/Features/Router/Selectors";
-import { useAppSelector } from "@/Features/Store";
+import { useHash, usePath, useQuery, useQuires } from "@/Features/Router/Hooks";
 
 const chevronLeftIcon = registerChevronLeftIcon();
 const chevronRightIcon = registerChevronRightIcon();
@@ -203,10 +200,10 @@ export const Paginate: React.FC<IPaginateProps> = props => {
   const isMiniScreen = useIsMiniScreen();
   const isSmallScreen = useIsSmallScreen();
   const isMiddleScreen = useIsMiddleScreen();
-  const path = useAppSelector(getPath);
-  const queries = useAppSelector(getQueries);
-  const hash = useAppSelector(getHash);
+  const path = usePath();
+  const hash = useHash();
   const navigate = useNavigate();
+  const queries = useQuires();
   const queryPage = useQuery<number>(CE_QueryKey.Page);
   const ls = useLocalizedStrings();
 
@@ -231,7 +228,7 @@ export const Paginate: React.FC<IPaginateProps> = props => {
   const gotoPage = React.useCallback(
     (p: number) => {
       const url = makeUrl({
-        page: path as CE_Page,
+        path,
         queries: {
           ...queries,
           [CE_QueryKey.Page]: p,
@@ -271,14 +268,14 @@ export const Paginate: React.FC<IPaginateProps> = props => {
     };
   }, [buttonCount, currentPage, pageCount]);
 
-  React.useEffect(() => {
-    if (currentPage <= 0) {
-      gotoPage(1);
-    }
-    if (currentPage > pageCount) {
-      gotoPage(pageCount);
-    }
-  }, [currentPage, gotoPage, pageCount]);
+  // React.useEffect(() => {
+  //   if (currentPage <= 0) {
+  //     gotoPage(1);
+  //   }
+  //   if (currentPage > pageCount) {
+  //     gotoPage(pageCount);
+  //   }
+  // }, [currentPage, gotoPage, pageCount]);
 
   return (
     showPage && (

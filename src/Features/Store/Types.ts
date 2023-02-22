@@ -1,7 +1,6 @@
 import { ICurrentUserState, IEnvState, IPaginationState, IVersionState } from "@/Features/Environment/Types";
 import { IErrorState } from "@/Features/Error/Types";
 import { ILocaleState } from "@/Features/LocalizedString/Types";
-import { IRouterState } from "@/Features/Router/Types";
 import { IPagesState } from "@/Pages/Types";
 
 export interface IStaticReducerMap {
@@ -10,7 +9,6 @@ export interface IStaticReducerMap {
   pagination: IPaginationState;
   version: IVersionState;
   currentUser: ICurrentUserState;
-  router: IRouterState;
   locale: ILocaleState;
   error: IErrorState;
 }

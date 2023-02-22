@@ -9,7 +9,6 @@ import { AppErrorBoundary } from "@/Features/Error/ErrorBoundary";
 import { AppLayout } from "@/Features/Layout/Layout";
 import { fluentUILanguageMap, recaptchaLanguageMap } from "@/Features/LocalizedString/Locales";
 import { getLanguage } from "@/Features/LocalizedString/Selectors";
-import { RouterStateWatcher } from "@/Features/Router/RouterStateWatcher";
 import { AppRoutes } from "@/Features/Router/Routes";
 import { useAppSelector } from "@/Features/Store";
 
@@ -36,13 +35,11 @@ export const App: React.FC = () => {
     () => (
       <ThemeProvider theme={getTheme(themeName)} style={{ height: "100%" }} dir={isRtl ? "rtl" : "ltr"}>
         <BrowserRouter>
-          <RouterStateWatcher>
-            <AppLayout>
-              <AppErrorBoundary>
-                <AppRoutes />
-              </AppErrorBoundary>
-            </AppLayout>
-          </RouterStateWatcher>
+          <AppLayout>
+            <AppErrorBoundary>
+              <AppRoutes />
+            </AppErrorBoundary>
+          </AppLayout>
         </BrowserRouter>
       </ThemeProvider>
     ),

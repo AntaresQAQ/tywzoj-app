@@ -1,6 +1,6 @@
 export type IQueryObj = { [key: string]: string | number | boolean };
 
-export function parseQuery(qs: string, decode = true): IQueryObj {
+export function parseQuery<T extends IQueryObj>(qs: string, decode = true): Partial<T> {
   try {
     const rawObj = Object.fromEntries(new URLSearchParams(qs));
     return Object.keys(rawObj).reduce((pre, cur) => {

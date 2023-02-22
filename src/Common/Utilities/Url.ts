@@ -1,18 +1,21 @@
 import { CE_Page } from "@/Common/Enums/PagePath";
 import { IPageParams, IParam } from "@/Common/Types/PageParams";
 import { IQueryObj, toQueryString } from "@/Common/Utilities/QueryString";
-import { XOR } from "@/Common/Utilities/Types";
+import { RequireAtLeastOne, XOR } from "@/Common/Utilities/Types";
 
 type IPage<T extends CE_Page> = {
   page: T;
   params?: IPageParams[T];
 };
 
-type IOrigin = {
-  origin: string;
-  path?: string;
-  forceHttps?: boolean;
-};
+type IOrigin = RequireAtLeastOne<
+  {
+    origin?: string;
+    path?: string;
+    forceHttps?: boolean;
+  },
+  "origin" | "path"
+>;
 
 type IMakeUrlProps<T extends CE_Page> = XOR<IOrigin, IPage<T>> & {
   queries?: IQueryObj;
@@ -23,8 +26,15 @@ export function makeUrl<T extends CE_Page>(props: IMakeUrlProps<T>) {
   const { origin, forceHttps, page, params, path, queries, hash } = props;
   let url = "";
 
-  if (origin) {
-    url += `${forceHttps ? "https" : location.protocol}//${origin}`;
+  if (page) {
+    url += applyParams(page, params)
+      .split("/")
+      .map(x => encodeURIComponent(x.trim()))
+      .join("/");
+  } else if (origin || path) {
+    if (origin) {
+      url += `${forceHttps ? "https" : location.protocol}//${origin}`;
+    }
     if (path) {
       if (!path.startsWith("/") && !url.endsWith("/")) url += "/";
       url += path
@@ -32,11 +42,6 @@ export function makeUrl<T extends CE_Page>(props: IMakeUrlProps<T>) {
         .map(x => encodeURIComponent(x.trim()))
         .join("/");
     }
-  } else if (page) {
-    url += applyParams(page, params)
-      .split("/")
-      .map(x => encodeURIComponent(x.trim()))
-      .join("/");
   }
 
   if (queries) {
