@@ -15,17 +15,14 @@ import {
 } from "@fluentui/react";
 import { useEventCallback, useId } from "@fluentui/react-hooks";
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
 
-import { CE_QueryKey } from "@/Common/Enums/QueryKeys";
+import { usePage, useSetPage } from "@/Common/Hooks/Page";
 import { registerChevronLeftIcon, registerChevronRightIcon, registerMoreIcon } from "@/Common/IconRegistration";
 import { commonAnchorStyle } from "@/Common/Styles/Anchor";
 import { flex } from "@/Common/Styles/Flex";
 import { range } from "@/Common/Utilities/Math";
-import { makeUrl } from "@/Common/Utilities/Url";
 import { useIsMiddleScreen, useIsMiniScreen, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
-import { useHash, usePath, useQuery, useQuires } from "@/Features/Router/Hooks";
 
 const chevronLeftIcon = registerChevronLeftIcon();
 const chevronRightIcon = registerChevronRightIcon();
@@ -200,18 +197,14 @@ export const Paginate: React.FC<IPaginateProps> = props => {
   const isMiniScreen = useIsMiniScreen();
   const isSmallScreen = useIsSmallScreen();
   const isMiddleScreen = useIsMiddleScreen();
-  const path = usePath();
-  const hash = useHash();
-  const navigate = useNavigate();
-  const queries = useQuires();
-  const queryPage = useQuery<number>(CE_QueryKey.Page);
   const ls = useLocalizedStrings();
+  const page = usePage();
+  const setPage = useSetPage();
 
-  const currentPage = Number.isInteger(queryPage) ? queryPage : 1;
   const showPage = itemCount > takeCount;
-  const pageCount = Math.ceil(itemCount / takeCount) || 1;
-  const isFirstPage = currentPage <= 1;
-  const isLastPage = currentPage >= pageCount;
+  const pageCount = Math.ceil(itemCount / takeCount);
+  const isFirstPage = page <= 1;
+  const isLastPage = page >= pageCount;
 
   const buttonCount = React.useMemo(() => {
     if (isMiniScreen) {
@@ -225,26 +218,11 @@ export const Paginate: React.FC<IPaginateProps> = props => {
     }
   }, [isMiddleScreen, isMiniScreen, isSmallScreen]);
 
-  const gotoPage = React.useCallback(
-    (p: number) => {
-      const url = makeUrl({
-        path,
-        queries: {
-          ...queries,
-          [CE_QueryKey.Page]: p,
-        },
-        hash,
-      });
-      navigate(url);
-    },
-    [hash, navigate, path, queries],
-  );
-
   const { leftCount, rightCount, omitLeft, omitRight } = React.useMemo(() => {
     let omitLeft = false;
     let omitRight = false;
-    let leftCount = currentPage - 2;
-    let rightCount = pageCount - currentPage;
+    let leftCount = page - 2;
+    let rightCount = pageCount - page;
 
     if (leftCount + rightCount > buttonCount + 1) {
       if (leftCount <= Math.floor(buttonCount / 2)) {
@@ -266,22 +244,19 @@ export const Paginate: React.FC<IPaginateProps> = props => {
       omitLeft,
       omitRight,
     };
-  }, [buttonCount, currentPage, pageCount]);
+  }, [buttonCount, page, pageCount]);
 
-  // React.useEffect(() => {
-  //   if (currentPage <= 0) {
-  //     gotoPage(1);
-  //   }
-  //   if (currentPage > pageCount) {
-  //     gotoPage(pageCount);
-  //   }
-  // }, [currentPage, gotoPage, pageCount]);
+  React.useEffect(() => {
+    if (pageCount && page > pageCount) {
+      setPage(pageCount);
+    }
+  }, [page, setPage, pageCount]);
 
   return (
     showPage && (
       <div className={pageStyle}>
         <PageButton
-          onClick={() => gotoPage(currentPage - 1)}
+          onClick={() => setPage(page - 1)}
           disabled={isFirstPage || disabled}
           ariaLabel={ls.LS_COMMON_PAGINATE_PRE_BTN_TIP}
           tooltip={ls.LS_COMMON_PAGINATE_PRE_BTN_TIP}
@@ -290,20 +265,18 @@ export const Paginate: React.FC<IPaginateProps> = props => {
         </PageButton>
         {!tiny && (
           <>
-            <PageButton onClick={() => gotoPage(1)} isActive={isFirstPage} disabled={disabled}>
+            <PageButton onClick={() => setPage(1)} isActive={isFirstPage} disabled={disabled}>
               1
             </PageButton>
-            {omitLeft && (
-              <MoreButton start={2} end={currentPage - leftCount - 1} onPageClick={gotoPage} disabled={disabled} />
-            )}
-            {range(currentPage - leftCount, currentPage + rightCount, 1).map(p => (
+            {omitLeft && <MoreButton start={2} end={page - leftCount - 1} onPageClick={setPage} disabled={disabled} />}
+            {range(page - leftCount, page + rightCount, 1).map(p => (
               <PageButton
-                onClick={() => gotoPage(p)}
-                isActive={p === currentPage}
+                onClick={() => setPage(p)}
+                isActive={p === page}
                 disabled={disabled}
                 key={p}
                 ariaLabel={format(
-                  p === currentPage ? ls.LS_COMMON_PAGINATE_ACTIVE_BTN_LABEL : ls.LS_COMMON_PAGINATE_PAGE_BTN_LABEL,
+                  p === page ? ls.LS_COMMON_PAGINATE_ACTIVE_BTN_LABEL : ls.LS_COMMON_PAGINATE_PAGE_BTN_LABEL,
                   p,
                 )}
               >
@@ -311,20 +284,15 @@ export const Paginate: React.FC<IPaginateProps> = props => {
               </PageButton>
             ))}
             {omitRight && (
-              <MoreButton
-                start={currentPage + rightCount}
-                end={pageCount - 1}
-                onPageClick={gotoPage}
-                disabled={disabled}
-              />
+              <MoreButton start={page + rightCount} end={pageCount - 1} onPageClick={setPage} disabled={disabled} />
             )}
-            <PageButton onClick={() => gotoPage(pageCount)} isActive={isLastPage} disabled={disabled}>
+            <PageButton onClick={() => setPage(pageCount)} isActive={isLastPage} disabled={disabled}>
               {pageCount}
             </PageButton>
           </>
         )}
         <PageButton
-          onClick={() => gotoPage(currentPage + 1)}
+          onClick={() => setPage(page + 1)}
           disabled={isLastPage || disabled}
           ariaLabel={ls.LS_COMMON_PAGINATE_NXT_BTN_TIP}
           tooltip={ls.LS_COMMON_PAGINATE_NXT_BTN_TIP}

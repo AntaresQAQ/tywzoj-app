@@ -8,7 +8,9 @@ export function parseQuery<T extends IQueryObj>(qs: string, decode = true): Part
       const rawValue = rawObj[cur].trim();
       let value: string | number | boolean;
 
-      if (rawValue === "true") {
+      if (rawValue === "null") {
+        value = null;
+      } else if (rawValue === "true") {
         value = true;
       } else if (rawValue === "false") {
         value = false;
@@ -31,13 +33,22 @@ export function parseQuery<T extends IQueryObj>(qs: string, decode = true): Part
 export function toQueryString(obj: IQueryObj): string {
   try {
     return new URLSearchParams(
-      Object.keys(obj).reduce(
-        (pre, cur) => ({
-          ...pre,
-          [encodeURIComponent(cur.trim())]: encodeURIComponent(obj[cur].toString().trim()),
-        }),
-        {},
-      ),
+      Object.keys(obj).reduce((pre, cur) => {
+        const val = obj[cur];
+        if (val || val === false || val === "") {
+          return {
+            ...pre,
+            [encodeURIComponent(cur.trim())]: encodeURIComponent(val.toString().trim()),
+          };
+        } else if (val === null) {
+          return {
+            ...pre,
+            [encodeURIComponent(cur.trim())]: "null",
+          };
+        } else {
+          return pre;
+        }
+      }, {}),
     )
       .toString()
       .trim();

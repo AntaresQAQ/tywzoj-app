@@ -19,4 +19,6 @@ export * from "./Icons/RedEye";
 export * from "./Icons/Settings";
 export * from "./Icons/Signin";
 export * from "./Icons/SignOut";
+export * from "./Icons/SortDown";
+export * from "./Icons/SortUp";
 export * from "./Icons/Warning";
