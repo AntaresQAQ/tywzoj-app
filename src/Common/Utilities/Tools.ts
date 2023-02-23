@@ -20,14 +20,28 @@ export function runOnce<T extends (...args: any[]) => any>(cb: T) {
   return returnFunc;
 }
 
-export function memo<T extends (key: string | number) => any>(cb: T) {
-  const memoMap: Record<string, ReturnType<T>> = {};
+export function memo<T extends string | number, R>(cb: (key: T) => R, expiration?: number) {
+  const memoMap: Record<T, R> = {} as any;
+  const timeOutMap: Record<T, number> = {} as any;
 
-  return (key: string): ReturnType<T> => {
+  return (key: T): R => {
     if (memoMap[key] !== undefined) {
       return memoMap[key];
     }
 
-    return (memoMap[key] = cb(key));
+    const result = cb(key);
+
+    if (expiration) {
+      if (timeOutMap[key]) {
+        clearTimeout(timeOutMap[key]);
+      }
+      timeOutMap[key] = setTimeout(() => {
+        delete memoMap[key];
+        delete timeOutMap[key];
+      }, expiration);
+    }
+    memoMap[key] = result;
+
+    return result;
   };
 }
