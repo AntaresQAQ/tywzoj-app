@@ -26,6 +26,18 @@
   value: 密码
   description: A label for password.
   raw: Password
+- name: COMMON_NICKNAME_LABEL
+  value: 昵称
+  description: A label for nickname.
+  raw: Nickname
+- name: COMMON_USER_INFO_LABEL
+  value: 个人简介
+  description: A label for user biography.
+  raw: Biography
+- name: COMMON_RATING_LABEL
+  value: 比赛积分
+  description: A label for rating.
+  raw: Rating
 - name: COMMON_REVEAL_PASSWORD_LABEL
   value: 显示密码
   description: A label for reveal password.
@@ -241,15 +253,15 @@
   value: 注册于 {0}。
   description: A string for registration time, {0} is the time string.
   raw: Registered at {0}.
-- name: USER_DETAIL_PAGE_INFO_TAB
-  value: 个人简介
-  description: A title for user information tab.
-  raw: Biography
 - name: USER_DETAIL_PAGE_ANALYSIS_TAB
   value: 做题分析
   description: A title for user submission analysis tab.
   raw: Analysis
-- name: USER_DETAIL_PAGE_RATING_TAB
-  value: 比赛积分
-  description: A title for user rating history tab.
-  raw: Rating
+- name: USER_LIST_AC_COUNT_LABEL
+  value: 通过题数
+  description: A title for accepted problem count.
+  raw: AC. Count
+- name: USER_LIST_AC_RATE_LABEL
+  value: 通过率
+  description: A title for accepted problem rate.
+  raw: AC. Rate

@@ -23,27 +23,17 @@ import { useGravatar } from "@/Common/Hooks/Gravatar";
 import { useMomentFormatter } from "@/Common/Hooks/Moment";
 import { registerEditIcon } from "@/Common/IconRegistration";
 import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
-import { runOnce } from "@/Common/Utilities/Tools";
 import { makeEmailUrl, makeUrl } from "@/Common/Utilities/Url";
 import { setPageName } from "@/Features/Environment/Action";
 import { useCurrentUser, useIsMiddleScreen, useIsMobileView, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppDispatch, useAppSelector } from "@/Features/Store";
-import { injectDynamicReducer } from "@/Features/Store/Helper";
 
-import { userDetailPageReducer } from "./Reducer";
 import { getUserDetail } from "./Selectors";
 import { getUserDetailPageStyles } from "./Styles/UserDetailPageStyles";
 import { UserInfoShimmer } from "./UserInfoShimmer";
 
 const loadUserInformationRenderer = () => import("./UserInformationRenderer");
-
-const configureStore = runOnce(() => {
-  injectDynamicReducer({
-    userDetailPage: userDetailPageReducer,
-  });
-});
-configureStore();
 
 const editIconName = registerEditIcon();
 
@@ -161,7 +151,7 @@ export const UserDetailPage: React.FC = () => {
         <div className={styles.bottom}>
           <Pivot>
             {userDetail.information && (
-              <PivotItem headerText={ls.LS_USER_DETAIL_PAGE_INFO_TAB} ariaLabel={ls.LS_USER_DETAIL_PAGE_INFO_TAB}>
+              <PivotItem headerText={ls.LS_COMMON_USER_INFO_LABEL} ariaLabel={ls.LS_COMMON_USER_INFO_LABEL}>
                 <div className={styles.tabContainer}>
                   <React.Suspense fallback={<UserInfoShimmer />}>
                     <UserInformationRendererLazy content={userDetail.information} />
@@ -176,7 +166,7 @@ export const UserDetailPage: React.FC = () => {
                 </React.Suspense>
               </div>
             </PivotItem>
-            <PivotItem headerText={ls.LS_USER_DETAIL_PAGE_RATING_TAB} ariaLabel={ls.LS_USER_DETAIL_PAGE_RATING_TAB}>
+            <PivotItem headerText={ls.LS_COMMON_RATING_LABEL} ariaLabel={ls.LS_COMMON_RATING_LABEL}>
               <div className={styles.tabContainer}>
                 <React.Suspense fallback={<Spinner size={SpinnerSize.large} />}>
                   {/*  TODO: Rating history tab */}

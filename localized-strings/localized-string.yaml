@@ -26,6 +26,18 @@
   value: Password
   description: A label for password.
 
+- name: COMMON_NICKNAME_LABEL
+  value: Nickname
+  description: A label for nickname.
+
+- name: COMMON_USER_INFO_LABEL
+  value: Biography
+  description: A label for user biography.
+
+- name: COMMON_RATING_LABEL
+  value: Rating
+  description: A label for rating.
+
 - name: COMMON_REVEAL_PASSWORD_LABEL
   value: Show password
   description: A label for reveal password.
@@ -229,14 +241,16 @@
   value: 'Registered at {0}.'
   description: A string for registration time, {0} is the time string.
 
-- name: USER_DETAIL_PAGE_INFO_TAB
-  value: Biography
-  description: A title for user information tab.
 
 - name: USER_DETAIL_PAGE_ANALYSIS_TAB
   value: Analysis
   description: A title for user submission analysis tab.
 
-- name: USER_DETAIL_PAGE_RATING_TAB
-  value: Rating
-  description: A title for user rating history tab.
+
+- name: USER_LIST_AC_COUNT_LABEL
+  value: AC. Count
+  description: A title for accepted problem count.
+
+- name: USER_LIST_AC_RATE_LABEL
+  value: AC. Rate
+  description: A title for accepted problem rate.
