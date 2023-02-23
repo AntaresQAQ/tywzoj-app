@@ -16,6 +16,7 @@ export * from "./Icons/Hide";
 export * from "./Icons/More";
 export * from "./Icons/PlayerSettings";
 export * from "./Icons/RedEye";
+export * from "./Icons/Search";
 export * from "./Icons/Settings";
 export * from "./Icons/Signin";
 export * from "./Icons/SignOut";
