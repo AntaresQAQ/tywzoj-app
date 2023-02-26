@@ -9,11 +9,12 @@ import { makeUrl } from "@/Common/Utilities/Url";
 import { setPageName } from "@/Features/Environment/Action";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppDispatch, useAppSelector } from "@/Features/Store";
-import { UserListTable } from "@/Pages/User/UserListPage/UserListTable";
 
 import { getUserCount, getUserList } from "./Selectors";
 import { CE_SortBy } from "./Types";
 import { getUserListPageStyles } from "./UserListPageStyles";
+import { UserListSearch } from "./UserListSearch";
+import { UserListTable } from "./UserListTable";
 
 export interface IUserListPageProps {
   loading: boolean;
@@ -43,7 +44,9 @@ export const UserListPage: React.FC<IUserListPageProps> = props => {
   return (
     <div className={styles.root}>
       <div className={styles.mainContainer}>
-        <div className={styles.headerContainer}></div>
+        <div className={styles.headerContainer}>
+          <UserListSearch />
+        </div>
         <div className={styles.tableContainer}>
           <UserListTable
             userList={userList}

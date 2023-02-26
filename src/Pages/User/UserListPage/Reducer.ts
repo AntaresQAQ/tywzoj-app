@@ -6,6 +6,7 @@ import { IUserListPageState } from "./Types";
 const initialUserListPageState: IUserListPageState = {
   userList: [],
   count: 0,
+  userSearchResults: [],
 };
 
 export const userListPageReducer = createReducer(initialUserListPageState, builder => {

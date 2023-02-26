@@ -31,6 +31,10 @@ interface IUserListColumn extends IColumn {
 registerSortDownIcon();
 registerSortUpIcon();
 
+// This component has serious a11y bugs,
+// but I don't have time to fix it,
+// and will be fixed in the future
+// TODO: rewrite this component
 export const UserListTable: React.FC<IUserListTableProps> = props => {
   const { userList, sortBy, setSortBy, onClickUser, className, loading } = props;
 
@@ -121,8 +125,8 @@ export const UserListTable: React.FC<IUserListTableProps> = props => {
         maxWidth: isSmallScreen ? 60 : 100,
         isResizable: true,
         onRender: (item: IUserEntity) => {
-          const percent = item.submissionCount && Number((item.acceptedProblemCount / item.submissionCount).toFixed(4));
-          const percentText = `${percent * 100}%`;
+          const percent = item.submissionCount && item.acceptedProblemCount / item.submissionCount;
+          const percentText = `${(percent * 100).toFixed(2)}%`;
 
           if (isSmallScreen) {
             return percentText;

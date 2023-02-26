@@ -21,13 +21,17 @@ export const getUserListPageStyles = memoizeFunction((theme: ITheme) =>
       gap: 20,
     },
     headerContainer: {
-      ...flex({}),
+      ...flex({
+        justifyContent: "flex-end",
+      }),
+      width: "100%",
     },
     tableContainer: {
       width: "100%",
       boxSizing: "border-box",
       boxShadow: theme.effects.elevation8,
       borderRadius: theme.effects.roundedCorner6,
+      border: `1px solid ${theme.palette.neutralLight}`,
       padding: 10,
     },
     table: {

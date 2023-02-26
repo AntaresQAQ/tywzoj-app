@@ -1,8 +1,9 @@
-import { IUserEntity } from "@/Common/ServerType/User";
+import { IUserAtomicEntity, IUserEntity } from "@/Common/ServerType/User";
 
 export interface IUserListPageState {
   userList: IUserEntity[];
   count: number;
+  userSearchResults: IUserAtomicEntity[];
 }
 
 export const enum CE_SortBy {
@@ -20,4 +21,13 @@ export interface IGetUserListRequestQuery {
 export interface IGetUserListResponse {
   users: IUserEntity[];
   count: number;
+}
+
+export interface IGetUserSearchRequestQuery {
+  key: string;
+  strict?: boolean;
+}
+
+export interface IGetUserSearchResponse {
+  users: IUserAtomicEntity[];
 }
