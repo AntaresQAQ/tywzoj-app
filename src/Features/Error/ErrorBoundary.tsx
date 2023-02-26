@@ -5,6 +5,7 @@ import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 import { CE_Page } from "@/Common/Enums/PagePath";
 import { CE_QueryKey } from "@/Common/Enums/QueryKeys";
 import { makeUrl } from "@/Common/Utilities/Url";
+import { setCurrentUser, setEnvApiBearerToken } from "@/Features/Environment/Action";
 import { clearError } from "@/Features/Error/Action";
 import { ErrorPage } from "@/Features/Error/ErrorPage";
 import { getErrorCode } from "@/Features/Error/Selectors";
@@ -50,6 +51,8 @@ export const AppErrorBoundary: React.FC<IProps> = props => {
           },
         }),
       );
+      dispatch(setEnvApiBearerToken(null));
+      dispatch(setCurrentUser(null));
     }
   }, [dispatch, errorCode, navigate, url]);
 

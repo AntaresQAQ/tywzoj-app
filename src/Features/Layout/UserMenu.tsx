@@ -138,7 +138,7 @@ export const AppUserMenu: React.FC = () => {
               text={currentUser.username}
               secondaryText={currentUser.nickname}
               hidePersonaDetails={isMobileView}
-              imageUrl={gravatar(currentUser.avatar)}
+              imageUrl={currentUser.avatar && gravatar(currentUser.avatar)}
               showInitialsUntilImageLoads={true}
             />
           </a>

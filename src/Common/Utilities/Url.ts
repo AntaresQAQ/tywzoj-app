@@ -27,10 +27,7 @@ export function makeUrl<T extends CE_Page>(props: IMakeUrlProps<T>) {
   let url = "";
 
   if (page) {
-    url += applyParams(page, params)
-      .split("/")
-      .map(x => encodeURIComponent(x.trim()))
-      .join("/");
+    url += applyParams(page, params);
   } else if (origin || path) {
     if (origin) {
       url += `${forceHttps ? "https" : location.protocol}//${origin}`;
@@ -63,7 +60,7 @@ export function makeEmailUrl(address: string) {
 export function applyParams(page: string, params?: IParam) {
   params &&
     Object.keys(params).forEach(key => {
-      page = page.replaceAll(`:${key}`, `${params[key]}`);
+      page = page.replaceAll(`:${key}`, encodeURIComponent(`${params[key]}`.trim()));
     });
   return page;
 }
