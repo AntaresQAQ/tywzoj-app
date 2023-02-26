@@ -7,6 +7,7 @@ export * from "./Icons/Blocked2";
 export * from "./Icons/Cancel";
 export * from "./Icons/ChevronLeft";
 export * from "./Icons/ChevronRight";
+export * from "./Icons/Clear";
 export * from "./Icons/ContactInfo";
 export * from "./Icons/Edit";
 export * from "./Icons/EditContact";
