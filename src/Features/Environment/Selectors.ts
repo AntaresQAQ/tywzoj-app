@@ -16,4 +16,5 @@ export const getRecaptchaKey = (state: IRootState) => state.env.recaptchaKey;
 export const getSiteName = (state: IRootState) => state.env.siteName;
 export const getThemeName = (state: IRootState) => state.env.themeName;
 export const getIsDarkMode = (state: IRootState) => state.env.themeName !== CE_ThemeName.Light;
+export const getRequireEmailVerification = (state: IRootState) => state.env.requireEmailVerification;
 export const getCurrentUser = (state: IRootState) => state.currentUser;
