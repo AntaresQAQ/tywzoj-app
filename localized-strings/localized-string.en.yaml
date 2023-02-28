@@ -2,178 +2,276 @@
   value: Close
   description: Common close button tooltip or aria-label.
   raw: Close
+
 - name: COMMON_SIGN_IN_TITLE
   value: Sign in
   description: A title for sign in
   raw: Sign in
+
 - name: COMMON_SIGN_OUT_TITLE
   value: Sign out
   description: A title for sign out
   raw: Sign out
+
 - name: COMMON_SIGN_UP_TITLE
   value: Sign up
   description: A title for sign up
   raw: Sign up
+
 - name: COMMON_USERNAME_LABEL
   value: Username
   description: A label for username.
   raw: Username
+
 - name: COMMON_EMAIL_LABEL
   value: Email
   description: A label for email.
   raw: Email
+
 - name: COMMON_PASSWORD_LABEL
   value: Password
   description: A label for password.
   raw: Password
+
+- name: COMMON_REPEAT_PASSWORD_LABEL
+  value: Repeat password
+  description: A label for repeat password.
+  raw: Repeat password
+
 - name: COMMON_NICKNAME_LABEL
   value: Nickname
   description: A label for nickname.
   raw: Nickname
+
 - name: COMMON_USER_INFO_LABEL
   value: Biography
   description: A label for user biography.
   raw: Biography
+
 - name: COMMON_RATING_LABEL
   value: Rating
   description: A label for rating.
   raw: Rating
+
 - name: COMMON_REVEAL_PASSWORD_LABEL
   value: Show password
   description: A label for reveal password.
   raw: Show password
+
+- name: COMMON_VER_CODE_LABEL
+  value: Email Verification code
+  description: A label for verification code.
+  raw: Email Verification code
+
+- name: COMMON_SEND_CODE_BUTTON_LABEL
+  value: Send code
+  description: A label for send verification code button.
+  raw: Send code
+
 - name: COMMON_EMPTY_FIELD_ERROR_MESSAGE
   value: Cannot be empty
   description: An error message for empty field
   raw: Cannot be empty
+
+- name: COMMON_PASSWORD_NOT_SAME_ERROR_MESSAGE
+  value: Two passwords are not the same.
+  description: An error message for secondary password field
+  raw: Two passwords are not the same.
+
+- name: COMMON_INVALID_PASSWORD_ERROR_MESSAGE
+  value: Password length must be 6 to 32.
+  description: An error message for password validation.
+  raw: Password length must be 6 to 32.
+
+- name: COMMON_DUPLICATE_USERNAME_ERROR_MESSAGE
+  value: Username already exists.
+  description: An error message for duplicate username.
+  raw: Username already exists.
+
+- name: COMMON_DUPLICATE_EMAIL_ERROR_MESSAGE
+  value: Email has been registered.
+  description: An error message for duplicate email.
+  raw: Email has been registered.
+
+- name: COMMON_INVALID_EMAIL_ADDRESS_ERROR_MESSAGE
+  value: Invalid email address.
+  description: An error message for invalid email.
+  raw: Invalid email address.
+
+- name: COMMON_INVALID_VER_CODE_ERROR_MESSAGE
+  value: Invalid verification code.
+  description: An error message for invalid verification code.
+  raw: Invalid verification code.
+
+- name: COMMON_INVALID_USERNAME_ERROR_MESSAGE
+  value: >-
+    Username should contains only A-Z, a-z, 0-9 and "-_.#$" and length must be 3
+    to 24.
+  description: An error message for invalid username.
+  raw: >-
+    Username should contains only A-Z, a-z, 0-9 and "-_.#$" and length must be 3
+    to 24.
+
 - name: COMMON_USER_LEVEL_ADMIN_NAME
   value: Admin
   description: The highest administrator name.
   raw: Admin
+
 - name: COMMON_USER_LEVEL_MANAGER_NAME
   value: Manager
   description: The common administrator name.
   raw: Manager
+
 - name: COMMON_USER_LEVEL_INTERNAL_NAME
   value: Internal
   description: The internal user name.
   raw: Internal
+
 - name: COMMON_USER_LEVEL_PAID_NAME
   value: Paid
   description: The paid user name.
   raw: Paid
+
 - name: COMMON_USER_LEVEL_GENERAL_NAME
   value: General
   description: The general user name.
   raw: General
+
 - name: COMMON_USER_LEVEL_BLOCKED_NAME
   value: Blocked
   description: The blocked user name.
   raw: Blocked
+
 - name: COMMON_PAGINATE_PAGE_BTN_LABEL
   value: Go to page {0}.
   description: An aria-label for page button.
   raw: Go to page {0}.
+
 - name: COMMON_PAGINATE_ACTIVE_BTN_LABEL
   value: Current page is {0}.
   description: An aria-label for current active page.
   raw: Current page is {0}.
+
 - name: COMMON_PAGINATE_MORE_BTN_TIP
   value: Show more pages.
   description: A aria-label and tooltip for more page button.
   raw: Show more pages.
+
 - name: COMMON_PAGINATE_PRE_BTN_TIP
   value: Go to previous page.
   description: A aria-label and tooltip for previous page button.
   raw: Go to previous page.
+
 - name: COMMON_PAGINATE_NXT_BTN_TIP
   value: Go to next page.
   description: A aria-label and tooltip for next page button.
   raw: Go to next page.
+
 - name: USER_LEVEL_LABEL_TOOLTIP
   value: The user level is {0}.
   description: An aria-label and tool tip for user level label
   raw: The user level is {0}.
+
 - name: ERROR_UNKNOWN_MESSAGE
   value: Unknown error.
   description: Error message.
   raw: Unknown error.
+
 - name: ERROR_403_MESSAGE
   value: Permission denied.
   description: Error message.
   raw: Permission denied.
+
 - name: ERROR_404_MESSAGE
   value: No such page.
   description: Error message.
   raw: No such page.
+
 - name: ERROR_500_MESSAGE
   value: Internal server error.
   description: Error message.
   raw: Internal server error.
+
 - name: ERROR_1000_MESSAGE
   value: Recaptcha error.
   description: Error message.
   raw: Recaptcha error.
+
 - name: ERROR_1001_MESSAGE
   value: Data validation failed.
   description: Error message.
   raw: Data validation failed.
+
 - name: ERROR_1002_MESSAGE
   value: Too many requested items.
   description: Error message.
   raw: Too many requested items.
+
 - name: ERROR_5100_MESSAGE
   value: No such user, please check username or id.
   description: Error message.
   raw: No such user, please check username or id.
+
 - name: COMMON_ERROR_PAGE_TITLE
   value: Error
   description: Error page title.
   raw: Error
+
 - name: APP_NAV_TITLE
   value: Navigation
   description: A string for navigation button's tooltip and aria-label.
   raw: Navigation
+
 - name: APP_NAV_PAGE_NAME_HOME_PAGE
   value: Home
   description: A name for page.
   raw: Home
+
 - name: APP_NAV_PAGE_NAME_PROBLEM_PAGE
   value: Problem
   description: A name for page.
   raw: Problem
+
 - name: APP_NAV_PAGE_NAME_PROBLEM_SET_PAGE
   value: Problem Set
   description: A name for page.
   raw: Problem Set
+
 - name: APP_NAV_PAGE_NAME_HOMEWORK_PAGE
   value: Homework
   description: A name for page.
   raw: Homework
+
 - name: APP_NAV_PAGE_NAME_CONTEST_PAGE
   value: Contest
   description: A name for page.
   raw: Contest
+
 - name: APP_NAV_PAGE_NAME_USER_PAGE
   value: Members
   description: A name for page.
   raw: Members
+
 - name: APP_HEADER_USER_MENU_PROFILE
   value: My profile
   description: The header user menu item
   raw: My profile
+
 - name: APP_HEADER_USER_MENU_EDIT
   value: Edit profile
   description: The header user menu item
   raw: Edit profile
+
 - name: APP_HEADER_USER_MENU_SETTINGS
   value: Settings
   description: The header user menu item
   raw: Settings
+
 - name: APP_HEADER_USER_MENU_MANAGE_SITE
   value: Site Management
   description: The header user menu admin item
   raw: Site Management
+
 - name: APP_FOOTER_POWERED_BY
   value: >-
     {0} is powered by&nbsp;<a href="https://github.com/AntaresQAQ/tywzoj"
@@ -182,22 +280,27 @@
   raw: >-
     {0} is powered by&nbsp;<a href="https://github.com/AntaresQAQ/tywzoj"
     target="_blank" rel="noreferrer noopener">TYWZOJ</a>
+
 - name: APP_FOOTER_SERVER_VERSION_LABEL
   value: 'Server version:'
   description: A label for footer server version.
   raw: 'Server version:'
+
 - name: APP_FOOTER_CLIENT_VERSION_LABEL
   value: 'Client version:'
   description: A label for footer client version.
   raw: 'Client version:'
+
 - name: APP_FOOTER_SERVER_TIME_LABEL
   value: 'Server time:'
   description: A label for footer server time.
   raw: 'Server time:'
+
 - name: APP_FOOTER_CLIENT_TIME_LABEL
   value: 'Local time:'
   description: A label for footer client time.
   raw: 'Local time:'
+
 - name: APP_GOOGLE_RECAPTCHA_COPYRIGHT
   value: >-
     This site is protected by reCAPTCHA and the Google <a
@@ -209,58 +312,77 @@
     href="https://policies.google.com/privacy" target="_blank" rel="noreferrer
     noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms"
     target="_blank" rel="noreferrer noopener">Terms of Service</a> apply.
+
 - name: LOGIN_PAGE_LOGIN_TYPE_LABEL
   value: Sign in method
   description: A label for sign in type choice.
   raw: Sign in method
+
 - name: LOGIN_PAGE_FORGOT_PASSWORD
   value: Forgot password
   description: A string for forgot language.
   raw: Forgot password
+
 - name: LOGIN_PAGE_NO_SUCH_USER_ERROR
   value: No such user
   description: A string for no such user error.
   raw: No such user
+
 - name: LOGIN_PAGE_WRONG_PASSWORD_ERROR
   value: Wrong password
   description: A string for wrong password error.
   raw: Wrong password
+
+- name: REGISTER_PAGE_FOOTER_TEXT
+  value: Already have an account?
+  description: A string for register page footer.
+  raw: Already have an account?
+
 - name: USER_DETAIL_PAGE_TITLE
   value: Profile
   description: A page title for user detail page.
   raw: Profile
+
 - name: USER_DETAIL_PAGE_USERNAME_ARIA_LABEL
   value: 'Username: {0}'
   description: A aria label for username, {0} is username string.
   raw: 'Username: {0}'
+
 - name: USER_DETAIL_PAGE_NICKNAME_ARIA_LABEL
   value: 'Nickname: {0}'
   description: A aria label for nickname, {0} is nickname string.
   raw: 'Nickname: {0}'
+
 - name: USER_DETAIL_PAGE_EMAIL_ARIA_LABEL
   value: 'Email: {0}'
   description: A aria label for email, {0} is email string.
   raw: 'Email: {0}'
+
 - name: USER_DETAIL_PAGE_NICKNAME
   value: 'Nickname:'
   description: A string for nickname.
   raw: 'Nickname:'
+
 - name: USER_DETAIL_PAGE_EMAIL
   value: 'Email:'
   description: A string for email.
   raw: 'Email:'
+
 - name: USER_DETAIL_PAGE_REG_TIME
   value: Registered at {0}.
   description: A string for registration time, {0} is the time string.
   raw: Registered at {0}.
+
 - name: USER_DETAIL_PAGE_ANALYSIS_TAB
   value: Analysis
   description: A title for user submission analysis tab.
   raw: Analysis
+
 - name: USER_LIST_AC_COUNT_LABEL
   value: AC. Count
   description: A title for accepted problem count.
   raw: AC. Count
+
 - name: USER_LIST_AC_RATE_LABEL
   value: AC. Rate
   description: A title for accepted problem rate.

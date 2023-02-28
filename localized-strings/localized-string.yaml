@@ -26,6 +26,10 @@
   value: Password
   description: A label for password.
 
+- name: COMMON_REPEAT_PASSWORD_LABEL
+  value: Repeat password
+  description: A label for repeat password.
+
 - name: COMMON_NICKNAME_LABEL
   value: Nickname
   description: A label for nickname.
@@ -42,9 +46,45 @@
   value: Show password
   description: A label for reveal password.
 
+- name: COMMON_VER_CODE_LABEL
+  value: Email Verification code
+  description: A label for verification code.
+
+- name: COMMON_SEND_CODE_BUTTON_LABEL
+  value: Send code
+  description: A label for send verification code button.
+
 - name: COMMON_EMPTY_FIELD_ERROR_MESSAGE
   value: Cannot be empty
   description: An error message for empty field
+
+- name: COMMON_PASSWORD_NOT_SAME_ERROR_MESSAGE
+  value: Two passwords are not the same.
+  description: An error message for secondary password field
+
+- name: COMMON_INVALID_PASSWORD_ERROR_MESSAGE
+  value: Password length must be 6 to 32.
+  description: An error message for password validation.
+
+- name: COMMON_DUPLICATE_USERNAME_ERROR_MESSAGE
+  value: Username already exists.
+  description: An error message for duplicate username.
+
+- name: COMMON_DUPLICATE_EMAIL_ERROR_MESSAGE
+  value: Email has been registered.
+  description: An error message for duplicate email.
+
+- name: COMMON_INVALID_EMAIL_ADDRESS_ERROR_MESSAGE
+  value: Invalid email address.
+  description: An error message for invalid email.
+
+- name: COMMON_INVALID_VER_CODE_ERROR_MESSAGE
+  value: Invalid verification code.
+  description: An error message for invalid verification code.
+
+- name: COMMON_INVALID_USERNAME_ERROR_MESSAGE
+  value: Username should contains only A-Z, a-z, 0-9 and "-_.#$" and length must be 3 to 24.
+  description: An error message for invalid username.
 
 - name: COMMON_USER_LEVEL_ADMIN_NAME
   value: Admin
@@ -176,7 +216,7 @@
 
 - name: APP_FOOTER_POWERED_BY
   value: '{0} is powered by&nbsp;<a href="https://github.com/AntaresQAQ/tywzoj" target="_blank" rel="noreferrer noopener">TYWZOJ</a>'
-  description: The param {0} is the site name. Please keep TYWZOJ as raw string.
+  description: The param {0} is the site name. Please keep TYWZOJ as raw string. This is an html string, please keep any elements as raw string.
 
 - name: APP_FOOTER_SERVER_VERSION_LABEL
   value: 'Server version:'
@@ -196,6 +236,7 @@
 
 - name: APP_GOOGLE_RECAPTCHA_COPYRIGHT
   value: This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer noopener">Terms of Service</a> apply.
+  description: This is an html string, please keep any elements as raw string.
 
 - name: LOGIN_PAGE_LOGIN_TYPE_LABEL
   value: Sign in method
@@ -212,6 +253,10 @@
 - name: LOGIN_PAGE_WRONG_PASSWORD_ERROR
   value: Wrong password
   description: A string for wrong password error.
+
+- name: REGISTER_PAGE_FOOTER_TEXT
+  value: Already have an account?
+  description: A string for register page footer.
 
 - name: USER_DETAIL_PAGE_TITLE
   value: Profile

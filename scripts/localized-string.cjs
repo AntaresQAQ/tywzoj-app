@@ -36,7 +36,7 @@ function saveLanguageYaml(lang, obj) {
   arr.forEach(x => delete x.index);
 
   const filePath = path.join(localeDir, `localized-string.${lang}.yaml`);
-  fs.writeFileSync(filePath, yaml.dump(arr));
+  fs.writeFileSync(filePath, yaml.dump(arr).replaceAll("\n-", "\n\n-"));
 }
 
 function generateLanguageYamlFiles() {
