@@ -10,8 +10,8 @@ const initialLoginPageState: ILoginPageState = {
   email: "",
   password: "",
   loading: false,
-  uError: "",
-  pError: "",
+  uError: null,
+  pError: null,
 };
 
 export const loginPageReducer = createReducer<ILoginPageState>(initialLoginPageState, builder => {

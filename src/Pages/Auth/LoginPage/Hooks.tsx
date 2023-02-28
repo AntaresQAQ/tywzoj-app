@@ -22,7 +22,7 @@ export const useLoginProps = () => {
 
   const updateLoginType = React.useCallback(
     (type: CE_LoginType) => {
-      dispatch(setLoginPageState({ loginType: type, uError: "", pError: "" }));
+      dispatch(setLoginPageState({ loginType: type, uError: null, pError: null }));
     },
     [dispatch],
   );
@@ -33,13 +33,13 @@ export const useLoginProps = () => {
       } else if (loginType === CE_LoginType.Email) {
         dispatch(setLoginPageState({ email: value }));
       }
-      dispatch(setLoginPageState({ uError: "" }));
+      dispatch(setLoginPageState({ uError: null }));
     },
     [dispatch, loginType],
   );
   const updatePassword = React.useCallback(
     (password: string) => {
-      dispatch(setLoginPageState({ password, pError: "" }));
+      dispatch(setLoginPageState({ password, pError: null }));
     },
     [dispatch],
   );

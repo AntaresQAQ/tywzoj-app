@@ -88,7 +88,7 @@ export const LoginPage: React.FC = () => {
             disabled={isLoading}
             errorMessage={pErr}
           />
-          <PrimaryButton className={styles.button} onClick={doLogin} disabled={isLoading}>
+          <PrimaryButton className={styles.registerButton} onClick={doLogin} disabled={isLoading}>
             {isLoading ? <Spinner size={SpinnerSize.medium} /> : ls.LS_COMMON_SIGN_IN_TITLE}
           </PrimaryButton>
         </form>
