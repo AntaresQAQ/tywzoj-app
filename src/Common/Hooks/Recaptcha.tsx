@@ -2,11 +2,12 @@ import * as React from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 import { CE_RecaptchaAction } from "@/Common/Enums/RecaptchaAction";
+import { RecaptchaType } from "@/Common/Types/Recaptcha";
 import { getRecaptchaEnabled } from "@/Features/Environment/Selectors";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppSelector } from "@/Features/Store";
 
-export const useRecaptcha = () => {
+export const useRecaptcha = (): RecaptchaType => {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const recaptchaEnabled = useAppSelector(getRecaptchaEnabled);
 
