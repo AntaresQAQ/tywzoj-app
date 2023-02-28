@@ -103,6 +103,11 @@
   description: An error message for invalid verification code.
   raw: Invalid verification code.
 
+- name: COMMON_VER_CODE_RATE_LIMIT_ERROR_MESSAGE
+  value: You are sending too frequently. Please try again later.
+  description: An error message for sending too frequently.
+  raw: You are sending too frequently. Please try again later.
+
 - name: COMMON_INVALID_USERNAME_ERROR_MESSAGE
   value: >-
     Username should contains only A-Z, a-z, 0-9 and "-_.#$" and length must be 3

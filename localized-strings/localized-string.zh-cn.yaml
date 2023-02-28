@@ -103,6 +103,11 @@
   description: An error message for invalid verification code.
   raw: Invalid verification code.
 
+- name: COMMON_VER_CODE_RATE_LIMIT_ERROR_MESSAGE
+  value: 您发送的太频繁，请稍后再试。
+  description: An error message for sending too frequently.
+  raw: You are sending too frequently. Please try again later.
+
 - name: COMMON_INVALID_USERNAME_ERROR_MESSAGE
   value: 用户名只能包含A-Z、a-z、0-9和“-_.#$”且长度必须为3到24。
   description: An error message for invalid username.
