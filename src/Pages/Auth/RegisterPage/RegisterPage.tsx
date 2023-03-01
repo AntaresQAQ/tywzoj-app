@@ -64,6 +64,7 @@ export const RegisterPage: React.FC = () => {
             value={username}
             onChange={(e, v) => updateUsername(v)}
             errorMessage={usernameError}
+            disabled={loading}
           />
           <TextField
             label={ls.LS_COMMON_EMAIL_LABEL}
@@ -71,6 +72,7 @@ export const RegisterPage: React.FC = () => {
             onChange={(e, v) => updateEmail(v)}
             errorMessage={emailError}
             type="email"
+            disabled={loading}
           />
           {enableVerification && (
             <div className={styles.inlineFields} ref={codeFieldsRef}>
@@ -80,12 +82,14 @@ export const RegisterPage: React.FC = () => {
                 value={verificationCode}
                 onChange={(e, v) => updateVerificationCode(v)}
                 errorMessage={verificationCodeError}
+                disabled={loading}
               />
               <SendEmailVerificationCodeButton
                 className={styles.sendCodeButton}
                 sendTime={sendCodeTime}
                 delta={60 * 1000}
                 onSend={sendVerificationCode}
+                disabled={loading}
               />
             </div>
           )}
@@ -97,6 +101,7 @@ export const RegisterPage: React.FC = () => {
             type="password"
             canRevealPassword={true}
             revealPasswordAriaLabel={ls.LS_COMMON_REVEAL_PASSWORD_LABEL}
+            disabled={loading}
           />
           <TextField
             label={ls.LS_COMMON_REPEAT_PASSWORD_LABEL}
@@ -106,6 +111,7 @@ export const RegisterPage: React.FC = () => {
             type="password"
             canRevealPassword={true}
             revealPasswordAriaLabel={ls.LS_COMMON_REVEAL_PASSWORD_LABEL}
+            disabled={loading}
           />
           <PrimaryButton className={styles.registerButton} disabled={loading || hasError} onClick={doRegister}>
             {loading ? <Spinner size={SpinnerSize.medium} /> : ls.LS_COMMON_SIGN_UP_TITLE}

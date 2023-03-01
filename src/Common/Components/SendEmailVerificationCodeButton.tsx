@@ -9,10 +9,11 @@ export interface ISendEmailVerificationCodeButtonProps {
   onSend: (onSent: () => void) => void;
   className?: string;
   tabIndex?: number;
+  disabled?: boolean;
 }
 
 export const SendEmailVerificationCodeButton: React.FC<ISendEmailVerificationCodeButtonProps> = props => {
-  const { sendTime, delta, onSend, className, tabIndex } = props;
+  const { sendTime, delta, onSend, className, tabIndex, disabled } = props;
 
   const ls = useLocalizedStrings();
   const [timeLeft, setTimeLeft] = React.useState(0);
@@ -41,7 +42,12 @@ export const SendEmailVerificationCodeButton: React.FC<ISendEmailVerificationCod
   }, [onSend]);
 
   return (
-    <DefaultButton disabled={sending || !!timeLeft} onClick={onClick} className={className} tabIndex={tabIndex}>
+    <DefaultButton
+      disabled={sending || !!timeLeft || disabled}
+      onClick={onClick}
+      className={className}
+      tabIndex={tabIndex}
+    >
       {sending ? <Spinner size={SpinnerSize.medium} /> : timeLeft || ls.LS_COMMON_SEND_CODE_BUTTON_LABEL}
     </DefaultButton>
   );
