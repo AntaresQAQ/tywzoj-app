@@ -4,10 +4,11 @@ import {
   ISecurityPreferenceConfig,
   IServerVersion,
 } from "@/Common/ServerType/Common";
-import { IUserBaseEntity } from "@/Common/ServerType/User";
+import { IUserBaseEntityWithExtra } from "@/Common/ServerType/User";
+import { IUserPreferenceEntityWithExtra } from "@/Common/ServerType/UserPreference";
 import { CE_ThemeName } from "@/Common/Theme";
 
-export interface IEnvState extends IMiscPreferenceConfig, ISecurityPreferenceConfig {
+export interface IEnvState extends IMiscPreferenceConfig, ISecurityPreferenceConfig, IUserPreferenceEntityWithExtra {
   apiBearerToken: string;
   apiEndPoint: string;
   domainIcpRecordInformation: string;
@@ -37,4 +38,4 @@ export interface IVersionState {
 }
 
 export type IPaginationState = IPaginationPreferenceConfig;
-export type ICurrentUserState = IUserBaseEntity;
+export type ICurrentUserState = IUserBaseEntityWithExtra;

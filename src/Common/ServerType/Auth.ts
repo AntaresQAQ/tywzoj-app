@@ -1,8 +1,11 @@
+import { IUserPreferenceEntityWithExtra } from "@/Common/ServerType/UserPreference";
+
 import { IPreferenceConfig, IServerVersion } from "./Common";
-import { IUserBaseEntity } from "./User";
+import { IUserBaseEntityWithExtra } from "./User";
 
 export interface ISessionInfo {
-  userBaseDetail: IUserBaseEntity;
+  userBaseDetail?: IUserBaseEntityWithExtra;
+  userPreference?: IUserPreferenceEntityWithExtra;
   serverVersion: IServerVersion;
   preference: IPreferenceConfig;
   unixTimestamp: number;

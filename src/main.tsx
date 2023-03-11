@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
 import { getSessionInfoRequestAsync } from "@/Common/Request/Common";
+import { initTheme } from "@/Common/Theme";
 import { initEnv } from "@/Features/Environment";
 import { setCurrentUser, setEnv, setPagination, setServerVersion } from "@/Features/Environment/Action";
 import { getApiBearerToken } from "@/Features/Environment/Selectors";
@@ -49,12 +50,13 @@ function initSessionInfoAsync() {
     store.dispatch(setPagination(sessionInfo.preference.pagination));
     if (sessionInfo.userBaseDetail) {
       store.dispatch(setCurrentUser(sessionInfo.userBaseDetail));
+      store.dispatch(setEnv(sessionInfo.userPreference));
     }
   });
 }
 
 function initLocalizeStringAsync() {
-  const preferLang = getPreferLanguage();
+  const preferLang = store.getState().env.userPreferLanguage || getPreferLanguage();
   return loadLocaleAsync(preferLang).then(strings => {
     store.dispatch(
       setLocale({
@@ -68,7 +70,12 @@ function initLocalizeStringAsync() {
 
 function launch() {
   store.dispatch(initEnv);
-  Promise.all([initSessionInfoAsync(), initLocalizeStringAsync()]).then(render);
+  initSessionInfoAsync().then(() => {
+    store.dispatch(initTheme);
+    initLocalizeStringAsync().then(() => {
+      render();
+    });
+  });
 }
 
 launch();
