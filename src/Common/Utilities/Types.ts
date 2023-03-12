@@ -10,3 +10,7 @@ export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<T, Exclu
   {
     [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>;
   }[Keys];
+
+export type StringifyValues<T extends object> = { [K in keyof T]: string };
+
+export type HttpPatch<T extends { id: number }> = Partial<Omit<T, "id">>;
