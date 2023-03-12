@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import { PageLoading } from "@/Common/Components/PageLoading";
+import { CE_Page } from "@/Common/Enums/PagePath";
+import { usePageParams } from "@/Common/Hooks/Params";
 import { runOnce } from "@/Common/Utilities/Tools";
 import { useAppDispatch } from "@/Features/Store";
 import { injectDynamicReducer } from "@/Features/Store/Helper";
-import { useUserPageParams } from "@/Pages/User/Routes";
 
 import { fetchUserDetailAction } from "./Action";
 import { userDetailPageReducer } from "./Reducer";
@@ -18,7 +19,7 @@ const configureStore = runOnce(() => {
 configureStore();
 
 const Wrapper: React.FC = () => {
-  const { id } = useUserPageParams();
+  const { id } = usePageParams<CE_Page.UserDetail>();
   const dispatch = useAppDispatch();
   const [loading, setLoading] = React.useState(false);
 

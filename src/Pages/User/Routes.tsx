@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Route, useParams } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import { CE_Page } from "@/Common/Enums/PagePath";
 
@@ -22,5 +22,3 @@ export const useUserPageRoutes = () => {
     </>
   );
 };
-
-export const useUserPageParams = () => useParams<{ id: string }>();

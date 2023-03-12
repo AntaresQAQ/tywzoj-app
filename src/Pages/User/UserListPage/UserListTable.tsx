@@ -9,23 +9,23 @@ import {
 import * as React from "react";
 
 import { registerSortDownIcon, registerSortUpIcon } from "@/Common/IconRegistration";
-import { IUserEntity } from "@/Common/ServerType/User";
+import { IUserEntityWithExtra } from "@/Common/ServerType/User";
 import { useIsMiddleScreen, useIsMiniScreen, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { CE_SortBy } from "@/Pages/User/UserListPage/Types";
 
 export interface IUserListTableProps {
-  userList: IUserEntity[];
+  userList: IUserEntityWithExtra[];
   sortBy: CE_SortBy;
   setSortBy: (sortBy: CE_SortBy) => void;
   loading?: boolean;
   className?: string;
-  onClickUser?: (user: IUserEntity) => void;
+  onClickUser?: (user: IUserEntityWithExtra) => void;
 }
 
 interface IUserListColumn extends IColumn {
-  key: keyof IUserEntity | string;
-  fieldName?: keyof IUserEntity;
+  key: keyof IUserEntityWithExtra | string;
+  fieldName?: keyof IUserEntityWithExtra;
 }
 
 registerSortDownIcon();
@@ -124,7 +124,7 @@ export const UserListTable: React.FC<IUserListTableProps> = props => {
         minWidth: isSmallScreen ? 60 : 100,
         maxWidth: isSmallScreen ? 60 : 100,
         isResizable: true,
-        onRender: (item: IUserEntity) => {
+        onRender: (item: IUserEntityWithExtra) => {
           const percent = item.submissionCount && item.acceptedProblemCount / item.submissionCount;
           const percentText = `${(percent * 100).toFixed(2)}%`;
 

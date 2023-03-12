@@ -4,7 +4,7 @@ import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 import { CE_RecaptchaAction } from "@/Common/Enums/RecaptchaAction";
 import { RecaptchaType } from "@/Common/Types/Recaptcha";
 import { isEmail, isUsername } from "@/Common/Utilities/Validations";
-import { setCurrentUser, setEnvApiBearerToken } from "@/Features/Environment/Action";
+import { setCurrentUser, setEnv, setEnvApiBearerToken } from "@/Features/Environment/Action";
 import { getRequireEmailVerification } from "@/Features/Environment/Selectors";
 import { getLanguage, getLocalizedStrings } from "@/Features/LocalizedString/Selectors";
 import { IAppDispatch, IRootState } from "@/Features/Store";
@@ -143,6 +143,7 @@ export const registerAction =
     } else {
       dispatch(setEnvApiBearerToken(data.token));
       dispatch(setCurrentUser(data.userBaseDetail));
+      dispatch(setEnv(data.userPreference));
       dispatch(
         setRegisterPageState({
           loading: false,

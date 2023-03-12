@@ -1,4 +1,5 @@
-import { IUserBaseEntity } from "@/Common/ServerType/User";
+import { IUserBaseEntityWithExtra } from "@/Common/ServerType/User";
+import { IUserPreferenceEntityWithExtra } from "@/Common/ServerType/UserPreference";
 import { CE_Language } from "@/Features/LocalizedString/Locales";
 
 export interface IRegisterPageState {
@@ -26,7 +27,8 @@ export interface IPostRegisterRequestBody {
 
 export interface IPostRegisterResponse {
   token: string;
-  userBaseDetail: IUserBaseEntity;
+  userBaseDetail: IUserBaseEntityWithExtra;
+  userPreference: IUserPreferenceEntityWithExtra;
 }
 
 export interface IGetCheckUsernameRequestQuery {

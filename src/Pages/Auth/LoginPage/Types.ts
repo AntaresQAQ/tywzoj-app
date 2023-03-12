@@ -1,4 +1,5 @@
-import { IUserBaseEntity } from "@/Common/ServerType/User";
+import { IUserBaseEntityWithExtra } from "@/Common/ServerType/User";
+import { IUserPreferenceEntityWithExtra } from "@/Common/ServerType/UserPreference";
 import { XOR } from "@/Common/Utilities/Types";
 
 export const enum CE_LoginType {
@@ -19,5 +20,6 @@ export interface ILoginPageState {
 export type IPostLoginRequestBody = XOR<{ username: string }, { email: string }> & { password: string };
 export interface IPostLoginResponse {
   token: string;
-  userBaseDetail: IUserBaseEntity;
+  userBaseDetail: IUserBaseEntityWithExtra;
+  userPreference: IUserPreferenceEntityWithExtra;
 }

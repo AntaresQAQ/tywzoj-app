@@ -10,6 +10,7 @@ export const getUserListPageStyles = memoizeFunction((theme: ITheme) =>
         justifyContent: "center",
       }),
       width: "100%",
+      flexGrow: 1,
     },
     mainContainer: {
       ...flex({
@@ -42,7 +43,9 @@ export const getUserListPageStyles = memoizeFunction((theme: ITheme) =>
     paginateContainer: {
       ...flex({
         justifyContent: "center",
+        alignItems: "flex-end",
       }),
+      flexGrow: 1,
       width: "100%",
     },
   }),

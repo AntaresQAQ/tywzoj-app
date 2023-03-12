@@ -1,4 +1,4 @@
-import { IUserAtomicEntity } from "@/Common/ServerType/User";
+import { IUserAtomicEntityWithExtra } from "@/Common/ServerType/User";
 
 export interface IGetUserSearchRequestQuery {
   key: string;
@@ -6,5 +6,5 @@ export interface IGetUserSearchRequestQuery {
 }
 
 export interface IGetUserSearchResponse {
-  users: IUserAtomicEntity[];
+  users: IUserAtomicEntityWithExtra[];
 }

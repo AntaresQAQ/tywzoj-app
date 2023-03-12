@@ -3,7 +3,7 @@ import { createAction } from "@reduxjs/toolkit";
 import { CE_ErrorCode } from "@/Common/Enums/ErrorCode";
 import { CE_RecaptchaAction } from "@/Common/Enums/RecaptchaAction";
 import { RecaptchaType } from "@/Common/Types/Recaptcha";
-import { setCurrentUser, setEnvApiBearerToken } from "@/Features/Environment/Action";
+import { setCurrentUser, setEnv, setEnvApiBearerToken } from "@/Features/Environment/Action";
 import { getLocalizedStrings } from "@/Features/LocalizedString/Selectors";
 import { IAppDispatch, IRootState } from "@/Features/Store";
 import { postLoginRequestAsync } from "@/Pages/Auth/LoginPage/Request";
@@ -91,6 +91,7 @@ export const loginAction = (recaptcha: RecaptchaType) => async (dispatch: IAppDi
 
   dispatch(setEnvApiBearerToken(data.token));
   dispatch(setCurrentUser(data.userBaseDetail));
+  dispatch(setEnv(data.userPreference));
   dispatch(setLoginPageState({ loading: false, password: "" }));
   return true;
 };
