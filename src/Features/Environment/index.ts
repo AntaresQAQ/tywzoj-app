@@ -34,6 +34,12 @@ export function initEnv(dispatch: IAppDispatch) {
       isEdge: isEdge(),
       isFirefox: isFireFox(),
       isSafari: isSafari(),
+
+      // Init user preference
+      userPreferLanguage: null,
+      userPreferTheme: null,
+      showTagsOnProblemList: false,
+      showTagsOnProblemDetail: false,
     }),
   );
   dispatch(setClientVersion(getClientVersion()));

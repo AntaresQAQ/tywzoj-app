@@ -17,4 +17,5 @@ export const getSiteName = (state: IRootState) => state.env.siteName;
 export const getThemeName = (state: IRootState) => state.env.themeName;
 export const getIsDarkMode = (state: IRootState) => state.env.themeName !== CE_ThemeName.Light;
 export const getRequireEmailVerification = (state: IRootState) => state.env.requireEmailVerification;
+export const getShowTagsOnProblemDetail = (state: IRootState) => state.env.showTagsOnProblemDetail;
 export const getCurrentUser = (state: IRootState) => state.currentUser;

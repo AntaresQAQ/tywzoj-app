@@ -1,6 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-import { CE_ThemeName } from "@/Common/Theme";
 import {
   setClientVersion,
   setCurrentUser,
@@ -11,9 +10,7 @@ import {
 import { ICurrentUserState, IEnvState, IPaginationState, IVersionState } from "@/Features/Environment/Types";
 
 const envInitialState: IEnvState = {
-  apiEndPoint: "",
   gravatarCdn: "https://cn.gravatar.com/avatar/",
-  themeName: CE_ThemeName.Light,
 } as unknown as IEnvState;
 const versionInitialState: IVersionState = {
   server: {

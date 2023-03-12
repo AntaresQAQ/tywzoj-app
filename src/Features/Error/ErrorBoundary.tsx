@@ -37,6 +37,7 @@ export const AppErrorBoundary: React.FC<IProps> = props => {
   const { pathname, search, hash } = useLocation();
 
   const shown = React.useRef(false);
+  const initialized = React.useRef(false);
 
   const url = pathname + search + hash;
 
@@ -58,10 +59,11 @@ export const AppErrorBoundary: React.FC<IProps> = props => {
 
   // Clear error on route changed.
   React.useEffect(() => {
-    if (shown.current) {
+    if (initialized.current && shown.current) {
       dispatch(clearError());
       shown.current = false;
     }
+    initialized.current = true;
   }, [dispatch, url]);
 
   if (errorCode === CE_ErrorCode.AuthRequired) {
