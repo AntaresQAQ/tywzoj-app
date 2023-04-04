@@ -1,6 +1,4 @@
-import { getLocalStorage } from "@/Common/Utilities/SafeStorage";
-
-import { CE_Language, defaultLanguage, languageStorageStringKey, rtlLanguages, supportedLanguages } from "./Locales";
+import { CE_Language, defaultLanguage, rtlLanguages, supportedLanguages } from "./Locales";
 
 export function getIsRtlLanguage(lang: CE_Language) {
   return rtlLanguages.findIndex(l => lang.startsWith(l)) >= 0;
@@ -27,16 +25,8 @@ export function getNavigatorLanguage() {
   return chooseLanguage(Array.from(navigator.languages));
 }
 
-export function getStorageLanguage() {
-  return chooseLanguage(getLocalStorage().getItem(languageStorageStringKey));
-}
-
 export function getPreferLanguage() {
-  return getStorageLanguage() || getNavigatorLanguage() || defaultLanguage;
-}
-
-export function saveLanguageToStorage(lang: CE_Language) {
-  getLocalStorage().setItem(languageStorageStringKey, lang);
+  return getNavigatorLanguage() || defaultLanguage;
 }
 
 export function loadLocaleAsync(lang: CE_Language) {

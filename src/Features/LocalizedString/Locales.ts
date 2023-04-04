@@ -27,8 +27,6 @@ export const supportedLanguages: CE_Language[] = [
   // CE_Language.zh_hk,
 ];
 
-export const languageStorageStringKey = "language";
-
 export const rtlLanguages = [
   "ar", // Arabic
   "az", // Azerbaijani

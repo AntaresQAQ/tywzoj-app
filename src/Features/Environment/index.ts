@@ -34,16 +34,22 @@ export function initEnv(dispatch: IAppDispatch) {
       isEdge: isEdge(),
       isFirefox: isFireFox(),
       isSafari: isSafari(),
+    }),
+  );
+  dispatch(initUserPreference);
+  dispatch(setClientVersion(getClientVersion()));
+  dispatch(bindWindowListener);
+}
 
-      // Init user preference
+export function initUserPreference(dispatch: IAppDispatch) {
+  dispatch(
+    setEnv({
       userPreferLanguage: null,
       userPreferTheme: null,
       showTagsOnProblemList: false,
       showTagsOnProblemDetail: false,
     }),
   );
-  dispatch(setClientVersion(getClientVersion()));
-  dispatch(bindWindowListener);
 }
 
 function bindWindowListener(dispatch: IAppDispatch) {
