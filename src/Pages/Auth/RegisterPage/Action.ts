@@ -6,6 +6,7 @@ import { RecaptchaType } from "@/Common/Types/Recaptcha";
 import { isEmail, isUsername } from "@/Common/Utilities/Validations";
 import { setCurrentUser, setEnv, setEnvApiBearerToken } from "@/Features/Environment/Action";
 import { getRequireEmailVerification } from "@/Features/Environment/Selectors";
+import { initUserPreferenceConfigAsync } from "@/Features/Initialization";
 import { getLanguage, getLocalizedStrings } from "@/Features/LocalizedString/Selectors";
 import { IAppDispatch, IRootState } from "@/Features/Store";
 
@@ -141,9 +142,6 @@ export const registerAction =
       dispatch(setRegisterPageState({ loading: false }));
       return false;
     } else {
-      dispatch(setEnvApiBearerToken(data.token));
-      dispatch(setCurrentUser(data.userBaseDetail));
-      dispatch(setEnv(data.userPreference));
       dispatch(
         setRegisterPageState({
           loading: false,
@@ -155,6 +153,10 @@ export const registerAction =
           sendCodeTime: 0,
         }),
       );
+      dispatch(setEnvApiBearerToken(data.token));
+      dispatch(setCurrentUser(data.userBaseDetail));
+      dispatch(setEnv(data.userPreference));
+      await dispatch(initUserPreferenceConfigAsync);
       return true;
     }
   };
