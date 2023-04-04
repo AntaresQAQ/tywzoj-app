@@ -103,11 +103,11 @@ async function renderAsync(
   wrapper.innerHTML = noSanitize ? htmlString : sanitize(htmlString, onXssFilterAttr);
 
   if (highlightPlaceholders.length > 0) {
-    const { highlighterAsync } = highlighterModule ?? (highlighterModule = await loadHighlighter());
+    const { highlighter } = highlighterModule ?? (highlighterModule = await loadHighlighter());
 
     for (const placeholder of highlightPlaceholders) {
       const element = findPlaceholderElement(wrapper, placeholder.id);
-      element.outerHTML = await highlighterAsync(placeholder.code, placeholder.lang, themeName);
+      element.outerHTML = highlighter(placeholder.code, placeholder.lang, themeName);
     }
   }
 

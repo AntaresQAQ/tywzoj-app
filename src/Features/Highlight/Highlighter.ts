@@ -1,11 +1,9 @@
+import { highlight, languages } from "prismjs";
+
 import { CE_ThemeName } from "@/Common/Theme";
 import { escapeHtml } from "@/Common/Utilities/Html";
-import { PromiseInnerType } from "@/Common/Utilities/Types";
 
-import { loadPrism } from "./DynamicImport";
 import { injectStyles } from "./Styles";
-
-let prismModule: PromiseInnerType<ReturnType<typeof loadPrism>>;
 
 function normalizeLanguageName(language: string) {
   return language.trim().toLowerCase();
@@ -15,10 +13,9 @@ function normalizeCode(code: string) {
   return code.split("\r").join("");
 }
 
-export async function highlighterAsync(code: string, lang: string, themeName: CE_ThemeName) {
+export function highlighter(code: string, lang: string, themeName: CE_ThemeName) {
   code = normalizeCode(code);
   lang = normalizeLanguageName(lang);
-  const { highlight, languages } = prismModule ?? (prismModule = await loadPrism());
   injectStyles(themeName);
   if (lang && languages[lang]) {
     try {
