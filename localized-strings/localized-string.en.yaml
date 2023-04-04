@@ -392,3 +392,38 @@
   value: AC. Rate
   description: A title for accepted problem rate.
   raw: AC. Rate
+
+- name: PROBLEM_DETAIL_DESCRIPTION
+  value: Description
+  description: A title for problem description.
+  raw: Description
+
+- name: PROBLEM_DETAIL_INPUT_FORMAT
+  value: Input format
+  description: A title for problem input format.
+  raw: Input format
+
+- name: PROBLEM_DETAIL_OUTPUT_FORMAT
+  value: Output format
+  description: A title for problem output format.
+  raw: Output format
+
+- name: PROBLEM_DETAIL_LIMIT_AND_HINT
+  value: Limit and hint
+  description: A title for problem limit and hint.
+  raw: Limit and hint
+
+- name: PROBLEM_DETAIL_TAG_TITLE
+  value: Tags
+  description: A title for problem tags.
+  raw: Tags
+
+- name: PROBLEM_DETAIL_TAG_SWITCH
+  value: Show
+  description: A title for problem show tags switch.
+  raw: Show
+
+- name: PROBLEM_DETAIL_NO_TAGS_TEXT
+  value: No tags.
+  description: A string to show if the problem doesn't have tags.
+  raw: No tags.

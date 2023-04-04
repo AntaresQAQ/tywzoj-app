@@ -390,3 +390,38 @@
   value: 通过率
   description: A title for accepted problem rate.
   raw: AC. Rate
+
+- name: PROBLEM_DETAIL_DESCRIPTION
+  value: 题目描述
+  description: A title for problem description.
+  raw: Description
+
+- name: PROBLEM_DETAIL_INPUT_FORMAT
+  value: 输入格式
+  description: A title for problem input format.
+  raw: Input format
+
+- name: PROBLEM_DETAIL_OUTPUT_FORMAT
+  value: 输出格式
+  description: A title for problem output format.
+  raw: Output format
+
+- name: PROBLEM_DETAIL_LIMIT_AND_HINT
+  value: 数据范围与提示
+  description: A title for problem limit and hint.
+  raw: Limit and hint
+
+- name: PROBLEM_DETAIL_TAG_TITLE
+  value: 标签
+  description: A title for problem tags.
+  raw: Tags
+
+- name: PROBLEM_DETAIL_TAG_SWITCH
+  value: 显示
+  description: A title for problem show tags switch.
+  raw: Show
+
+- name: PROBLEM_DETAIL_NO_TAGS_TEXT
+  value: 没有标签。
+  description: A string to show if the problem doesn't have tags.
+  raw: No tags.
