@@ -6,11 +6,12 @@ import { prismjsPlugin } from "vite-plugin-prismjs";
 import gitRepoInfo from "git-repo-info";
 
 const repoInfo = gitRepoInfo();
-
+const appEnv = loadEnv("", "", "");
 // https://vitejs.dev/config/
+
 export default defineConfig({
   envPrefix: "TYWZOJ_",
-  base: loadEnv("", "", "").BASE_URL,
+  base: appEnv.BASE_URL,
   plugins: [
     react(),
     tsconfigPaths(),
@@ -31,11 +32,13 @@ export default defineConfig({
             hash: repoInfo.abbreviatedSha,
             date: repoInfo.committerDate,
           },
+          APP_ICON_URL: appEnv.TYWZOJ_ICON_URL,
         },
       },
     }),
     prismjsPlugin({
       languages: "all",
+      css: false,
     }),
   ],
 });
