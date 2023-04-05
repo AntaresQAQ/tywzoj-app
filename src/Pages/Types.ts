@@ -1,3 +1,5 @@
+import { IProblemDetailPageState } from "@/Pages/Problem/ProblemDetailPage/Types";
+
 import { ILoginPageState } from "./Auth/LoginPage/Types";
 import { IRegisterPageState } from "./Auth/RegisterPage/Types";
 import { IUserDetailPageState } from "./User/UserDetailPage/Types";
@@ -16,5 +18,5 @@ export interface IPagesState {
   userSettingPage: unknown;
 
   problemListPage: unknown;
-  problemDetailPage: unknown;
+  problemDetailPage: IProblemDetailPageState;
 }
