@@ -4,6 +4,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { createHtmlPlugin } from "vite-plugin-html";
 import { prismjsPlugin } from "vite-plugin-prismjs";
 import gitRepoInfo from "git-repo-info";
+import fs from "fs";
 
 const repoInfo = gitRepoInfo();
 const appEnv = loadEnv("", "", "");
@@ -37,7 +38,7 @@ export default defineConfig({
       },
     }),
     prismjsPlugin({
-      languages: "all",
+      languages: fs.readFileSync(appEnv.PRISM_LANGUAGES_FILE, "utf-8").trim().split("\n"),
       css: false,
     }),
   ],
