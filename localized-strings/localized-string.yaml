@@ -331,3 +331,19 @@
 - name: PROBLEM_DETAIL_NO_TAGS_TEXT
   value: No tags.
   description: A string to show if the problem doesn't have tags.
+
+- name: PROBLEM_DETAIL_SAMPLE_TITLE
+  value: 'Sample #{0}'
+  description: A title for problem sample.
+
+- name: PROBLEM_DETAIL_SAMPLE_INPUT
+  value: Input
+  description: A title for problem input sample.
+
+- name: PROBLEM_DETAIL_SAMPLE_OUTPUT
+  value: Output
+  description: A title for problem output sample.
+
+- name: PROBLEM_DETAIL_SAMPLE_EXP
+  value: Explanation
+  description: A title for problem output explanation.

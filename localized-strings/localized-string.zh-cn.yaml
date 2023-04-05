@@ -425,3 +425,23 @@
   value: 没有标签。
   description: A string to show if the problem doesn't have tags.
   raw: No tags.
+
+- name: PROBLEM_DETAIL_SAMPLE_TITLE
+  value: 样例 {0}
+  description: A title for problem sample.
+  raw: 'Sample #{0}'
+
+- name: PROBLEM_DETAIL_SAMPLE_INPUT
+  value: 输入
+  description: A title for problem input sample.
+  raw: Input
+
+- name: PROBLEM_DETAIL_SAMPLE_OUTPUT
+  value: 输出
+  description: A title for problem output sample.
+  raw: Output
+
+- name: PROBLEM_DETAIL_SAMPLE_EXP
+  value: 解释
+  description: A title for problem output explanation.
+  raw: Explanation
