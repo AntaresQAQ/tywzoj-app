@@ -3,7 +3,6 @@ import type * as MarkdownIt from "markdown-it";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAsyncFunctionResult } from "@/Common/Hooks/Async";
 import { CE_ThemeName } from "@/Common/Theme";
 import { combineAttributes } from "@/Common/Utilities/Attributes";
 import { PromiseInnerType } from "@/Common/Utilities/Types";
@@ -43,8 +42,19 @@ export const MarkdownRenderer: React.FC<IMarkdownRendererProps> = props => {
   const cls = getMarkdownContentStyles(theme);
 
   const [wrapperElement, setWrapperElement] = React.useState<HTMLDivElement>();
-  const [html, pending] = useAsyncFunctionResult(renderAsync, [content, noSanitize, patcher, themeName]);
+  const [html, setHtml] = React.useState("");
+  const [pending, setPending] = React.useState(false);
 
+  // 1. Set pending and rendering.
+  // 2. Unset pending and update html after rendering.
+  React.useEffect(() => {
+    setPending(true);
+    renderAsync(content, noSanitize, patcher, themeName)
+      .then(h => setHtml(h))
+      .finally(() => setPending(false));
+  }, [content, noSanitize, patcher, themeName]);
+
+  // 3. This will be triggered after html updated.
   React.useEffect(() => {
     if (!wrapperElement) return;
 
