@@ -347,3 +347,63 @@
 - name: PROBLEM_DETAIL_SAMPLE_EXP
   value: Explanation
   description: A title for problem output explanation.
+
+- name: PROBLEM_DETAIL_PROBLEM_INFO_TITLE
+  value: Problem information
+  description: A title for problem information.
+
+- name: PROBLEM_DETAIL_PROBLEM_TYPE_LABEL
+  value: 'Problem type:'
+  description: A label for problem type.
+
+- name: PROBLEM_DETAIL_OWNER_LABEL
+  value: 'Uploader:'
+  description: A label for problem owner.
+
+- name: PROBLEM_PUBLIC_TIME_LABEL
+  value: 'Published time:'
+  description: A label for published problem time.
+
+- name: PROBLEM_NOT_PUBLIC_LABEL
+  value: Unpublished
+  description: A label for unpublished problem.
+
+- name: PROBLEM_DETAIL_TIME_LIMIT_LABEL
+  value: 'Time limit:'
+  description: A label for problem time limit.
+
+- name: PROBLEM_DETAIL_MEMORY_LIMIT_LABEL
+  value: 'Memory limit:'
+  description: A label for problem memory limit.
+
+- name: PROBLEM_DETAIL_IO_LABEL
+  value: 'IO:'
+  description: A label for problem IO type.
+
+- name: PROBLEM_DETAIL_IO_STD_TEXT
+  value: stdin & stdout
+  description: A text for standard IO.
+
+- name: PROBLEM_DETAIL_IO_FILE_TEXT
+  value: File
+  description: A text for file IO.
+
+- name: PROBLEM_DETAIL_INPUT_FILE_LABEL
+  value: 'Input file:'
+  description: A label for problem input file.
+
+- name: PROBLEM_DETAIL_OUTPUT_FILE_LABEL
+  value: 'Output file:'
+  description: A label for problem output file.
+
+- name: PROBLEM_TYPE_TRADITIONAL
+  value: Traditional
+  description: A string for traditional problem.
+
+- name: PROBLEM_TYPE_SUBMIT_ANSWER
+  value: Submit answer
+  description: A string for submit answer problem.
+
+- name: PROBLEM_TYPE_INTERACTION
+  value: Interaction
+  description: A string for interaction problem.

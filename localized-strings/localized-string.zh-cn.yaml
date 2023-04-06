@@ -445,3 +445,78 @@
   value: 解释
   description: A title for problem output explanation.
   raw: Explanation
+
+- name: PROBLEM_DETAIL_PROBLEM_INFO_TITLE
+  value: 题目信息
+  description: A title for problem information.
+  raw: Problem information
+
+- name: PROBLEM_DETAIL_PROBLEM_TYPE_LABEL
+  value: '题目类型:'
+  description: A label for problem type.
+  raw: 'Problem type:'
+
+- name: PROBLEM_DETAIL_OWNER_LABEL
+  value: '上传者:'
+  description: A label for problem owner.
+  raw: 'Uploader:'
+
+- name: PROBLEM_PUBLIC_TIME_LABEL
+  value: '发布时间:'
+  description: A label for published problem time.
+  raw: 'Published time:'
+
+- name: PROBLEM_NOT_PUBLIC_LABEL
+  value: 未发布
+  description: A label for unpublished problem.
+  raw: Unpublished
+
+- name: PROBLEM_DETAIL_TIME_LIMIT_LABEL
+  value: '时间限制:'
+  description: A label for problem time limit.
+  raw: 'Time limit:'
+
+- name: PROBLEM_DETAIL_MEMORY_LIMIT_LABEL
+  value: '内存限制:'
+  description: A label for problem memory limit.
+  raw: 'Memory limit:'
+
+- name: PROBLEM_DETAIL_IO_LABEL
+  value: '输入输出:'
+  description: A label for problem IO type.
+  raw: 'IO:'
+
+- name: PROBLEM_DETAIL_IO_STD_TEXT
+  value: 标准输入输出
+  description: A text for standard IO.
+  raw: stdin & stdout
+
+- name: PROBLEM_DETAIL_IO_FILE_TEXT
+  value: 文件
+  description: A text for file IO.
+  raw: File
+
+- name: PROBLEM_DETAIL_INPUT_FILE_LABEL
+  value: '输出文件:'
+  description: A label for problem input file.
+  raw: 'Input file:'
+
+- name: PROBLEM_DETAIL_OUTPUT_FILE_LABEL
+  value: '输出文件:'
+  description: A label for problem output file.
+  raw: 'Output file:'
+
+- name: PROBLEM_TYPE_TRADITIONAL
+  value: 传统
+  description: A string for traditional problem.
+  raw: Traditional
+
+- name: PROBLEM_TYPE_SUBMIT_ANSWER
+  value: 提交答案
+  description: A string for submit answer problem.
+  raw: Submit answer
+
+- name: PROBLEM_TYPE_INTERACTION
+  value: 交互
+  description: A string for interaction problem.
+  raw: Interaction
