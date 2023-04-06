@@ -1,8 +1,14 @@
 import { Spinner, SpinnerSize, Toggle, useTheme } from "@fluentui/react";
 import * as React from "react";
 
+import { FluentRouterLink } from "@/Common/Components/FluentLink";
 import { Label } from "@/Common/Components/Label";
 import { Separator } from "@/Common/Components/Separator";
+import { CE_Page } from "@/Common/Enums/PagePath";
+import { useMomentFormatter } from "@/Common/Hooks/Moment";
+import { useProblemTypeText } from "@/Common/Hooks/ProblemType";
+import { CE_ProblemScope, CE_ProblemType } from "@/Common/ServerType/Problem";
+import { makeUrl } from "@/Common/Utilities/Url";
 import { setPageName } from "@/Features/Environment/Action";
 import { useIsMiddleScreen, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { getShowTagsOnProblemDetail } from "@/Features/Environment/Selectors";
@@ -29,6 +35,8 @@ export const ProblemDetailPage: React.FC = () => {
   const showTagsComponent = useAppSelector(getShowTags);
   const showTagsEnv = useAppSelector(getShowTagsOnProblemDetail);
   const showTags = showTagsComponent ?? showTagsEnv;
+  const problemTypeText = useProblemTypeText();
+  const momentFormatter = useMomentFormatter();
 
   const [fetchingTags, setFetchingTags] = React.useState(false);
   const onshowTagButtonChange = React.useCallback(
@@ -55,6 +63,9 @@ export const ProblemDetailPage: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <h1>{title}</h1>
+          {!problemDetail.isPublic && problemDetail.scope === CE_ProblemScope.Global && (
+            <Label backgroundColor={theme.palette.red}>{ls.LS_PROBLEM_NOT_PUBLIC_LABEL}</Label>
+          )}
         </div>
         <Separator customLineColor={theme.palette.neutralTertiaryAlt} />
         <div className={styles.body}>
@@ -96,6 +107,62 @@ export const ProblemDetailPage: React.FC = () => {
             )}
           </div>
           <div className={styles.bodyRight}>
+            <div className={styles.boxContainer}>
+              <h3 className={styles.boxTitle}>{ls.LS_PROBLEM_DETAIL_PROBLEM_INFO_TITLE}</h3>
+              <Separator customLineColor={theme.palette.neutralTertiaryAlt} />
+              <div className={styles.infoContainer}>
+                <div>
+                  <span>{ls.LS_PROBLEM_DETAIL_PROBLEM_TYPE_LABEL}</span> {problemTypeText(problemDetail.type)}
+                </div>
+                {problemDetail.judgeInfo && (
+                  <>
+                    {problemDetail.type !== CE_ProblemType.SubmitAnswer && (
+                      <>
+                        <div>
+                          <span>{ls.LS_PROBLEM_DETAIL_TIME_LIMIT_LABEL}</span> {problemDetail.judgeInfo.timeLimit}ms
+                        </div>
+                        <div>
+                          <span>{ls.LS_PROBLEM_DETAIL_MEMORY_LIMIT_LABEL}</span> {problemDetail.judgeInfo.memoryLimit}
+                          MiB
+                        </div>
+                        <div>
+                          <span>{ls.LS_PROBLEM_DETAIL_IO_LABEL}</span>{" "}
+                          {problemDetail.judgeInfo.fileIO && problemDetail.type !== CE_ProblemType.Interaction
+                            ? ls.LS_PROBLEM_DETAIL_IO_FILE_TEXT
+                            : ls.LS_PROBLEM_DETAIL_IO_STD_TEXT}
+                        </div>
+                      </>
+                    )}
+
+                    {problemDetail.type === CE_ProblemType.Traditional && problemDetail.judgeInfo.fileIO && (
+                      <>
+                        <div>
+                          <span>{ls.LS_PROBLEM_DETAIL_INPUT_FILE_LABEL}</span> {problemDetail.judgeInfo.inputFile}
+                        </div>
+                        <div>
+                          <span>{ls.LS_PROBLEM_DETAIL_OUTPUT_FILE_LABEL}</span> {problemDetail.judgeInfo.outputFile}
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
+                {problemDetail.owner && (
+                  <div>
+                    <span>{ls.LS_PROBLEM_DETAIL_OWNER_LABEL}</span>{" "}
+                    <FluentRouterLink
+                      to={makeUrl({ page: CE_Page.UserDetail, params: { id: problemDetail.owner.id } })}
+                    >
+                      {problemDetail.owner.username}
+                    </FluentRouterLink>
+                  </div>
+                )}
+                {problemDetail.isPublic && problemDetail.publicTime && (
+                  <div>
+                    <span>{ls.LS_PROBLEM_PUBLIC_TIME_LABEL}</span> {momentFormatter(problemDetail.publicTime, "lll")}
+                  </div>
+                )}
+              </div>
+            </div>
             <div className={styles.boxContainer}>
               <div className={styles.boxTitleWithSwitch}>
                 <h3 className={styles.boxTitle}>{ls.LS_PROBLEM_DETAIL_TAG_TITLE}</h3>

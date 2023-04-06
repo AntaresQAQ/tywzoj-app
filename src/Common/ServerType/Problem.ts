@@ -1,7 +1,9 @@
 import { CE_UserLevel } from "@/Common/Enums/UserLevel";
-import { IProblemSampleEntity } from "@/Common/ServerType/ProblemSample";
-import { IProblemTagEntityWithExtra } from "@/Common/ServerType/ProblemTag";
-import { IUserAtomicEntity } from "@/Common/ServerType/User";
+
+import { IProblemJudgeInfoEntity } from "./ProblemJudgeInfo";
+import { IProblemSampleEntity } from "./ProblemSample";
+import { IProblemTagEntityWithExtra } from "./ProblemTag";
+import { IUserAtomicEntity } from "./User";
 
 export enum CE_ProblemType {
   Traditional = "Traditional",
@@ -33,6 +35,7 @@ export interface IProblemBaseEntity extends IProblemAtomicEntity {
 
   // isPublic just effects on "Global" scope
   isPublic: boolean;
+  publicTime: string;
   scope: CE_ProblemScope;
   submissionCount: number;
   acceptedSubmissionCount: number;
@@ -56,6 +59,7 @@ export interface IProblemBaseExtra extends IProblemAtomicExtra {
 export interface IProblemExtra extends IProblemBaseExtra {
   owner: IUserAtomicEntity;
   samples: IProblemSampleEntity[];
+  judgeInfo: IProblemJudgeInfoEntity;
 }
 
 export type IProblemAtomicEntityWithExtra = IProblemAtomicEntity & IProblemAtomicExtra;

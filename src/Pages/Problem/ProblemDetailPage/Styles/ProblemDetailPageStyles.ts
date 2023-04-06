@@ -18,7 +18,14 @@ const getBasicStyles = memoizeFunction((theme: ITheme) => ({
     maxWidth: 1000,
   },
   header: {
-    ...flex({}),
+    ...flex({
+      alignItems: "flex-end",
+    }),
+    h1: {
+      margin: 0,
+    },
+    margin: "20px 0 10px",
+    gap: 20,
   },
   body: {
     ...flex({}),
@@ -37,6 +44,7 @@ const getBasicStyles = memoizeFunction((theme: ITheme) => ({
       flexDirection: "column",
     }),
     minWidth: 280,
+    gap: 20,
   },
   boxContainer: {
     ...flex({
@@ -70,6 +78,15 @@ const getBasicStyles = memoizeFunction((theme: ITheme) => ({
   tagsContainer: {
     ...flex({ flexWrap: "wrap" }),
     gap: 8,
+  },
+  infoContainer: {
+    ...flex({ flexDirection: "column" }),
+    gap: 2,
+    whiteSpace: "nowrap",
+    wordBreak: "keep-all",
+    span: {
+      fontWeight: 600,
+    },
   },
 }));
 
