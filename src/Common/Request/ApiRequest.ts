@@ -21,10 +21,10 @@ export interface IResponseError {
 
 export type IResponseData<T> = XOR<{ data: T }, { error: IResponseError }>;
 
-export async function requestAsync<T, U = undefined, V = undefined>(
-  options: IRequestOptions<U, V>,
+export async function requestAsync<TResponse, TQuery = undefined, TBody = undefined>(
+  options: IRequestOptions<TQuery, TBody>,
   filteredErrors: CE_ErrorCode[] = [],
-): Promise<IResponseData<T>> {
+): Promise<IResponseData<TResponse>> {
   const appState = store.getState();
   const apiBearerToken = getApiBearerToken(appState);
   const apiEndPoint = getApiEndPoint(appState);
