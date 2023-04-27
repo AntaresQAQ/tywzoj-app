@@ -91,7 +91,7 @@ export const ProblemDetailPage: React.FC = () => {
                 <ProblemContentRenderer content={problemDetail.outputFormat} />
               </div>
             )}
-            {problemDetail.samples?.length && (
+            {problemDetail.samples && problemDetail.samples.length > 0 && (
               <ProblemSamples
                 samples={problemDetail.samples}
                 boxContainerClassName={styles.boxContainer}
