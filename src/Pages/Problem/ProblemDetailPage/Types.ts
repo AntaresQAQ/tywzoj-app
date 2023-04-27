@@ -13,7 +13,6 @@ export interface IGetProblemDetailRequestQuery {
 export type IGetProblemDetailResponse = IProblemEntityWithExtra;
 
 export interface IGetProblemTagListRequestQuery {
-  problemId: number;
   queryType?: boolean;
 }
 

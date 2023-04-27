@@ -9,7 +9,7 @@ import {
 
 export async function getProblemDetailRequestAsync(displayId: string, queryTags?: boolean) {
   return await requestAsync<IGetProblemDetailResponse, IGetProblemDetailRequestQuery>({
-    path: `problem/detail/${displayId}`,
+    path: `problem/detailByDisplayId/${displayId}`,
     method: "GET",
     query: { queryTags },
   });
@@ -17,11 +17,8 @@ export async function getProblemDetailRequestAsync(displayId: string, queryTags?
 
 export async function getProblemTagListRequestAsync(problemId: number, queryType?: boolean) {
   return await requestAsync<IGetProblemTagListResponse, IGetProblemTagListRequestQuery>({
-    path: "problem/tag/list",
+    path: `problem/detail/${problemId}/tags`,
     method: "GET",
-    query: {
-      problemId,
-      queryType,
-    },
+    query: { queryType },
   });
 }
