@@ -4,7 +4,7 @@ export const enum CE_Page {
   ProblemDetail = "/p/:displayId",
   ProblemEdit = "/p/:id/edit",
   ProblemManage = "/p/:id/manage",
-  ProblemData = "/p/:id/data",
+  ProblemFile = "/p/:id/file",
   ProblemSet = "/s", // ProblemSetList
   Homework = "/h", // HomeworkList
   Contest = "/c", // ContestList

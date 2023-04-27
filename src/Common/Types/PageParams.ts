@@ -12,7 +12,7 @@ export interface IPageParams extends IBasePageParams {
     id: number;
   };
   [CE_Page.ProblemManage]: IPageParams[CE_Page.ProblemEdit];
-  [CE_Page.ProblemData]: IPageParams[CE_Page.ProblemEdit];
+  [CE_Page.ProblemFile]: IPageParams[CE_Page.ProblemEdit];
 
   // Contest
   [CE_Page.ContestDetail]: {
