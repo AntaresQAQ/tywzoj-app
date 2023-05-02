@@ -1,0 +1,4 @@
+/* A bug on callout menu with svg icon */
+.ms-ContextualMenu-container {
+    overflow: hidden;
+}

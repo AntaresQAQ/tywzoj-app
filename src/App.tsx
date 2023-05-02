@@ -1,3 +1,6 @@
+import "@/assets/styles/fluent-patch.css";
+import "@/assets/styles/google-recaptcha.css";
+
 import { ThemeProvider } from "@fluentui/react";
 import * as React from "react";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
