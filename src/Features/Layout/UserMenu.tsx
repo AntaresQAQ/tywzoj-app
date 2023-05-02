@@ -149,7 +149,6 @@ export const AppUserMenu: React.FC = () => {
             onDismiss={hideUserMenu}
             onItemClick={hideUserMenu}
             shouldFocusOnMount={true}
-            styles={{ container: { overflow: "hidden" } }}
           />
         </>
       ) : (

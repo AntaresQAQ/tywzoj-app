@@ -2,9 +2,11 @@ import { useTheme } from "@fluentui/react";
 import {
   BulletedListIcon,
   ChartIcon,
+  CommentIcon,
   ContactListIcon,
   HomeIcon,
   LibraryIcon,
+  TaskListIcon,
   WaitlistConfirmIcon,
 } from "@fluentui/react-icons-mdl2";
 import * as React from "react";
@@ -77,9 +79,19 @@ export const AppNav: React.FC<IAppNavProps> = props => {
             icon: <ChartIcon />,
           },
           {
+            name: ls.LS_APP_NAV_PAGE_NAME_SUBMISSION_PAGE,
+            to: CE_Page.Submission,
+            icon: <TaskListIcon />,
+          },
+          {
             name: ls.LS_APP_NAV_PAGE_NAME_USER_PAGE,
             to: CE_Page.User,
             icon: <ContactListIcon />,
+          },
+          {
+            name: ls.LS_APP_NAV_PAGE_NAME_DISCUSSION_PAGE,
+            to: CE_Page.Discussion,
+            icon: <CommentIcon />,
           },
         );
       }

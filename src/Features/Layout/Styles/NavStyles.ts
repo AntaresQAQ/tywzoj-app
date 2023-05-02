@@ -22,6 +22,7 @@ export const getNavStyles = memoizeFunction((theme: ITheme) =>
       ...flex({
         alignItems: "center",
       }),
+      verticalAlign: "center",
       height: 50,
       padding: "0 10px",
       color: theme.palette.themePrimary,
@@ -30,8 +31,7 @@ export const getNavStyles = memoizeFunction((theme: ITheme) =>
       },
     },
     navIcon: {
-      position: "relative",
-      top: -3,
+      ...flex({}),
       fontSize: 20,
       marginRight: 8,
     },
