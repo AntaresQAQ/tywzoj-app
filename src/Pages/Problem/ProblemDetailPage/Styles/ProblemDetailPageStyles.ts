@@ -27,6 +27,9 @@ const getBasicStyles = memoizeFunction((theme: ITheme) => ({
     margin: "20px 0 10px",
     gap: 20,
   },
+  commandBarContainer: {
+    marginBottom: 20,
+  },
   body: {
     ...flex({}),
     gap: 20,

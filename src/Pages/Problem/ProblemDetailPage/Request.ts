@@ -3,8 +3,8 @@ import { requestAsync } from "@/Common/Request/ApiRequest";
 import {
   IGetProblemDetailRequestQuery,
   IGetProblemDetailResponse,
-  IGetProblemTagListRequestQuery,
-  IGetProblemTagListResponse,
+  IGetProblemTagsRequestQuery,
+  IGetProblemTagsResponse,
 } from "./Types";
 
 export async function getProblemDetailRequestAsync(displayId: string, queryTags?: boolean) {
@@ -15,8 +15,8 @@ export async function getProblemDetailRequestAsync(displayId: string, queryTags?
   });
 }
 
-export async function getProblemTagListRequestAsync(problemId: number, queryType?: boolean) {
-  return await requestAsync<IGetProblemTagListResponse, IGetProblemTagListRequestQuery>({
+export async function getProblemTagsRequestAsync(problemId: number, queryType?: boolean) {
+  return await requestAsync<IGetProblemTagsResponse, IGetProblemTagsRequestQuery>({
     path: `problem/detail/${problemId}/tags`,
     method: "GET",
     query: { queryType },

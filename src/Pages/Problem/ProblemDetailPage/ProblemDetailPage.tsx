@@ -16,6 +16,7 @@ import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAppDispatch, useAppSelector } from "@/Features/Store";
 
 import { fetchProblemTagsAction, setProblemDetailPage } from "./Action";
+import { ProblemCommandBar } from "./ProblemCommandBar";
 import { ProblemContentRenderer } from "./ProblemContentRenderer";
 import { ProblemSamples } from "./ProblemSamples";
 import { getProblemDetail, getShowTags } from "./Selectors";
@@ -68,6 +69,9 @@ export const ProblemDetailPage: React.FC = () => {
           )}
         </div>
         <Separator customLineColor={theme.palette.neutralTertiaryAlt} />
+        <div className={styles.commandBarContainer}>
+          <ProblemCommandBar />
+        </div>
         <div className={styles.body}>
           <div className={styles.bodyLeft}>
             {problemDetail.description && (

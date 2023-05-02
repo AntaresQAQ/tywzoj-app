@@ -5,7 +5,7 @@ import { getShowTagsOnProblemDetail } from "@/Features/Environment/Selectors";
 import { IAppDispatch, IRootState } from "@/Features/Store";
 import { getProblemDetail } from "@/Pages/Problem/ProblemDetailPage/Selectors";
 
-import { getProblemDetailRequestAsync, getProblemTagListRequestAsync } from "./Request";
+import { getProblemDetailRequestAsync, getProblemTagsRequestAsync } from "./Request";
 import { IProblemDetailPageState } from "./Types";
 
 const UPDATE_PROBLEM_DETAIL_PAGE = "ProblemDetailPage/Update";
@@ -37,7 +37,7 @@ export const fetchProblemDetailAction =
 export const fetchProblemTagsAction = () => async (dispatch: IAppDispatch, getState: () => IRootState) => {
   const problemDetail = getProblemDetail(getState());
   if (problemDetail.tags) return;
-  const { data } = await getProblemTagListRequestAsync(problemDetail.id, true);
+  const { data } = await getProblemTagsRequestAsync(problemDetail.id, true);
   if (data && data.tags) {
     dispatch(setProblemDetailPageProblem({ tags: data.tags }));
   }

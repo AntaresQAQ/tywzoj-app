@@ -12,10 +12,10 @@ export interface IGetProblemDetailRequestQuery {
 
 export type IGetProblemDetailResponse = IProblemEntityWithExtra;
 
-export interface IGetProblemTagListRequestQuery {
+export interface IGetProblemTagsRequestQuery {
   queryType?: boolean;
 }
 
-export interface IGetProblemTagListResponse {
+export interface IGetProblemTagsResponse {
   tags: IProblemTagEntityWithExtra[];
 }
