@@ -217,6 +217,11 @@
   description: Error message.
   raw: No such user, please check username or id.
 
+- name: ERROR_5200_MESSAGE
+  value: No such problem. please check id or display id.
+  description: Error message.
+  raw: No such problem. please check id or display id.
+
 - name: COMMON_ERROR_PAGE_TITLE
   value: Error
   description: Error page title.
@@ -252,10 +257,19 @@
   description: A name for page.
   raw: Contest
 
+- name: APP_NAV_PAGE_NAME_SUBMISSION_PAGE
+  value: Submission
+  description: A name for page.
+  raw: Submission
+
 - name: APP_NAV_PAGE_NAME_USER_PAGE
   value: Members
   description: A name for page.
   raw: Members
+
+- name: APP_NAV_PAGE_NAME_DISCUSSION_PAGE
+  value: Discussion
+  raw: Discussion
 
 - name: APP_HEADER_USER_MENU_PROFILE
   value: My profile
@@ -507,6 +521,16 @@
   value: 'Output file:'
   description: A label for problem output file.
   raw: 'Output file:'
+
+- name: PROBLEM_DETAIL_SUBMIT_BUTTON_LABEL
+  value: Submit
+  description: A label for submit problem button.
+  raw: Submit
+
+- name: PROBLEM_DETAIL_FILE_BUTTON_LABEL
+  value: Files
+  description: A label for problem files button.
+  raw: Files
 
 - name: PROBLEM_TYPE_TRADITIONAL
   value: Traditional

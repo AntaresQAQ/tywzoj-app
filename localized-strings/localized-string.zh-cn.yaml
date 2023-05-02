@@ -215,6 +215,11 @@
   description: Error message.
   raw: No such user, please check username or id.
 
+- name: ERROR_5200_MESSAGE
+  value: 没有这个题目，请检查ID或显示ID。
+  description: Error message.
+  raw: No such problem. please check id or display id.
+
 - name: COMMON_ERROR_PAGE_TITLE
   value: 错误
   description: Error page title.
@@ -250,10 +255,19 @@
   description: A name for page.
   raw: Contest
 
+- name: APP_NAV_PAGE_NAME_SUBMISSION_PAGE
+  value: 提交记录
+  description: A name for page.
+  raw: Submission
+
 - name: APP_NAV_PAGE_NAME_USER_PAGE
   value: 用户
   description: A name for page.
   raw: Members
+
+- name: APP_NAV_PAGE_NAME_DISCUSSION_PAGE
+  value: 讨论
+  raw: Discussion
 
 - name: APP_HEADER_USER_MENU_PROFILE
   value: 个人资料
@@ -505,6 +519,16 @@
   value: '输出文件:'
   description: A label for problem output file.
   raw: 'Output file:'
+
+- name: PROBLEM_DETAIL_SUBMIT_BUTTON_LABEL
+  value: 提交
+  description: A label for submit problem button.
+  raw: Submit
+
+- name: PROBLEM_DETAIL_FILE_BUTTON_LABEL
+  value: 文件
+  description: A label for problem files button.
+  raw: Files
 
 - name: PROBLEM_TYPE_TRADITIONAL
   value: 传统
