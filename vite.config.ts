@@ -4,7 +4,8 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { createHtmlPlugin } from "vite-plugin-html";
 import { prismjsPlugin } from "vite-plugin-prismjs";
 import gitRepoInfo from "git-repo-info";
-import fs from "fs";
+// @ts-ignore
+import { readFileSync } from "fs";
 
 const repoInfo = gitRepoInfo();
 const appEnv = loadEnv("", "", "");
@@ -33,12 +34,11 @@ export default defineConfig({
             hash: repoInfo.abbreviatedSha,
             date: repoInfo.committerDate,
           },
-          APP_ICON_URL: appEnv.TYWZOJ_ICON_URL,
         },
       },
     }),
     prismjsPlugin({
-      languages: fs.readFileSync(appEnv.PRISM_LANGUAGES_FILE, "utf-8").trim().split("\n"),
+      languages: readFileSync(appEnv.PRISM_LANGUAGES_FILE, "utf-8").trim().split("\n"),
       css: false,
     }),
   ],

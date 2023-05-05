@@ -26,7 +26,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="<%- APP_ICON_URL %>" >
+    <link rel="icon" href="<%- TYWZOJ_ICON_URL _%>" >
     <title>TYWZOJ</title>
     <style>
       html, body, #root {
@@ -37,6 +37,11 @@
       }
     </style>
     <script>
+      window.FabricConfig = {
+        fontBaseUrl: "<%- FLUENT_FONT_BASE_URL _%>" || undefined,
+        iconBaseUrl: "<%- FLUENT_ICON_BASE_URL _%>" || undefined,
+      };
+
       window.appBuildInfo = {
         clientVersion: {
           hash: "<%= APP_VERSION.hash %>",
