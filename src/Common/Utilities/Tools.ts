@@ -21,27 +21,18 @@ export function runOnce<T extends (...args: any[]) => any>(cb: T) {
 }
 
 export function memo<T extends string | number, R>(cb: (key: T) => R, expiration?: number) {
-  const memoMap: Record<T, R> = {} as any;
-  const timeOutMap: Record<T, number> = {} as any;
+  const memoMap: Record<T, { value: R; time: number }> = {} as any;
 
   return (key: T): R => {
-    if (memoMap[key] !== undefined) {
-      return memoMap[key];
+    let result = memoMap[key];
+
+    if (result && (!expiration || result.time + expiration >= Date.now())) {
+      return result.value;
     }
 
-    const result = cb(key);
-
-    if (expiration) {
-      if (timeOutMap[key]) {
-        clearTimeout(timeOutMap[key]);
-      }
-      timeOutMap[key] = setTimeout(() => {
-        delete memoMap[key];
-        delete timeOutMap[key];
-      }, expiration);
-    }
+    result = { time: Date.now(), value: cb(key) };
     memoMap[key] = result;
 
-    return result;
+    return result.value;
   };
 }
