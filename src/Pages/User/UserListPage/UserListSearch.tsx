@@ -52,6 +52,11 @@ export const UserListSearch: React.FC = () => {
 
   const onSearchBoxSearch = React.useCallback(
     (value: string) => {
+      dispatch(
+        setUserListPage({
+          userSearchResults: [],
+        }),
+      );
       navigate(
         makeUrl({
           page: CE_Page.UsernameRedirect,
@@ -59,7 +64,7 @@ export const UserListSearch: React.FC = () => {
         }),
       );
     },
-    [navigate],
+    [dispatch, navigate],
   );
 
   return (
