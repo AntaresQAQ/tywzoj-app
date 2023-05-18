@@ -18,15 +18,14 @@ import { useNavigate } from "react-router-dom";
 import { IconButton } from "@/Common/Components/IconButton";
 import { UserLevelLabel } from "@/Common/Components/UserLevelLabel";
 import { CE_Page } from "@/Common/Enums/PagePath";
-import { CE_Permissions } from "@/Common/Enums/Permissions";
 import { useGravatar } from "@/Common/Hooks/Gravatar";
 import { useMomentFormatter } from "@/Common/Hooks/Moment";
 import { registerEditIcon } from "@/Common/IconRegistration";
-import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
 import { makeEmailUrl, makeUrl } from "@/Common/Utilities/Url";
 import { setPageName } from "@/Features/Environment/Action";
-import { useCurrentUser, useIsMiddleScreen, useIsMobileView, useIsSmallScreen } from "@/Features/Environment/Hooks";
+import { useIsMiddleScreen, useIsMobileView, useIsSmallScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
+import { useAllowedEditUser } from "@/Features/Permission/Hooks/User";
 import { useAppDispatch, useAppSelector } from "@/Features/Store";
 
 import { getUserDetail } from "./Selectors";
@@ -51,11 +50,8 @@ export const UserDetailPage: React.FC = () => {
   const styles = getUserDetailPageStyles(theme, isMiddleScreen, isSmallScreen, isMobileView);
   const editButtonTooltipId = useId("tooltip_edit");
   const momentFormatter = useMomentFormatter();
-  const currentUser = useCurrentUser();
   const navigate = useNavigate();
-
-  const allowedEdit =
-    currentUser && (currentUser.id === userDetail.id || checkIsAllowed(currentUser.level, CE_Permissions.ManageUser));
+  const allowedEdit = useAllowedEditUser(userDetail);
 
   // Update page name
   React.useEffect(() => {
