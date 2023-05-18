@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { PageLoading } from "@/Common/Components/PageLoading";
 import { CE_Page } from "@/Common/Enums/PagePath";
 import { usePageParams } from "@/Common/Hooks/Params";
 import { useAppDispatch } from "@/Features/Store";
@@ -13,12 +14,14 @@ configureStore();
 const Wrapper: React.FC = () => {
   const dispatch = useAppDispatch();
   const { displayId } = usePageParams<CE_Page.ProblemDetail>();
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    dispatch(fetchProblemDetailAction(displayId));
+    setLoading(true);
+    dispatch(fetchProblemDetailAction(displayId)).finally(() => setLoading(false));
   }, [dispatch, displayId]);
 
-  return <ProblemDetailPage />;
+  return loading ? <PageLoading /> : <ProblemDetailPage />;
 };
 
 export default Wrapper;

@@ -41,7 +41,7 @@ export const ProblemCommandBar: React.FC = () => {
       },
       {
         key: "file",
-        text: ls.LS_PROBLEM_DETAIL_FILE_BUTTON_LABEL,
+        text: ls.LS_PROBLEM_FILE_PAGE_TITLE,
         iconProps: { iconName: folderHorizontalIcon },
         onClick: () => {
           navigate(makeUrl({ page: CE_Page.ProblemFile, params: { id: problemDetail.id } }));
