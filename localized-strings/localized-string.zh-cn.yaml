@@ -94,7 +94,7 @@
   raw: Email has been registered.
 
 - name: COMMON_INVALID_EMAIL_ADDRESS_ERROR_MESSAGE
-  value: 无效到邮箱地址。
+  value: 无效的邮箱地址。
   description: An error message for invalid email.
   raw: Invalid email address.
 
@@ -525,7 +525,7 @@
   description: A label for submit problem button.
   raw: Submit
 
-- name: PROBLEM_DETAIL_FILE_BUTTON_LABEL
+- name: PROBLEM_FILE_PAGE_TITLE
   value: 文件
   description: A label for problem files button.
   raw: Files

@@ -527,7 +527,7 @@
   description: A label for submit problem button.
   raw: Submit
 
-- name: PROBLEM_DETAIL_FILE_BUTTON_LABEL
+- name: PROBLEM_FILE_PAGE_TITLE
   value: Files
   description: A label for problem files button.
   raw: Files
