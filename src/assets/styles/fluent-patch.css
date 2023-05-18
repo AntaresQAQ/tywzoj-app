@@ -2,3 +2,7 @@
 .ms-ContextualMenu-container {
     overflow: hidden;
 }
+
+.ms-Icon {
+    display: flex;
+}
