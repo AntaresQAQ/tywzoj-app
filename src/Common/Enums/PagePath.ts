@@ -2,6 +2,7 @@ export const enum CE_Page {
   Home = "/",
   Problem = "/p", // ProblemList
   ProblemDetail = "/p/:displayId",
+  ProblemDetailById = "/p/i/:id",
   ProblemEdit = "/p/:id/edit",
   ProblemManage = "/p/:id/manage",
   ProblemFile = "/p/:id/file",

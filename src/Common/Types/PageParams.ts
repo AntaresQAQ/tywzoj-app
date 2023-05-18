@@ -8,6 +8,9 @@ export interface IPageParams extends IBasePageParams {
   [CE_Page.ProblemDetail]: {
     displayId: number;
   };
+  [CE_Page.ProblemDetailById]: {
+    id: number;
+  };
   [CE_Page.ProblemEdit]: {
     id: number;
   };
