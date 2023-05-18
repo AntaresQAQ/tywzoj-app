@@ -13,10 +13,10 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 
 import { CE_Page } from "@/Common/Enums/PagePath";
-import { CE_Permissions } from "@/Common/Enums/Permissions";
-import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
 import { useCurrentUser } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
+import { checkIsAllowed } from "@/Features/Permission/Checker";
+import { CE_Permission } from "@/Features/Permission/Enums/Permission";
 
 import { getNavStyles } from "./Styles/NavStyles";
 
@@ -48,22 +48,20 @@ export const AppNav: React.FC<IAppNavProps> = props => {
     ];
 
     if (currentUser) {
-      if (checkIsAllowed(currentUser.level, CE_Permissions.AccessSite)) {
-        items.push(
-          {
-            name: ls.LS_APP_NAV_PAGE_NAME_PROBLEM_PAGE,
-            to: CE_Page.Problem,
-            icon: <BulletedListIcon />,
-          },
-          {
-            name: ls.LS_APP_NAV_PAGE_NAME_PROBLEM_SET_PAGE,
-            to: CE_Page.ProblemSet,
-            icon: <LibraryIcon />,
-          },
-        );
-      }
+      items.push(
+        {
+          name: ls.LS_APP_NAV_PAGE_NAME_PROBLEM_PAGE,
+          to: CE_Page.Problem,
+          icon: <BulletedListIcon />,
+        },
+        {
+          name: ls.LS_APP_NAV_PAGE_NAME_PROBLEM_SET_PAGE,
+          to: CE_Page.ProblemSet,
+          icon: <LibraryIcon />,
+        },
+      );
 
-      if (checkIsAllowed(currentUser.level, CE_Permissions.AccessHomework)) {
+      if (checkIsAllowed(currentUser.level, CE_Permission.AccessHomework)) {
         items.push({
           name: ls.LS_APP_NAV_PAGE_NAME_HOMEWORK_PAGE,
           to: CE_Page.Homework,
@@ -71,30 +69,28 @@ export const AppNav: React.FC<IAppNavProps> = props => {
         });
       }
 
-      if (checkIsAllowed(currentUser.level, CE_Permissions.AccessSite)) {
-        items.push(
-          {
-            name: ls.LS_APP_NAV_PAGE_NAME_CONTEST_PAGE,
-            to: CE_Page.Contest,
-            icon: <ChartIcon />,
-          },
-          {
-            name: ls.LS_APP_NAV_PAGE_NAME_SUBMISSION_PAGE,
-            to: CE_Page.Submission,
-            icon: <TaskListIcon />,
-          },
-          {
-            name: ls.LS_APP_NAV_PAGE_NAME_USER_PAGE,
-            to: CE_Page.User,
-            icon: <ContactListIcon />,
-          },
-          {
-            name: ls.LS_APP_NAV_PAGE_NAME_DISCUSSION_PAGE,
-            to: CE_Page.Discussion,
-            icon: <CommentIcon />,
-          },
-        );
-      }
+      items.push(
+        {
+          name: ls.LS_APP_NAV_PAGE_NAME_CONTEST_PAGE,
+          to: CE_Page.Contest,
+          icon: <ChartIcon />,
+        },
+        {
+          name: ls.LS_APP_NAV_PAGE_NAME_SUBMISSION_PAGE,
+          to: CE_Page.Submission,
+          icon: <TaskListIcon />,
+        },
+        {
+          name: ls.LS_APP_NAV_PAGE_NAME_USER_PAGE,
+          to: CE_Page.User,
+          icon: <ContactListIcon />,
+        },
+        {
+          name: ls.LS_APP_NAV_PAGE_NAME_DISCUSSION_PAGE,
+          to: CE_Page.Discussion,
+          icon: <CommentIcon />,
+        },
+      );
     }
 
     return items;

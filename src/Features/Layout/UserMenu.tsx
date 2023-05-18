@@ -12,7 +12,6 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CE_Page } from "@/Common/Enums/PagePath";
-import { CE_Permissions } from "@/Common/Enums/Permissions";
 import { useGravatar } from "@/Common/Hooks/Gravatar";
 import {
   registerAddFriendIcon,
@@ -23,10 +22,11 @@ import {
   registerSigninIcon,
   registerSignOutIcon,
 } from "@/Common/IconRegistration";
-import { checkIsAllowed } from "@/Common/Utilities/PermissionChecker";
 import { makeUrl } from "@/Common/Utilities/Url";
 import { useCurrentUser, useIsMobileView } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
+import { checkIsAllowed } from "@/Features/Permission/Checker";
+import { CE_Permission } from "@/Features/Permission/Enums/Permission";
 import { useAppDispatch } from "@/Features/Store";
 
 import { logoutAction } from "./Action";
@@ -96,7 +96,7 @@ export const AppUserMenu: React.FC = () => {
       },
     ];
 
-    if (checkIsAllowed(currentUser.level, CE_Permissions.ManageSite)) {
+    if (checkIsAllowed(currentUser.level, CE_Permission.ManageSite)) {
       items.push(
         {
           key: "divider_1",

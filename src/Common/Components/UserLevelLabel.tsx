@@ -3,10 +3,10 @@ import { useId } from "@fluentui/react-hooks";
 import * as React from "react";
 
 import { Label } from "@/Common/Components/Label";
-import { CE_UserLevel } from "@/Common/Enums/UserLevel";
-import { useUserLevelText } from "@/Common/Hooks/UserLevel";
 import { format } from "@/Common/Utilities/String";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
+import { CE_UserLevel } from "@/Features/Permission/Enums/UserLevel";
+import { useUserLevelText } from "@/Features/Permission/Hooks/User";
 
 export interface IUserLevelLabelProps {
   className?: string;

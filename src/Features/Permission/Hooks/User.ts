@@ -1,7 +1,12 @@
-import React from "react";
+import * as React from "react";
 
-import { CE_UserLevel } from "@/Common/Enums/UserLevel";
+import { IUserAtomicEntity } from "@/Common/ServerType/User";
+import { useCurrentUser } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
+
+import { CE_Permission } from "../Enums/Permission";
+import { CE_UserLevel } from "../Enums/UserLevel";
+import { usePermission } from "./Permission";
 
 export const useUserLevelText = () => {
   const ls = useLocalizedStrings();
@@ -26,4 +31,15 @@ export const useUserLevelText = () => {
     },
     [ls],
   );
+};
+
+export const useAllowedEditUser = (user: IUserAtomicEntity): boolean => {
+  const allowedManageUser = usePermission(CE_Permission.ManageUser);
+  const currentUser = useCurrentUser();
+
+  if (allowedManageUser) {
+    return true;
+  }
+
+  return !!currentUser && currentUser.id === user.id;
 };

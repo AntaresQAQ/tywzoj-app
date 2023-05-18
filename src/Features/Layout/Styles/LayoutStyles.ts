@@ -52,9 +52,6 @@ export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean
           color: theme.palette.neutralPrimary,
           fontSize: 20,
           height: 20,
-          span: {
-            verticalAlign: "unset",
-          },
         },
       },
       navPanel: {
@@ -76,7 +73,6 @@ export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean
           ".ms-Button-icon": {
             fontSize: 20,
             height: 20,
-            verticalAlign: "unset",
           },
           marginRight: 0,
         },
