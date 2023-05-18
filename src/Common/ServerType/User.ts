@@ -1,4 +1,4 @@
-import { CE_UserLevel } from "@/Common/Enums/UserLevel";
+import { CE_UserLevel } from "@/Features/Permission/Enums/UserLevel";
 
 export interface IUserAtomicEntity {
   id: number;
