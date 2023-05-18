@@ -38,7 +38,7 @@ export const getLoginPageStyles = memoizeFunction((theme: ITheme) =>
         gap: 30,
       },
     },
-    registerButton: {
+    loginButton: {
       marginTop: 15,
     },
     footer: {
