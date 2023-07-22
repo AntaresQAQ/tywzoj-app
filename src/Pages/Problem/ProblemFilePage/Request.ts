@@ -1,6 +1,15 @@
 import { requestAsync } from "@/Common/Request/ApiRequest";
 
-import { IGetProblemDetailRequestQuery, IGetProblemDetailResponse, IGetProblemFilesResponse } from "./Types";
+import {
+  IGetProblemDetailRequestQuery,
+  IGetProblemDetailResponse,
+  IGetProblemFilesResponse,
+  IPostProblemFileUploadedReportRequestBody,
+  IPostProblemFileUploadedReportResponse,
+  IPostProblemFileUploadRequestRequestBody,
+  IPostProblemFileUploadRequestResponse,
+} from "./Types";
+import { CE_ProblemFileType } from "@/Common/ServerType/ProblemFile";
 
 export async function getProblemDetailRequestAsync(id: string) {
   return await requestAsync<IGetProblemDetailResponse, IGetProblemDetailRequestQuery>({
@@ -14,5 +23,27 @@ export async function getProblemFilesRequestAsync(id: string) {
   return await requestAsync<IGetProblemFilesResponse>({
     path: `problem/detail/${id}/files`,
     method: "GET",
+  });
+}
+
+export async function postProblemFileUploadRequestRequestAsync(body: IPostProblemFileUploadRequestRequestBody) {
+  return await requestAsync<IPostProblemFileUploadRequestResponse, undefined, IPostProblemFileUploadRequestRequestBody>(
+    {
+      path: "file/uploadRequest",
+      method: "POST",
+      body,
+    },
+  );
+}
+
+export async function postProblemFileUploadedReportRequestAsync(token: string, uuid: string) {
+  return await requestAsync<
+    IPostProblemFileUploadedReportResponse,
+    undefined,
+    IPostProblemFileUploadedReportRequestBody
+  >({
+    path: "file/uploadedReport",
+    method: "POST",
+    body: { token, uuid },
   });
 }

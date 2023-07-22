@@ -13,8 +13,16 @@ import { useAppDispatch, useAppSelector } from "@/Features/Store";
 
 import { getProblemDetail } from "../ProblemDetailPage/Selectors";
 import { ProblemFileList } from "./ProblemFileList";
-import { getProblemAdditionalFiles, getProblemTestDataFiles } from "./Selectors";
+import {
+  getProblemAdditionalFiles,
+  getProblemAdditionalFileUploadTasks,
+  getProblemTestDataFiles,
+  getProblemTestDataUploadTasks,
+} from "./Selectors";
 import { getProblemFilePageStyle } from "./Styles/ProblemFilePageStyles";
+import openUploadDialog from "@/Common/Utilities/UploadDialog";
+import { setProblemFilePage, uploadFileAction } from "@/Pages/Problem/ProblemFilePage/Action";
+import { CE_UploadingState } from "@/Pages/Problem/ProblemFilePage/Types";
 
 export const ProblemFilePage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -27,6 +35,8 @@ export const ProblemFilePage: React.FC = () => {
   const problemDetail = useAppSelector(getProblemDetail);
   const testDataFiles = useAppSelector(getProblemTestDataFiles);
   const additionalFiles = useAppSelector(getProblemAdditionalFiles);
+  const testDataUploadTasks = useAppSelector(getProblemTestDataUploadTasks);
+  const additionalFileUploadTasks = useAppSelector(getProblemAdditionalFileUploadTasks);
   const showTestData = useAllowedManageProblem(problemDetail);
 
   const title = problemDetail.displayId
@@ -43,9 +53,12 @@ export const ProblemFilePage: React.FC = () => {
   const downloadFiles = React.useCallback((files: IProblemFileEntityWithExtra[]) => {
     // TODO: download files
   }, []);
-  const uploadFiles = React.useCallback((fileType: CE_ProblemFileType) => {
-    // TODO: upload files
-  }, []);
+  const uploadFiles = React.useCallback(
+    (fileType: CE_ProblemFileType) => {
+      openUploadDialog(files => dispatch(uploadFileAction(fileType, files)));
+    },
+    [dispatch],
+  );
 
   return (
     <div className={styles.root}>
@@ -73,6 +86,7 @@ export const ProblemFilePage: React.FC = () => {
                 onDownload={downloadFiles}
                 onDelete={files => deleteFiles(CE_ProblemFileType.TestData, files)}
                 onUpload={() => uploadFiles(CE_ProblemFileType.TestData)}
+                uploadTasks={testDataUploadTasks}
               />
             </div>
           )}
@@ -83,6 +97,7 @@ export const ProblemFilePage: React.FC = () => {
               onDownload={downloadFiles}
               onDelete={files => deleteFiles(CE_ProblemFileType.AdditionalFile, files)}
               onUpload={() => uploadFiles(CE_ProblemFileType.AdditionalFile)}
+              uploadTasks={additionalFileUploadTasks}
             />
           </div>
         </div>

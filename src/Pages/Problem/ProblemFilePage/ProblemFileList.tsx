@@ -7,6 +7,7 @@ import {
   IColumn,
   PrimaryButton,
   Selection,
+  SelectionMode,
   useTheme,
 } from "@fluentui/react";
 import { PageIcon } from "@fluentui/react-icons-mdl2";
@@ -24,9 +25,11 @@ import { IProblemFileEntityWithExtra } from "@/Common/ServerType/ProblemFile";
 import { humanFileSize } from "@/Common/Utilities/HumanFileSize";
 
 import { getProblemFileListStyles } from "./Styles/ProblemFileListStyles";
+import { CE_UploadingState, IFileUploadTask } from "./Types";
 
 export interface IProblemFileListProps {
   files: IProblemFileEntityWithExtra[];
+  uploadTasks: IFileUploadTask[];
   onUpload: () => void;
   onDownload: (files: IProblemFileEntityWithExtra[]) => void;
   onDelete: (files: IProblemFileEntityWithExtra[]) => void;
@@ -44,6 +47,13 @@ interface IProblemFileColumn extends IColumn {
   onRender?: (item?: IProblemFileItem, index?: number, column?: IColumn) => JSX.Element | number | string;
 }
 
+type IUploadingQueueItem = IFileUploadTask;
+
+interface IUploadingQueueColumn extends IColumn {
+  fieldName?: keyof IUploadingQueueItem;
+  onRender?: (item?: IUploadingQueueItem, index?: number, column?: IColumn) => JSX.Element | number | string;
+}
+
 registerCircleRingIcon();
 registerStatusCircleCheckmarkIcon();
 const deleteIcon = registerDeleteIcon();
@@ -54,26 +64,12 @@ const ProblemFileTypeIcon: React.FC<{ filename: string }> = props =>
   useFileTypeIcon(props.filename, { style: { fontSize: 16 } });
 
 export const ProblemFileList: React.FC<IProblemFileListProps> = props => {
+  const { files = [], uploadTasks = [], onUpload } = props;
+
   const theme = useTheme();
   const styles = getProblemFileListStyles(theme);
 
-  const problemFiles = React.useMemo(
-    (): IProblemFileItem[] =>
-      props.files.map(file => ({
-        filename: file.filename,
-        size: file.file && humanFileSize(file.file.size),
-        uuid: file.uuid,
-        file,
-      })),
-    [props.files],
-  );
-
-  const totalSize = React.useMemo(
-    () => humanFileSize(props.files.reduce((pre, cur) => pre + (cur.file?.size || 0), 0)),
-    [props.files],
-  );
-
-  const columns = React.useMemo(
+  const problemFileColumns = React.useMemo(
     (): IProblemFileColumn[] => [
       {
         key: "type",
@@ -100,6 +96,52 @@ export const ProblemFileList: React.FC<IProblemFileListProps> = props => {
     [],
   );
 
+  const problemFiles = React.useMemo(
+    (): IProblemFileItem[] =>
+      files.map(file => ({
+        filename: file.filename,
+        size: file.file && humanFileSize(file.file.size),
+        uuid: file.uuid,
+        file,
+      })),
+    [files],
+  );
+
+  const totalSize = React.useMemo(
+    () => humanFileSize(files.reduce((pre, cur) => pre + (cur.file?.size || 0), 0)),
+    [files],
+  );
+
+  const uploadingQueueColumns = React.useMemo(
+    (): IUploadingQueueColumn[] => [
+      {
+        key: "filename",
+        fieldName: "filename",
+        name: "filename",
+        minWidth: 100,
+      },
+      {
+        key: "state",
+        fieldName: "state",
+        name: "state",
+        minWidth: 100,
+        onRender: item => (item.state === CE_UploadingState.WAITING ? "Waiting" : "Uploading"),
+      },
+      {
+        key: "p",
+        fieldName: "progress",
+        name: "progress",
+        minWidth: 100,
+      },
+    ],
+    [],
+  );
+
+  const uploadingQueue = React.useMemo(
+    (): IUploadingQueueItem[] => uploadTasks.filter(task => task.state !== CE_UploadingState.SUCCEED),
+    [uploadTasks],
+  );
+
   const [showDeleteConfirmDialog, setShowDeleteConfirmDialog] = React.useState(false);
   const [selectedCount, setSelectedCount] = React.useState(0);
   const selection = React.useRef(
@@ -110,21 +152,38 @@ export const ProblemFileList: React.FC<IProblemFileListProps> = props => {
     }),
   );
 
-  return problemFiles.length > 0 ? (
+  return problemFiles.length > 0 || uploadingQueue.length > 0 ? (
     <div>
-      <DetailsList items={problemFiles} columns={columns} isSelectedOnFocus={false} selection={selection.current} />
-      <div className={styles.footerText}>
-        {problemFiles.length} file{problemFiles.length > 1 && "s"}, total size: {totalSize}
-        {selectedCount > 0 ? (
-          <>
-            , {selectedCount} item{selectedCount > 1 && "s"} selected.
-          </>
-        ) : (
-          "."
-        )}
-      </div>
+      {problemFiles.length > 0 && (
+        <>
+          <DetailsList
+            items={problemFiles}
+            columns={problemFileColumns}
+            isSelectedOnFocus={false}
+            selection={selection.current}
+          />
+          <div className={styles.footerText}>
+            {problemFiles.length} file{problemFiles.length > 1 && "s"}, total size: {totalSize}
+            {selectedCount > 0 ? (
+              <>
+                , {selectedCount} item{selectedCount > 1 && "s"} selected.
+              </>
+            ) : (
+              "."
+            )}
+          </div>
+        </>
+      )}
+      {uploadingQueue.length >= 0 && (
+        <>
+          <DetailsList items={uploadingQueue} columns={uploadingQueueColumns} selectionMode={SelectionMode.none} />
+        </>
+      )}
+
       <div className={styles.buttons}>
-        <CommandButton iconProps={{ iconName: uploadIcon }}>Upload</CommandButton>
+        <CommandButton iconProps={{ iconName: uploadIcon }} onClick={onUpload}>
+          Upload
+        </CommandButton>
         {selectedCount > 0 && (
           <>
             <CommandButton iconProps={{ iconName: downloadIcon }}>Download</CommandButton>
@@ -151,7 +210,9 @@ export const ProblemFileList: React.FC<IProblemFileListProps> = props => {
   ) : (
     <div className={styles.emptyBox}>
       <div className={styles.emptyTextHint}>No Files</div>
-      <PrimaryButton iconProps={{ iconName: uploadIcon }}>Upload</PrimaryButton>
+      <PrimaryButton iconProps={{ iconName: uploadIcon }} onClick={onUpload}>
+        Upload
+      </PrimaryButton>
     </div>
   );
 };
