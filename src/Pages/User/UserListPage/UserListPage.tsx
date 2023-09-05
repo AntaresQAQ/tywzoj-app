@@ -17,57 +17,57 @@ import { UserListSearch } from "./UserListSearch";
 import { UserListTable } from "./UserListTable";
 
 export interface IUserListPageProps {
-  loading: boolean;
-  takeCount: number;
-  sortBy: CE_SortBy;
+    loading: boolean;
+    takeCount: number;
+    sortBy: CE_SortBy;
 }
 
-export const UserListPage: React.FC<IUserListPageProps> = props => {
-  const { loading, takeCount, sortBy } = props;
+export const UserListPage: React.FC<IUserListPageProps> = (props) => {
+    const { loading, takeCount, sortBy } = props;
 
-  const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
-  const userList = useAppSelector(getUserList);
-  const userCount = useAppSelector(getUserCount);
+    const userList = useAppSelector(getUserList);
+    const userCount = useAppSelector(getUserCount);
 
-  const ls = useLocalizedStrings();
-  const theme = useTheme();
-  const styles = getUserListPageStyles(theme);
+    const ls = useLocalizedStrings();
+    const theme = useTheme();
+    const styles = getUserListPageStyles(theme);
 
-  const navigate = useNavigate();
-  const setSortBy = useSetSortBy<CE_SortBy>();
+    const navigate = useNavigate();
+    const setSortBy = useSetSortBy<CE_SortBy>();
 
-  React.useEffect(() => {
-    dispatch(setPageName(ls.LS_APP_NAV_PAGE_NAME_USER_PAGE));
-  }, [dispatch, ls]);
+    React.useEffect(() => {
+        dispatch(setPageName(ls.LS_APP_NAV_PAGE_NAME_USER_PAGE));
+    }, [dispatch, ls]);
 
-  return (
-    <div className={styles.root}>
-      <div className={styles.mainContainer}>
-        <div className={styles.headerContainer}>
-          <UserListSearch />
+    return (
+        <div className={styles.root}>
+            <div className={styles.mainContainer}>
+                <div className={styles.headerContainer}>
+                    <UserListSearch />
+                </div>
+                <div className={styles.tableContainer}>
+                    <UserListTable
+                        userList={userList}
+                        sortBy={sortBy}
+                        setSortBy={setSortBy}
+                        onClickUser={(user) =>
+                            navigate(
+                                makeUrl({
+                                    page: CE_Page.UserDetail,
+                                    params: { id: user.id },
+                                }),
+                            )
+                        }
+                        className={styles.table}
+                        loading={loading}
+                    />
+                </div>
+                <div className={styles.paginateContainer}>
+                    <Paginate count={userCount} takeCount={takeCount} disabled={loading} />
+                </div>
+            </div>
         </div>
-        <div className={styles.tableContainer}>
-          <UserListTable
-            userList={userList}
-            sortBy={sortBy}
-            setSortBy={setSortBy}
-            onClickUser={user =>
-              navigate(
-                makeUrl({
-                  page: CE_Page.UserDetail,
-                  params: { id: user.id },
-                }),
-              )
-            }
-            className={styles.table}
-            loading={loading}
-          />
-        </div>
-        <div className={styles.paginateContainer}>
-          <Paginate count={userCount} takeCount={takeCount} disabled={loading} />
-        </div>
-      </div>
-    </div>
-  );
+    );
 };

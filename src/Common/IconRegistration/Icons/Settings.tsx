@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerSettingsIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      Settings: <SettingsIcon />,
-    },
-  });
-  return "Settings";
+    registerIcons({
+        icons: {
+            Settings: <SettingsIcon />,
+        },
+    });
+    return "Settings";
 });

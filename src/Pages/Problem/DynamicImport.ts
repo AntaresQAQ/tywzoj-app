@@ -1,7 +1,7 @@
 export function loadProblemDetailPage() {
-  return import("./ProblemDetailPage");
+    return import("./ProblemDetailPage");
 }
 
 export function loadProblemFilePage() {
-  return import("./ProblemFilePage");
+    return import("./ProblemFilePage");
 }

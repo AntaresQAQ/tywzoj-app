@@ -9,20 +9,20 @@ import { registerPageReducer } from "./Reducer";
 import { RegisterPage } from "./RegisterPage";
 
 const configureStore = runOnce(() => {
-  injectDynamicReducer({
-    registerPage: registerPageReducer,
-  });
+    injectDynamicReducer({
+        registerPage: registerPageReducer,
+    });
 });
 configureStore();
 
 const Wrapper: React.FC = () => {
-  const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
-  React.useEffect(() => {
-    dispatch(initRegisterPageState());
-  }, [dispatch]);
+    React.useEffect(() => {
+        dispatch(initRegisterPageState());
+    }, [dispatch]);
 
-  return <RegisterPage />;
+    return <RegisterPage />;
 };
 
 export default Wrapper;

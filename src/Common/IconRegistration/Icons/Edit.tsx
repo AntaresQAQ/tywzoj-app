@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerEditIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      Edit: <EditIcon />,
-    },
-  });
-  return "Edit";
+    registerIcons({
+        icons: {
+            Edit: <EditIcon />,
+        },
+    });
+    return "Edit";
 });

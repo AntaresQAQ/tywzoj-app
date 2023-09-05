@@ -6,127 +6,127 @@ import { CE_ZIndex } from "@/Common/Styles/ZIndex";
 export const headerHeight = 50;
 export const navBarWidth = 130;
 export const getLayoutStyles = memoizeFunction((theme: ITheme, isMobile: boolean) =>
-  mergeStyleSets(
-    {
-      root: {
-        position: "relative",
-        width: `calc(100% - ${navBarWidth}px)`,
-        height: `calc(100% - ${headerHeight}px)`,
-        top: headerHeight,
-        left: navBarWidth,
-        backgroundColor: theme.palette.white,
-      },
-      header: {
-        ...flex({}),
-        position: "fixed",
-        zIndex: CE_ZIndex.AppHeader,
-        top: 0,
-        left: navBarWidth,
-        height: headerHeight,
-        width: `calc(100% - ${navBarWidth}px)`,
-        backgroundColor: theme.palette.white,
-        boxShadow: theme.effects.elevation4,
-      },
-      navbar: {
-        ...flex({
-          flexDirection: "column",
-        }),
-        position: "fixed",
-        zIndex: CE_ZIndex.AppNavbar,
-        top: 0,
-        left: 0,
-        height: "100%",
-        width: navBarWidth,
-        backgroundColor: theme.palette.white,
-        boxShadow: theme.effects.elevation16,
-      },
-      navButtonContainer: {
-        ...flex({
-          alignItems: "center",
-        }),
-      },
-      navButton: {
-        height: headerHeight,
-        width: 50,
-        ".ms-Button-icon": {
-          color: theme.palette.neutralPrimary,
-          fontSize: 20,
-          height: 20,
+    mergeStyleSets(
+        {
+            root: {
+                position: "relative",
+                width: `calc(100% - ${navBarWidth}px)`,
+                height: `calc(100% - ${headerHeight}px)`,
+                top: headerHeight,
+                left: navBarWidth,
+                backgroundColor: theme.palette.white,
+            },
+            header: {
+                ...flex({}),
+                position: "fixed",
+                zIndex: CE_ZIndex.AppHeader,
+                top: 0,
+                left: navBarWidth,
+                height: headerHeight,
+                width: `calc(100% - ${navBarWidth}px)`,
+                backgroundColor: theme.palette.white,
+                boxShadow: theme.effects.elevation4,
+            },
+            navbar: {
+                ...flex({
+                    flexDirection: "column",
+                }),
+                position: "fixed",
+                zIndex: CE_ZIndex.AppNavbar,
+                top: 0,
+                left: 0,
+                height: "100%",
+                width: navBarWidth,
+                backgroundColor: theme.palette.white,
+                boxShadow: theme.effects.elevation16,
+            },
+            navButtonContainer: {
+                ...flex({
+                    alignItems: "center",
+                }),
+            },
+            navButton: {
+                height: headerHeight,
+                width: 50,
+                ".ms-Button-icon": {
+                    color: theme.palette.neutralPrimary,
+                    fontSize: 20,
+                    height: 20,
+                },
+            },
+            navPanel: {
+                ".ms-Panel-commands": {
+                    paddingTop: 0,
+                    marginBottom: 20,
+                    height: headerHeight,
+                    boxShadow: theme.effects.elevation4,
+                },
+                ".ms-Panel-navigation": {
+                    ...flex({
+                        flexDirection: "row-reverse",
+                    }),
+                },
+                ".ms-Panel-closeButton": {
+                    color: theme.palette.neutralPrimary,
+                    height: headerHeight,
+                    width: 50,
+                    ".ms-Button-icon": {
+                        fontSize: 20,
+                        height: 20,
+                    },
+                    marginRight: 0,
+                },
+                ".ms-Panel-header": {
+                    ...flex({
+                        alignItems: "center",
+                    }),
+                    height: headerHeight,
+                },
+            },
+            logo: {
+                ...flex({
+                    alignItems: "center",
+                }),
+                height: headerHeight,
+                overflow: "hidden",
+                img: { width: navBarWidth },
+            },
+            userMenuContainer: {
+                ...flex({
+                    flexDirection: "row-reverse",
+                }),
+                flexGrow: 2,
+            },
+            mainContainer: {
+                ...flex({
+                    flexDirection: "column",
+                }),
+                minWidth: 350,
+                height: "100%",
+                width: "100%",
+                overflow: "auto",
+            },
+            mainContent: {
+                ...flex({
+                    flexDirection: "column",
+                }),
+                margin: 20,
+                flexGrow: 1,
+            },
         },
-      },
-      navPanel: {
-        ".ms-Panel-commands": {
-          paddingTop: 0,
-          marginBottom: 20,
-          height: headerHeight,
-          boxShadow: theme.effects.elevation4,
+        isMobile && {
+            root: {
+                left: 0,
+                width: "100%",
+            },
+            header: {
+                left: 0,
+                width: "100%",
+            },
+            logo: {
+                width: 150,
+                img: { width: 150 },
+            },
         },
-        ".ms-Panel-navigation": {
-          ...flex({
-            flexDirection: "row-reverse",
-          }),
-        },
-        ".ms-Panel-closeButton": {
-          color: theme.palette.neutralPrimary,
-          height: headerHeight,
-          width: 50,
-          ".ms-Button-icon": {
-            fontSize: 20,
-            height: 20,
-          },
-          marginRight: 0,
-        },
-        ".ms-Panel-header": {
-          ...flex({
-            alignItems: "center",
-          }),
-          height: headerHeight,
-        },
-      },
-      logo: {
-        ...flex({
-          alignItems: "center",
-        }),
-        height: headerHeight,
-        overflow: "hidden",
-        img: { width: navBarWidth },
-      },
-      userMenuContainer: {
-        ...flex({
-          flexDirection: "row-reverse",
-        }),
-        flexGrow: 2,
-      },
-      mainContainer: {
-        ...flex({
-          flexDirection: "column",
-        }),
-        minWidth: 350,
-        height: "100%",
-        width: "100%",
-        overflow: "auto",
-      },
-      mainContent: {
-        ...flex({
-          flexDirection: "column",
-        }),
-        margin: 20,
-        flexGrow: 1,
-      },
-    },
-    isMobile && {
-      root: {
-        left: 0,
-        width: "100%",
-      },
-      header: {
-        left: 0,
-        width: "100%",
-      },
-      logo: {
-        width: 150,
-        img: { width: 150 },
-      },
-    },
-  ),
+    ),
 );

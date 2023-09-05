@@ -3,50 +3,50 @@ import { IProblemEntityWithExtra } from "@/Common/ServerType/Problem";
 import { CE_ProblemFileType, IProblemFileEntityWithExtra } from "@/Common/ServerType/ProblemFile";
 
 export interface IProblemFilePageState {
-  testDataFiles: IProblemFileEntityWithExtra[];
-  additionalFiles: IProblemFileEntityWithExtra[];
-  testDataUploadTasks: IFileUploadTask[];
-  additionalFileUploadTasks: IFileUploadTask[];
+    testDataFiles: IProblemFileEntityWithExtra[];
+    additionalFiles: IProblemFileEntityWithExtra[];
+    testDataUploadTasks: IFileUploadTask[];
+    additionalFileUploadTasks: IFileUploadTask[];
 }
 
 export const enum CE_UploadingState {
-  WAITING,
-  UPLOADING,
-  FAILED,
-  SUCCEED,
+    WAITING,
+    UPLOADING,
+    FAILED,
+    SUCCEED,
 }
 
 export interface IFileUploadTask {
-  filename: string;
-  state: CE_UploadingState;
-  progress: number;
+    filename: string;
+    state: CE_UploadingState;
+    progress: number;
 }
 
 export interface IGetProblemDetailRequestQuery {
-  queryTags?: boolean;
+    queryTags?: boolean;
 }
 
 export type IGetProblemDetailResponse = IProblemEntityWithExtra;
 
 export interface IGetProblemFilesResponse {
-  files: IProblemFileEntityWithExtra[];
+    files: IProblemFileEntityWithExtra[];
 }
 
 export interface IPostProblemFileUploadRequestRequestBody {
-  problemId: string;
-  filename: string;
-  type: CE_ProblemFileType;
-  size: number;
+    problemId: string;
+    filename: string;
+    type: CE_ProblemFileType;
+    size: number;
 }
 
 export interface IPostProblemFileUploadRequestResponse {
-  readonly uploadRequest: IFileUploadRequest;
-  readonly token: string;
+    readonly uploadRequest: IFileUploadRequest;
+    readonly token: string;
 }
 
 export interface IPostProblemFileUploadedReportRequestBody {
-  token: string;
-  uuid: string;
+    token: string;
+    uuid: string;
 }
 
 export type IPostProblemFileUploadedReportResponse = IProblemFileEntityWithExtra;

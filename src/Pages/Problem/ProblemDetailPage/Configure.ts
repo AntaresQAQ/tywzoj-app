@@ -3,7 +3,7 @@ import { injectDynamicReducer } from "@/Features/Store/Helper";
 import { problemDetailPageReducer } from "@/Pages/Problem/ProblemDetailPage/Reducer";
 
 export const configureStore = runOnce(() => {
-  injectDynamicReducer({
-    problemDetailPage: problemDetailPageReducer,
-  });
+    injectDynamicReducer({
+        problemDetailPage: problemDetailPageReducer,
+    });
 });

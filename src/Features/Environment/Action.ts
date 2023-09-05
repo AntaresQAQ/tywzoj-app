@@ -13,37 +13,37 @@ const UPDATE_PAGINATION = "Pagination/Update";
 const UPDATE_CURRENT_USER = "CurrentUser/Update";
 
 export const setEnv = createAction(UPDATE_ENV, (props: Partial<IEnvState>) => ({
-  payload: props,
+    payload: props,
 }));
 
 export const setEnvApiBearerToken = (token: string) => (dispatch: IAppDispatch) => {
-  dispatch(
-    setEnv({
-      apiBearerToken: token,
-    }),
-  );
-  saveToken(CE_TokenName.ApiBearerToken, token);
+    dispatch(
+        setEnv({
+            apiBearerToken: token,
+        }),
+    );
+    saveToken(CE_TokenName.ApiBearerToken, token);
 };
 
 export const setTheme = (themeName: CE_ThemeName) => (dispatch: IAppDispatch) => {
-  dispatch(setEnv({ themeName }));
+    dispatch(setEnv({ themeName }));
 };
 
 export const setPageName = (pageName: string) => (dispatch: IAppDispatch) => {
-  dispatch(setEnv({ pageName }));
+    dispatch(setEnv({ pageName }));
 };
 
 export const setServerVersion = createAction(UPDATE_SERVER_VERSION, (props: IServerVersionState) => ({
-  payload: props,
+    payload: props,
 }));
 export const setClientVersion = createAction(UPDATE_CLIENT_VERSION, (props: IClientVersionState) => ({
-  payload: props,
+    payload: props,
 }));
 
 export const setPagination = createAction(UPDATE_PAGINATION, (props: IPaginationState) => ({
-  payload: props,
+    payload: props,
 }));
 
 export const setCurrentUser = createAction(UPDATE_CURRENT_USER, (props: ICurrentUserState) => ({
-  payload: props,
+    payload: props,
 }));

@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerUploadIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      Upload: <UploadIcon />,
-    },
-  });
-  return "Upload";
+    registerIcons({
+        icons: {
+            Upload: <UploadIcon />,
+        },
+    });
+    return "Upload";
 });

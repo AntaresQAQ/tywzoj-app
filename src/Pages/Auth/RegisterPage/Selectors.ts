@@ -13,10 +13,10 @@ export const getRegisterPagePasswordError = (state: IRootState) => state.registe
 export const getRegisterPage2ndPasswordError = (state: IRootState) => state.registerPage.spError;
 export const getRegisterPageCodeError = (state: IRootState) => state.registerPage.cError;
 export const getHasError = createSelector(
-  getRegisterPageUsernameError,
-  getRegisterPageEmailError,
-  getRegisterPagePasswordError,
-  getRegisterPage2ndPasswordError,
-  getRegisterPageCodeError,
-  (u, e, p1, p2, c) => !!(u || e || p1 || p2 || c),
+    getRegisterPageUsernameError,
+    getRegisterPageEmailError,
+    getRegisterPagePasswordError,
+    getRegisterPage2ndPasswordError,
+    getRegisterPageCodeError,
+    (u, e, p1, p2, c) => !!(u || e || p1 || p2 || c),
 );

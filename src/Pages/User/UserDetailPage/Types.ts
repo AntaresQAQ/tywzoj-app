@@ -1,7 +1,7 @@
 import { IUserEntityWithExtra } from "@/Common/ServerType/User";
 
 export interface IUserDetailPageState {
-  userDetail: IUserEntityWithExtra;
+    userDetail: IUserEntityWithExtra;
 }
 
 export type IGetUserDetailResponse = IUserEntityWithExtra;

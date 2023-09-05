@@ -1,11 +1,11 @@
 export function loadMarkdownRenderer() {
-  return import("./MarkdownRenderer");
+    return import("./MarkdownRenderer");
 }
 
 export function loadMathRenderer() {
-  return import("./MathRenderer");
+    return import("./MathRenderer");
 }
 
 export function loadKatex() {
-  return import("katex");
+    return import("katex");
 }

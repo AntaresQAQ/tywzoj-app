@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerErrorBadgeIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      ErrorBadge: <ErrorBadgeIcon />,
-    },
-  });
-  return "ErrorBadge";
+    registerIcons({
+        icons: {
+            ErrorBadge: <ErrorBadgeIcon />,
+        },
+    });
+    return "ErrorBadge";
 });

@@ -4,4 +4,4 @@ export const getProblemTestDataFiles = (state: IRootState) => state.problemFileP
 export const getProblemAdditionalFiles = (state: IRootState) => state.problemFilePage.additionalFiles;
 export const getProblemTestDataUploadTasks = (state: IRootState) => state.problemFilePage.testDataUploadTasks;
 export const getProblemAdditionalFileUploadTasks = (state: IRootState) =>
-  state.problemFilePage.additionalFileUploadTasks;
+    state.problemFilePage.additionalFileUploadTasks;

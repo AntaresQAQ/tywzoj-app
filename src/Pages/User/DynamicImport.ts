@@ -1,15 +1,15 @@
 export function loadUserListPage() {
-  return import("./UserListPage");
+    return import("./UserListPage");
 }
 
 export function loadUserDetailPage() {
-  return import("./UserDetailPage");
+    return import("./UserDetailPage");
 }
 
 export function loadUserEditPage() {
-  return import("./UserEditPage");
+    return import("./UserEditPage");
 }
 
 export function loadUserSettingPage() {
-  return import("./UserSettingPage");
+    return import("./UserSettingPage");
 }

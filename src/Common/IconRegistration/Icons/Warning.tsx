@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerWarningIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      Warning: <WarningIcon />,
-    },
-  });
-  return "Warning";
+    registerIcons({
+        icons: {
+            Warning: <WarningIcon />,
+        },
+    });
+    return "Warning";
 });

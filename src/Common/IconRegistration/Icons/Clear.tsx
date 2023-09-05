@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerClearIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      Clear: <ClearIcon />,
-    },
-  });
-  return "Clear";
+    registerIcons({
+        icons: {
+            Clear: <ClearIcon />,
+        },
+    });
+    return "Clear";
 });

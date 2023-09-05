@@ -4,12 +4,12 @@ import { setUserDetailPage } from "@/Pages/User/UserDetailPage/Action";
 import { IUserDetailPageState } from "@/Pages/User/UserDetailPage/Types";
 
 const initialUserDetailPageState: IUserDetailPageState = {
-  userDetail: {},
+    userDetail: {},
 } as unknown as IUserDetailPageState;
 
-export const userDetailPageReducer = createReducer(initialUserDetailPageState, builder => {
-  builder.addCase(setUserDetailPage, (state, action) => ({
-    ...state,
-    ...action.payload,
-  }));
+export const userDetailPageReducer = createReducer(initialUserDetailPageState, (builder) => {
+    builder.addCase(setUserDetailPage, (state, action) => ({
+        ...state,
+        ...action.payload,
+    }));
 });

@@ -12,13 +12,13 @@ const UserEditPageLazy = React.lazy(loadUserEditPage);
 const UserSettingPageLazy = React.lazy(loadUserSettingPage);
 
 export const useUserPageRoutes = () => {
-  return (
-    <>
-      <Route path={CE_Page.UsernameRedirect} element={<UsernameRedirect />} />
-      <Route path={CE_Page.UserEdit} element={<UserEditPageLazy />} />
-      <Route path={CE_Page.UserSetting} element={<UserSettingPageLazy />} />
-      <Route path={CE_Page.UserDetail} element={<UserDetailPageLazy />} />
-      <Route path={CE_Page.User} element={<UserListPageLazy />} />
-    </>
-  );
+    return (
+        <>
+            <Route path={CE_Page.UsernameRedirect} element={<UsernameRedirect />} />
+            <Route path={CE_Page.UserEdit} element={<UserEditPageLazy />} />
+            <Route path={CE_Page.UserSetting} element={<UserSettingPageLazy />} />
+            <Route path={CE_Page.UserDetail} element={<UserDetailPageLazy />} />
+            <Route path={CE_Page.User} element={<UserListPageLazy />} />
+        </>
+    );
 };

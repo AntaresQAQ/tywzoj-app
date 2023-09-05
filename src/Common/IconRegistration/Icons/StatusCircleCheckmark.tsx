@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerStatusCircleCheckmarkIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      StatusCircleCheckmark: <StatusCircleCheckmarkIcon />,
-    },
-  });
-  return "StatusCircleCheckmark";
+    registerIcons({
+        icons: {
+            StatusCircleCheckmark: <StatusCircleCheckmarkIcon />,
+        },
+    });
+    return "StatusCircleCheckmark";
 });

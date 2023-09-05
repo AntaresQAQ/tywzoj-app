@@ -1,5 +1,5 @@
 export const enum CE_QueryKey {
-  LoginRedirect = "redirect",
-  Page = "p",
-  SortBy = "s",
+    LoginRedirect = "redirect",
+    Page = "p",
+    SortBy = "s",
 }

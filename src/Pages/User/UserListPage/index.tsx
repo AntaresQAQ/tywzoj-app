@@ -12,27 +12,27 @@ import { CE_SortBy } from "./Types";
 import { UserListPage } from "./UserListPage";
 
 const configureStore = runOnce(() => {
-  injectDynamicReducer({
-    userListPage: userListPageReducer,
-  });
+    injectDynamicReducer({
+        userListPage: userListPageReducer,
+    });
 });
 configureStore();
 
 const Wrapper: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const takeCount = useAppSelector(state => state.pagination.userList);
-  const qsPage = usePage();
-  const sortBy = useSortBy<CE_SortBy>(state => state.env.sortUserBy);
-  const skipCount = (qsPage - 1) * takeCount;
+    const dispatch = useAppDispatch();
+    const takeCount = useAppSelector((state) => state.pagination.userList);
+    const qsPage = usePage();
+    const sortBy = useSortBy<CE_SortBy>((state) => state.env.sortUserBy);
+    const skipCount = (qsPage - 1) * takeCount;
 
-  const [loading, setLoading] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    setLoading(true);
-    dispatch(fetchUserListAction(sortBy, skipCount, takeCount)).finally(() => setLoading(false));
-  }, [dispatch, skipCount, sortBy, takeCount]);
+    React.useEffect(() => {
+        setLoading(true);
+        dispatch(fetchUserListAction(sortBy, skipCount, takeCount)).finally(() => setLoading(false));
+    }, [dispatch, skipCount, sortBy, takeCount]);
 
-  return <UserListPage loading={loading} takeCount={takeCount} sortBy={sortBy} />;
+    return <UserListPage loading={loading} takeCount={takeCount} sortBy={sortBy} />;
 };
 
 export default Wrapper;

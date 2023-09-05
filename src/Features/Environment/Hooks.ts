@@ -1,12 +1,12 @@
 import { useAppSelector } from "@/Features/Store";
 
 import {
-  getCurrentUser,
-  getIsMiddleScreen,
-  getIsMiniScreen,
-  getIsMobile,
-  getIsMobileView,
-  getIsSmallScreen,
+    getCurrentUser,
+    getIsMiddleScreen,
+    getIsMiniScreen,
+    getIsMobile,
+    getIsMobileView,
+    getIsSmallScreen,
 } from "./Selectors";
 
 export const useIsMobile = () => useAppSelector(getIsMobile);

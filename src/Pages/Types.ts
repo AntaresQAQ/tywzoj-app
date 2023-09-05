@@ -6,18 +6,18 @@ import { IUserDetailPageState } from "./User/UserDetailPage/Types";
 import { IUserListPageState } from "./User/UserListPage/Types";
 
 export interface IPagesState {
-  homePage: unknown;
+    homePage: unknown;
 
-  loginPage: ILoginPageState;
-  registerPage: IRegisterPageState;
-  forgotPasswordPage: unknown;
+    loginPage: ILoginPageState;
+    registerPage: IRegisterPageState;
+    forgotPasswordPage: unknown;
 
-  userListPage: IUserListPageState;
-  userDetailPage: IUserDetailPageState;
-  userEditPage: unknown;
-  userSettingPage: unknown;
+    userListPage: IUserListPageState;
+    userDetailPage: IUserDetailPageState;
+    userEditPage: unknown;
+    userSettingPage: unknown;
 
-  problemListPage: unknown;
-  problemDetailPage: IProblemDetailPageState;
-  problemFilePage: IProblemFilePageState;
+    problemListPage: unknown;
+    problemDetailPage: IProblemDetailPageState;
+    problemFilePage: IProblemFilePageState;
 }

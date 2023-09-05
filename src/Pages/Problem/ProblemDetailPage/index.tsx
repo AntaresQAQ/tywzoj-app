@@ -12,16 +12,16 @@ import { ProblemDetailPage } from "./ProblemDetailPage";
 configureStore();
 
 const Wrapper: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { displayId } = usePageParams<CE_Page.ProblemDetail>();
-  const [loading, setLoading] = React.useState(false);
+    const dispatch = useAppDispatch();
+    const { displayId } = usePageParams<CE_Page.ProblemDetail>();
+    const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    setLoading(true);
-    dispatch(fetchProblemDetailAction(displayId)).finally(() => setLoading(false));
-  }, [dispatch, displayId]);
+    React.useEffect(() => {
+        setLoading(true);
+        dispatch(fetchProblemDetailAction(displayId)).finally(() => setLoading(false));
+    }, [dispatch, displayId]);
 
-  return loading ? <PageLoading /> : <ProblemDetailPage />;
+    return loading ? <PageLoading /> : <ProblemDetailPage />;
 };
 
 export default Wrapper;

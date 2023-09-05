@@ -5,9 +5,9 @@ import { initUserPreferenceConfigAsync } from "@/Features/Initialization";
 import { IAppDispatch } from "@/Features/Store";
 
 export const logoutAction = () => async (dispatch: IAppDispatch) => {
-  await postLogoutRequestAsync();
-  dispatch(setEnvApiBearerToken(null));
-  dispatch(setCurrentUser(null));
-  dispatch(initUserPreference);
-  await dispatch(initUserPreferenceConfigAsync);
+    await postLogoutRequestAsync();
+    dispatch(setEnvApiBearerToken(null));
+    dispatch(setCurrentUser(null));
+    dispatch(initUserPreference);
+    await dispatch(initUserPreferenceConfigAsync);
 };

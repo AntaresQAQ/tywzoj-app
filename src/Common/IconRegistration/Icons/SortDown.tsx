@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerSortDownIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      SortDown: <SortDownIcon />,
-    },
-  });
-  return "SortDown";
+    registerIcons({
+        icons: {
+            SortDown: <SortDownIcon />,
+        },
+    });
+    return "SortDown";
 });

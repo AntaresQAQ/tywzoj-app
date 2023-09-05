@@ -5,17 +5,17 @@ import * as React from "react";
 import { combineAttributes } from "@/Common/Utilities/Attributes";
 
 const styles = mergeStyles({
-  ".ms-Button-icon": {
-    color: "inherit",
-    fontSize: "inherit",
-    height: "unset",
-    span: {
-      verticalAlign: "unset",
+    ".ms-Button-icon": {
+        color: "inherit",
+        fontSize: "inherit",
+        height: "unset",
+        span: {
+            verticalAlign: "unset",
+        },
     },
-  },
 });
 
-export const IconButton: React.FC<IButtonProps> = props => {
-  const cls = combineAttributes(styles, props.className);
-  return <FluentIconButton {...props} className={cls} />;
+export const IconButton: React.FC<IButtonProps> = (props) => {
+    const cls = combineAttributes(styles, props.className);
+    return <FluentIconButton {...props} className={cls} />;
 };

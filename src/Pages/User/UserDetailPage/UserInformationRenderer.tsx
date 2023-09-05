@@ -8,22 +8,22 @@ import { getUserInformationRendererStyles } from "./Styles/UserInformationRender
 const MarkdownRendererLazy = React.lazy(loadMarkdownRenderer);
 
 export interface IUserInformationRenderProps {
-  content: string;
+    content: string;
 }
 
-export const UserInformationRenderer: React.FC<IUserInformationRenderProps> = props => {
-  const { content = "" } = props;
-  const styles = getUserInformationRendererStyles();
+export const UserInformationRenderer: React.FC<IUserInformationRenderProps> = (props) => {
+    const { content = "" } = props;
+    const styles = getUserInformationRendererStyles();
 
-  const renderMarkdown = useAppSelector(state => state.env.renderMarkdownInUserBio);
+    const renderMarkdown = useAppSelector((state) => state.env.renderMarkdownInUserBio);
 
-  return renderMarkdown ? (
-    <div>
-      <MarkdownRendererLazy content={content} />
-    </div>
-  ) : (
-    <div className={styles.content}>{content}</div>
-  );
+    return renderMarkdown ? (
+        <div>
+            <MarkdownRendererLazy content={content} />
+        </div>
+    ) : (
+        <div className={styles.content}>{content}</div>
+    );
 };
 
 export default UserInformationRenderer;

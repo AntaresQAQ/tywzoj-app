@@ -1,3 +1,3 @@
 export function loadHighlighter() {
-  return import("./Highlighter");
+    return import("./Highlighter");
 }

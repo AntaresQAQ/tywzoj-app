@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerChevronLeftIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      ChevronLeft: <ChevronLeftIcon />,
-    },
-  });
-  return "ChevronLeft";
+    registerIcons({
+        icons: {
+            ChevronLeft: <ChevronLeftIcon />,
+        },
+    });
+    return "ChevronLeft";
 });

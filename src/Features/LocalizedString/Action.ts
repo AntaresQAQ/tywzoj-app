@@ -9,16 +9,16 @@ import { getIsRtlLanguage, loadLocaleAsync } from "./Utils";
 
 const UPDATE_LOCALE = "Locale/Update";
 export const setLocale = createAction(UPDATE_LOCALE, (props: Partial<ILocaleState>) => ({
-  payload: props,
+    payload: props,
 }));
 
 export const updateLocaleAction = (lang: CE_Language) => async (dispatch: IAppDispatch) => {
-  const strings = await loadLocaleAsync(lang);
-  dispatch(
-    setLocale({
-      lang: lang,
-      strings: strings,
-    }),
-  );
-  dispatch(setEnv({ isRtl: getIsRtlLanguage(lang) }));
+    const strings = await loadLocaleAsync(lang);
+    dispatch(
+        setLocale({
+            lang: lang,
+            strings: strings,
+        }),
+    );
+    dispatch(setEnv({ isRtl: getIsRtlLanguage(lang) }));
 };

@@ -12,23 +12,23 @@ import { userDetailPageReducer } from "./Reducer";
 import { UserDetailPage } from "./UserDetailPage";
 
 const configureStore = runOnce(() => {
-  injectDynamicReducer({
-    userDetailPage: userDetailPageReducer,
-  });
+    injectDynamicReducer({
+        userDetailPage: userDetailPageReducer,
+    });
 });
 configureStore();
 
 const Wrapper: React.FC = () => {
-  const { id } = usePageParams<CE_Page.UserDetail>();
-  const dispatch = useAppDispatch();
-  const [loading, setLoading] = React.useState(false);
+    const { id } = usePageParams<CE_Page.UserDetail>();
+    const dispatch = useAppDispatch();
+    const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    setLoading(true);
-    dispatch(fetchUserDetailAction(id)).finally(() => setLoading(false));
-  }, [dispatch, id]);
+    React.useEffect(() => {
+        setLoading(true);
+        dispatch(fetchUserDetailAction(id)).finally(() => setLoading(false));
+    }, [dispatch, id]);
 
-  return loading ? <PageLoading /> : <UserDetailPage />;
+    return loading ? <PageLoading /> : <UserDetailPage />;
 };
 
 export default Wrapper;

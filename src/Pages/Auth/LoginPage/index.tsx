@@ -9,18 +9,18 @@ import { LoginPage } from "./LoginPage";
 import { loginPageReducer } from "./Reducer";
 
 const configureStore = runOnce(() => {
-  injectDynamicReducer({ loginPage: loginPageReducer });
+    injectDynamicReducer({ loginPage: loginPageReducer });
 });
 configureStore();
 
 const Wrapper: React.FC = () => {
-  const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
-  React.useEffect(() => {
-    dispatch(initLoginPageState);
-  }, [dispatch]);
+    React.useEffect(() => {
+        dispatch(initLoginPageState);
+    }, [dispatch]);
 
-  return <LoginPage />;
+    return <LoginPage />;
 };
 
 export default Wrapper;

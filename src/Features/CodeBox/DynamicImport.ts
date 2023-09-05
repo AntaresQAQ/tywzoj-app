@@ -1,3 +1,3 @@
 export function loadCodeBox() {
-  return import("./CodeBox");
+    return import("./CodeBox");
 }

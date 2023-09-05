@@ -13,55 +13,55 @@ import { getProblemSamplesStyles } from "./Styles/ProblemSamplesStyles";
 const CodeBoxLazy = React.lazy(loadCodeBox);
 
 export interface IProblemSamplesProps {
-  samples: IProblemSampleEntity[];
-  boxContainerClassName: string;
-  boxTitleClassName: string;
+    samples: IProblemSampleEntity[];
+    boxContainerClassName: string;
+    boxTitleClassName: string;
 }
 
-const SampleBox: React.FC<{ content: string }> = props => {
-  return (
-    <React.Suspense fallback={<Spinner size={SpinnerSize.large} />}>
-      <CodeBoxLazy code={props.content} />
-    </React.Suspense>
-  );
+const SampleBox: React.FC<{ content: string }> = (props) => {
+    return (
+        <React.Suspense fallback={<Spinner size={SpinnerSize.large} />}>
+            <CodeBoxLazy code={props.content} />
+        </React.Suspense>
+    );
 };
 
-export const ProblemSamples: React.FC<IProblemSamplesProps> = props => {
-  const { samples, boxContainerClassName, boxTitleClassName } = props;
+export const ProblemSamples: React.FC<IProblemSamplesProps> = (props) => {
+    const { samples, boxContainerClassName, boxTitleClassName } = props;
 
-  const ls = useLocalizedStrings();
-  const theme = useTheme();
-  const isMiddleScreen = useIsMiddleScreen();
-  const styles = getProblemSamplesStyles(isMiddleScreen);
+    const ls = useLocalizedStrings();
+    const theme = useTheme();
+    const isMiddleScreen = useIsMiddleScreen();
+    const styles = getProblemSamplesStyles(isMiddleScreen);
 
-  return (
-    <>
-      {samples.map((sample, index) => (
-        <div key={sample.id} className={boxContainerClassName}>
-          <h3 className={boxTitleClassName}>{format(ls.LS_PROBLEM_DETAIL_SAMPLE_TITLE, index + 1)}</h3>
-          <Separator customLineColor={theme.palette.neutralTertiaryAlt} />
-          <div className={styles.inOrOutContainer}>
-            {sample.input && (
-              <div className={styles.inOrOut}>
-                <h4 className={styles.title}>{ls.LS_PROBLEM_DETAIL_SAMPLE_INPUT}</h4>
-                <SampleBox content={sample.input} />
-              </div>
-            )}
-            {sample.output && (
-              <div className={styles.inOrOut}>
-                <h4 className={styles.title}>{ls.LS_PROBLEM_DETAIL_SAMPLE_OUTPUT}</h4>
-                <SampleBox content={sample.output} />
-              </div>
-            )}
-          </div>
-          {sample.explanation && (
-            <div className={styles.exp}>
-              <h4 className={styles.title}>{ls.LS_PROBLEM_DETAIL_SAMPLE_EXP}</h4>
-              <ProblemContentRenderer content={sample.explanation} />
-            </div>
-          )}
-        </div>
-      ))}
-    </>
-  );
+    return (
+        <>
+            {samples.map((sample, index) => (
+                <div key={sample.id} className={boxContainerClassName}>
+                    <h3 className={boxTitleClassName}>{format(ls.LS_PROBLEM_DETAIL_SAMPLE_TITLE, index + 1)}</h3>
+                    <Separator customLineColor={theme.palette.neutralTertiaryAlt} />
+                    <div className={styles.inOrOutContainer}>
+                        {sample.input && (
+                            <div className={styles.inOrOut}>
+                                <h4 className={styles.title}>{ls.LS_PROBLEM_DETAIL_SAMPLE_INPUT}</h4>
+                                <SampleBox content={sample.input} />
+                            </div>
+                        )}
+                        {sample.output && (
+                            <div className={styles.inOrOut}>
+                                <h4 className={styles.title}>{ls.LS_PROBLEM_DETAIL_SAMPLE_OUTPUT}</h4>
+                                <SampleBox content={sample.output} />
+                            </div>
+                        )}
+                    </div>
+                    {sample.explanation && (
+                        <div className={styles.exp}>
+                            <h4 className={styles.title}>{ls.LS_PROBLEM_DETAIL_SAMPLE_EXP}</h4>
+                            <ProblemContentRenderer content={sample.explanation} />
+                        </div>
+                    )}
+                </div>
+            ))}
+        </>
+    );
 };

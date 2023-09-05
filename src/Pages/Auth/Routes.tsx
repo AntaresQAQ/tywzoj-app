@@ -11,32 +11,32 @@ const RegisterPageLazy = React.lazy(loadRegisterPage);
 const ForgotPasswordPageLazy = React.lazy(loadForgotPasswordPage);
 
 export const useAuthPageRoutes = () => {
-  return (
-    <>
-      <Route
-        path={CE_Page.Login}
-        element={
-          <AuthedRedirect>
-            <LoginPageLazy />
-          </AuthedRedirect>
-        }
-      />
-      <Route
-        path={CE_Page.Register}
-        element={
-          <AuthedRedirect>
-            <RegisterPageLazy />
-          </AuthedRedirect>
-        }
-      />
-      <Route
-        path={CE_Page.ForgotPassword}
-        element={
-          <AuthedRedirect>
-            <ForgotPasswordPageLazy />
-          </AuthedRedirect>
-        }
-      />
-    </>
-  );
+    return (
+        <>
+            <Route
+                path={CE_Page.Login}
+                element={
+                    <AuthedRedirect>
+                        <LoginPageLazy />
+                    </AuthedRedirect>
+                }
+            />
+            <Route
+                path={CE_Page.Register}
+                element={
+                    <AuthedRedirect>
+                        <RegisterPageLazy />
+                    </AuthedRedirect>
+                }
+            />
+            <Route
+                path={CE_Page.ForgotPassword}
+                element={
+                    <AuthedRedirect>
+                        <ForgotPasswordPageLazy />
+                    </AuthedRedirect>
+                }
+            />
+        </>
+    );
 };

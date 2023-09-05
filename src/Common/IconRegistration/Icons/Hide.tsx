@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerHideIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      Hide: <HideIcon />,
-    },
-  });
-  return "Hide";
+    registerIcons({
+        icons: {
+            Hide: <HideIcon />,
+        },
+    });
+    return "Hide";
 });

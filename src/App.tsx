@@ -16,48 +16,48 @@ import { AppRoutes } from "@/Features/Router/Routes";
 import { useAppSelector } from "@/Features/Store";
 
 export const App: React.FC = () => {
-  const themeName = useAppSelector(getThemeName);
-  const siteName = useAppSelector(getSiteName);
-  const pageName = useAppSelector(getPageName);
-  const lang = useAppSelector(getLanguage);
-  const isRtl = useAppSelector(getIsRtl);
-  const recaptchaEnabled = useAppSelector(state => state.env.recaptchaEnabled);
-  const useRecaptchaNet = useAppSelector(state => state.env.useRecaptchaNet);
-  const recaptchaKey = useAppSelector(getRecaptchaKey);
+    const themeName = useAppSelector(getThemeName);
+    const siteName = useAppSelector(getSiteName);
+    const pageName = useAppSelector(getPageName);
+    const lang = useAppSelector(getLanguage);
+    const isRtl = useAppSelector(getIsRtl);
+    const recaptchaEnabled = useAppSelector((state) => state.env.recaptchaEnabled);
+    const useRecaptchaNet = useAppSelector((state) => state.env.useRecaptchaNet);
+    const recaptchaKey = useAppSelector(getRecaptchaKey);
 
-  React.useEffect(() => {
-    document.title = pageName ? `${pageName} - ${siteName}` : siteName;
-  }, [pageName, siteName]);
+    React.useEffect(() => {
+        document.title = pageName ? `${pageName} - ${siteName}` : siteName;
+    }, [pageName, siteName]);
 
-  React.useEffect(() => {
-    document.documentElement.dir = document.body.dir = isRtl ? "rtl" : "ltr";
-    document.documentElement.lang = fluentUILanguageMap[lang];
-  }, [isRtl, lang]);
+    React.useEffect(() => {
+        document.documentElement.dir = document.body.dir = isRtl ? "rtl" : "ltr";
+        document.documentElement.lang = fluentUILanguageMap[lang];
+    }, [isRtl, lang]);
 
-  const innerElements = React.useMemo(
-    () => (
-      <ThemeProvider theme={getTheme(themeName)} style={{ height: "100%" }} dir={isRtl ? "rtl" : "ltr"}>
-        <BrowserRouter>
-          <AppLayout>
-            <AppErrorBoundary>
-              <AppRoutes />
-            </AppErrorBoundary>
-          </AppLayout>
-        </BrowserRouter>
-      </ThemeProvider>
-    ),
-    [isRtl, themeName],
-  );
+    const innerElements = React.useMemo(
+        () => (
+            <ThemeProvider theme={getTheme(themeName)} style={{ height: "100%" }} dir={isRtl ? "rtl" : "ltr"}>
+                <BrowserRouter>
+                    <AppLayout>
+                        <AppErrorBoundary>
+                            <AppRoutes />
+                        </AppErrorBoundary>
+                    </AppLayout>
+                </BrowserRouter>
+            </ThemeProvider>
+        ),
+        [isRtl, themeName],
+    );
 
-  return recaptchaEnabled ? (
-    <GoogleReCaptchaProvider
-      reCaptchaKey={recaptchaKey}
-      useRecaptchaNet={useRecaptchaNet}
-      language={recaptchaLanguageMap[lang]}
-    >
-      {innerElements}
-    </GoogleReCaptchaProvider>
-  ) : (
-    innerElements
-  );
+    return recaptchaEnabled ? (
+        <GoogleReCaptchaProvider
+            reCaptchaKey={recaptchaKey}
+            useRecaptchaNet={useRecaptchaNet}
+            language={recaptchaLanguageMap[lang]}
+        >
+            {innerElements}
+        </GoogleReCaptchaProvider>
+    ) : (
+        innerElements
+    );
 };

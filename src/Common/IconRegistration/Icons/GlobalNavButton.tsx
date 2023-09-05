@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerGlobalNavButtonIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      GlobalNavButton: <GlobalNavButtonIcon />,
-    },
-  });
-  return "GlobalNavButton";
+    registerIcons({
+        icons: {
+            GlobalNavButton: <GlobalNavButtonIcon />,
+        },
+    });
+    return "GlobalNavButton";
 });

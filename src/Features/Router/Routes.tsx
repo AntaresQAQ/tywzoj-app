@@ -9,13 +9,13 @@ import { useProblemRoutes } from "@/Pages/Problem/Routes";
 import { useUserPageRoutes } from "@/Pages/User/Routes";
 
 export const AppRoutes: React.FC = () => {
-  return (
-    <Routes>
-      {useHomePageRoutes()}
-      {useProblemRoutes()}
-      {useAuthPageRoutes()}
-      {useUserPageRoutes()}
-      <Route path="*" element={<ErrorPage code={CE_ErrorCode.NotFound} />} />
-    </Routes>
-  );
+    return (
+        <Routes>
+            {useHomePageRoutes()}
+            {useProblemRoutes()}
+            {useAuthPageRoutes()}
+            {useUserPageRoutes()}
+            <Route path="*" element={<ErrorPage code={CE_ErrorCode.NotFound} />} />
+        </Routes>
+    );
 };

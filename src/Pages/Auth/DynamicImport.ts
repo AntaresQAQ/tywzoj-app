@@ -1,11 +1,11 @@
 export function loadLoginPage() {
-  return import("./LoginPage");
+    return import("./LoginPage");
 }
 
 export function loadRegisterPage() {
-  return import("./RegisterPage");
+    return import("./RegisterPage");
 }
 
 export function loadForgotPasswordPage() {
-  return import("./ForgotPasswordPage");
+    return import("./ForgotPasswordPage");
 }

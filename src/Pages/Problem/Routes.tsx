@@ -9,11 +9,11 @@ const ProblemDetailPageLazy = React.lazy(loadProblemDetailPage);
 const ProblemFilePageLazy = React.lazy(loadProblemFilePage);
 
 export const useProblemRoutes = () => {
-  return (
-    <>
-      <Route path={CE_Page.Problem} />
-      <Route path={CE_Page.ProblemDetail} element={<ProblemDetailPageLazy />} />
-      <Route path={CE_Page.ProblemFile} element={<ProblemFilePageLazy />} />
-    </>
-  );
+    return (
+        <>
+            <Route path={CE_Page.Problem} />
+            <Route path={CE_Page.ProblemDetail} element={<ProblemDetailPageLazy />} />
+            <Route path={CE_Page.ProblemFile} element={<ProblemFilePageLazy />} />
+        </>
+    );
 };

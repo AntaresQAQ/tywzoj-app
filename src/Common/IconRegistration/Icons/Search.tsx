@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerSearchIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      Search: <SearchIcon />,
-    },
-  });
-  return "Search";
+    registerIcons({
+        icons: {
+            Search: <SearchIcon />,
+        },
+    });
+    return "Search";
 });

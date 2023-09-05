@@ -2,21 +2,21 @@ import { ISeparatorProps as IFluentSeparatorProps, Separator as FluentSeparator,
 import * as React from "react";
 
 export interface ISeparatorProps extends IFluentSeparatorProps {
-  customLineColor?: string;
+    customLineColor?: string;
 }
 
-export const Separator: React.FC<ISeparatorProps> = props => {
-  const theme = useTheme();
-  return (
-    <FluentSeparator
-      {...props}
-      theme={{
-        ...theme,
-        palette: {
-          ...theme.palette,
-          neutralLighter: props.customLineColor ?? theme.palette.neutralLighter,
-        },
-      }}
-    />
-  );
+export const Separator: React.FC<ISeparatorProps> = (props) => {
+    const theme = useTheme();
+    return (
+        <FluentSeparator
+            {...props}
+            theme={{
+                ...theme,
+                palette: {
+                    ...theme.palette,
+                    neutralLighter: props.customLineColor ?? theme.palette.neutralLighter,
+                },
+            }}
+        />
+    );
 };

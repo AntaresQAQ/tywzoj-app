@@ -1,7 +1,7 @@
 export function getAppBuildInfo() {
-  return window.appBuildInfo;
+    return window.appBuildInfo;
 }
 
 export function getClientVersion() {
-  return getAppBuildInfo().clientVersion;
+    return getAppBuildInfo().clientVersion;
 }

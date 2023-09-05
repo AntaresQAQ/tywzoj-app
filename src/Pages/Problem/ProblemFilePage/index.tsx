@@ -15,16 +15,16 @@ configureProblemDetailPageStore();
 configureStore();
 
 const Wrapper: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { id } = usePageParams<CE_Page.ProblemFile>();
-  const [loading, setLoading] = React.useState(false);
+    const dispatch = useAppDispatch();
+    const { id } = usePageParams<CE_Page.ProblemFile>();
+    const [loading, setLoading] = React.useState(false);
 
-  React.useEffect(() => {
-    setLoading(true);
-    dispatch(fetchProblemFileWithDetailAction(id)).finally(() => setLoading(false));
-  }, [dispatch, id]);
+    React.useEffect(() => {
+        setLoading(true);
+        dispatch(fetchProblemFileWithDetailAction(id)).finally(() => setLoading(false));
+    }, [dispatch, id]);
 
-  return loading ? <PageLoading /> : <ProblemFilePage />;
+    return loading ? <PageLoading /> : <ProblemFilePage />;
 };
 
 export default Wrapper;

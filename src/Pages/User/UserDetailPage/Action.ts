@@ -8,16 +8,16 @@ import { IUserDetailPageState } from "./Types";
 const UPDATE_USER_DETAIL_PAGE = "UserDetailPage/Update";
 
 export const setUserDetailPage = createAction(UPDATE_USER_DETAIL_PAGE, (props: Partial<IUserDetailPageState>) => ({
-  payload: props,
+    payload: props,
 }));
 
 export const fetchUserDetailAction = (id: string) => async (dispatch: IAppDispatch) => {
-  const { data, error } = await getUserDetailRequestAsync(id);
-  if (error) return false;
-  dispatch(
-    setUserDetailPage({
-      userDetail: data,
-    }),
-  );
-  return true;
+    const { data, error } = await getUserDetailRequestAsync(id);
+    if (error) return false;
+    dispatch(
+        setUserDetailPage({
+            userDetail: data,
+        }),
+    );
+    return true;
 };

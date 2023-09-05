@@ -7,14 +7,14 @@ import { makeUrl } from "@/Common/Utilities/Url";
 import { getUserSearchByUsernameRequestAsync } from "@/Pages/User/UsernameRedirect/Request";
 
 export const UsernameRedirect: React.FC = () => {
-  const { username } = useParams<IPageParams[CE_Page.UsernameRedirect]>();
-  const navigate = useNavigate();
+    const { username } = useParams<IPageParams[CE_Page.UsernameRedirect]>();
+    const navigate = useNavigate();
 
-  React.useEffect(() => {
-    getUserSearchByUsernameRequestAsync(username).then(id => {
-      id && navigate(makeUrl({ page: CE_Page.UserDetail, params: { id } }));
-    });
-  }, [navigate, username]);
+    React.useEffect(() => {
+        getUserSearchByUsernameRequestAsync(username).then((id) => {
+            id && navigate(makeUrl({ page: CE_Page.UserDetail, params: { id } }));
+        });
+    }, [navigate, username]);
 
-  return null;
+    return null;
 };

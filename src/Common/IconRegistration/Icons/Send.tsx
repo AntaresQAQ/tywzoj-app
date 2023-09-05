@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerSendIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      Send: <SendIcon />,
-    },
-  });
-  return "Send";
+    registerIcons({
+        icons: {
+            Send: <SendIcon />,
+        },
+    });
+    return "Send";
 });

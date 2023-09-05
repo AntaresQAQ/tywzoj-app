@@ -5,10 +5,10 @@ import * as React from "react";
 import { runOnce } from "@/Common/Utilities/Tools";
 
 export const registerCircleRingIcon = runOnce(() => {
-  registerIcons({
-    icons: {
-      CircleRing: <CircleRingIcon />,
-    },
-  });
-  return "CircleRing";
+    registerIcons({
+        icons: {
+            CircleRing: <CircleRingIcon />,
+        },
+    });
+    return "CircleRing";
 });

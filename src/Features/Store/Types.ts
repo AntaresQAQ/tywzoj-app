@@ -4,13 +4,13 @@ import { ILocaleState } from "@/Features/LocalizedString/Types";
 import { IPagesState } from "@/Pages/Types";
 
 export interface IStaticReducerMap {
-  // Global reducers
-  env: IEnvState;
-  pagination: IPaginationState;
-  version: IVersionState;
-  currentUser: ICurrentUserState;
-  locale: ILocaleState;
-  error: IErrorState;
+    // Global reducers
+    env: IEnvState;
+    pagination: IPaginationState;
+    version: IVersionState;
+    currentUser: ICurrentUserState;
+    locale: ILocaleState;
+    error: IErrorState;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
