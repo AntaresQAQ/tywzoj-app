@@ -13,9 +13,9 @@ export const useLoginProps = () => {
     const username = useAppSelector(getLoginPageUsername);
     const email = useAppSelector(getLoginPageEmail);
     const password = useAppSelector(getLoginPagePassword);
-    const isLoading = useAppSelector((state) => state.loginPage.loading);
-    const uErr = useAppSelector((state) => state.loginPage.uError);
-    const pErr = useAppSelector((state) => state.loginPage.pError);
+    const isLoading = useAppSelector(state => state.loginPage.loading);
+    const uErr = useAppSelector(state => state.loginPage.uError);
+    const pErr = useAppSelector(state => state.loginPage.pError);
     const recaptcha = useRecaptcha();
 
     const usernameOrEmail = loginType === CE_LoginType.Username ? username : email;

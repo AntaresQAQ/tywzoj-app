@@ -7,7 +7,7 @@ const initialUserDetailPageState: IUserDetailPageState = {
     userDetail: {},
 } as unknown as IUserDetailPageState;
 
-export const userDetailPageReducer = createReducer(initialUserDetailPageState, (builder) => {
+export const userDetailPageReducer = createReducer(initialUserDetailPageState, builder => {
     builder.addCase(setUserDetailPage, (state, action) => ({
         ...state,
         ...action.payload,

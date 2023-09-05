@@ -5,7 +5,7 @@ export interface ISeparatorProps extends IFluentSeparatorProps {
     customLineColor?: string;
 }
 
-export const Separator: React.FC<ISeparatorProps> = (props) => {
+export const Separator: React.FC<ISeparatorProps> = props => {
     const theme = useTheme();
     return (
         <FluentSeparator

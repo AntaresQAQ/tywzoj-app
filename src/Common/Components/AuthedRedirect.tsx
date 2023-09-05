@@ -10,7 +10,7 @@ export interface IAuthRedirectProps {
     children?: React.ReactElement;
 }
 
-export const AuthedRedirect: React.FC<IAuthRedirectProps> = (props) => {
+export const AuthedRedirect: React.FC<IAuthRedirectProps> = props => {
     const currentUser = useCurrentUser();
     const redirectTo = useQuery<string>(CE_QueryKey.LoginRedirect) || CE_Page.Home;
 

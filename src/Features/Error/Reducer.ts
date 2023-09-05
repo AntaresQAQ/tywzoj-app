@@ -7,7 +7,7 @@ export const initialErrorState: IErrorState = {
     code: null,
 };
 
-export const errorReducer = createReducer<IErrorState>(initialErrorState, (builder) => {
+export const errorReducer = createReducer<IErrorState>(initialErrorState, builder => {
     builder
         .addCase(catchError, (state, action) => ({
             ...state,

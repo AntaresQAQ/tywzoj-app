@@ -13,7 +13,7 @@ export interface IUserLevelLabelProps {
     level: CE_UserLevel;
 }
 
-export const UserLevelLabel: React.FC<IUserLevelLabelProps> = (props) => {
+export const UserLevelLabel: React.FC<IUserLevelLabelProps> = props => {
     const { className, level } = props;
     const userLevelText = useUserLevelText();
     const theme = useTheme();

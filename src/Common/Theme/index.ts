@@ -36,7 +36,7 @@ export function initTheme(dispatch: IAppDispatch, getState: () => IRootState) {
         dispatch(setTheme(userPreferenceTheme));
     } else if (matchMediaDarkTheme) {
         dispatch(setTheme(matchMediaDarkTheme.matches ? CE_ThemeName.Dark : CE_ThemeName.Light));
-        callback = (e) => dispatch(setTheme(e.matches ? CE_ThemeName.Dark : CE_ThemeName.Light));
+        callback = e => dispatch(setTheme(e.matches ? CE_ThemeName.Dark : CE_ThemeName.Light));
         matchMediaDarkTheme.addEventListener("change", callback);
     }
 }

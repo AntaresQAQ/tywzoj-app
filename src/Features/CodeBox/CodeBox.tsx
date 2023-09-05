@@ -16,7 +16,7 @@ export interface ICodeBoxProps {
 
 let highlighterModule: PromiseInnerType<ReturnType<typeof loadHighlighter>>;
 
-export const CodeBox: React.FC<ICodeBoxProps> = (props) => {
+export const CodeBox: React.FC<ICodeBoxProps> = props => {
     const { code, lang = "plaintext", className } = props;
 
     const themeName = useAppSelector(getThemeName);
@@ -26,7 +26,7 @@ export const CodeBox: React.FC<ICodeBoxProps> = (props) => {
     React.useEffect(() => {
         setPending(true);
         renderAsync(code, lang, themeName)
-            .then((h) => setHtml(h))
+            .then(h => setHtml(h))
             .finally(() => setPending(false));
     }, [code, lang, themeName]);
 

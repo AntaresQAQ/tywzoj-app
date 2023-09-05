@@ -30,7 +30,7 @@ interface INavItem {
     icon: JSX.Element;
 }
 
-export const AppNav: React.FC<IAppNavProps> = (props) => {
+export const AppNav: React.FC<IAppNavProps> = props => {
     const { onNavLinkClick } = props;
 
     const theme = useTheme();

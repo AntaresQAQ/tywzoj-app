@@ -26,7 +26,7 @@ const NavLazy = React.lazy(loadNav);
 const FooterLazy = React.lazy(loadFooter);
 const UserMenuLazy = React.lazy(loadUserMenu);
 
-export const AppLayout: React.FC<IAppLayoutProps> = (props) => {
+export const AppLayout: React.FC<IAppLayoutProps> = props => {
     const ls = useLocalizedStrings();
     const theme = useTheme();
     const isMobileView = useIsMobileView();

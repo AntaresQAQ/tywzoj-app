@@ -60,10 +60,10 @@ const deleteIcon = registerDeleteIcon();
 const downloadIcon = registerDownloadIcon();
 const uploadIcon = registerUploadIcon();
 
-const ProblemFileTypeIcon: React.FC<{ filename: string }> = (props) =>
+const ProblemFileTypeIcon: React.FC<{ filename: string }> = props =>
     useFileTypeIcon(props.filename, { style: { fontSize: 16 } });
 
-export const ProblemFileList: React.FC<IProblemFileListProps> = (props) => {
+export const ProblemFileList: React.FC<IProblemFileListProps> = props => {
     const { files = [], uploadTasks = [], onUpload } = props;
 
     const theme = useTheme();
@@ -76,7 +76,7 @@ export const ProblemFileList: React.FC<IProblemFileListProps> = (props) => {
                 name: "File Type",
                 minWidth: 16,
                 maxWidth: 16,
-                onRender: (item) => <ProblemFileTypeIcon filename={item.filename} />,
+                onRender: item => <ProblemFileTypeIcon filename={item.filename} />,
                 onRenderHeader: () => <PageIcon style={{ fontSize: 16 }} />,
             },
             {
@@ -98,7 +98,7 @@ export const ProblemFileList: React.FC<IProblemFileListProps> = (props) => {
 
     const problemFiles = React.useMemo(
         (): IProblemFileItem[] =>
-            files.map((file) => ({
+            files.map(file => ({
                 filename: file.filename,
                 size: file.file && humanFileSize(file.file.size),
                 uuid: file.uuid,
@@ -125,7 +125,7 @@ export const ProblemFileList: React.FC<IProblemFileListProps> = (props) => {
                 fieldName: "state",
                 name: "state",
                 minWidth: 100,
-                onRender: (item) => (item.state === CE_UploadingState.WAITING ? "Waiting" : "Uploading"),
+                onRender: item => (item.state === CE_UploadingState.WAITING ? "Waiting" : "Uploading"),
             },
             {
                 key: "p",
@@ -138,7 +138,7 @@ export const ProblemFileList: React.FC<IProblemFileListProps> = (props) => {
     );
 
     const uploadingQueue = React.useMemo(
-        (): IUploadingQueueItem[] => uploadTasks.filter((task) => task.state !== CE_UploadingState.SUCCEED),
+        (): IUploadingQueueItem[] => uploadTasks.filter(task => task.state !== CE_UploadingState.SUCCEED),
         [uploadTasks],
     );
 

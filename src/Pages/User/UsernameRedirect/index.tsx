@@ -11,7 +11,7 @@ export const UsernameRedirect: React.FC = () => {
     const navigate = useNavigate();
 
     React.useEffect(() => {
-        getUserSearchByUsernameRequestAsync(username).then((id) => {
+        getUserSearchByUsernameRequestAsync(username).then(id => {
             id && navigate(makeUrl({ page: CE_Page.UserDetail, params: { id } }));
         });
     }, [navigate, username]);

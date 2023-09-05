@@ -17,9 +17,9 @@ export const AppFooter: React.FC = () => {
     const isSmallScreen = useIsSmallScreen();
     const styles = getFooterStyles(theme);
     const siteName = useAppSelector(getSiteName);
-    const version = useAppSelector((state) => state.version);
-    const domainIcpRecord = useAppSelector((state) => state.env.domainIcpRecordInformation);
-    const serverTimeDiff = useAppSelector((state) => state.env.serverTimeDiff);
+    const version = useAppSelector(state => state.version);
+    const domainIcpRecord = useAppSelector(state => state.env.domainIcpRecordInformation);
+    const serverTimeDiff = useAppSelector(state => state.env.serverTimeDiff);
     const recaptchaMessage = useRecaptchaCopyrightMessage(styles.recaptcha);
     const momentFormatter = useMomentFormatter();
 

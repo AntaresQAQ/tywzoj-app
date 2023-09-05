@@ -11,7 +11,7 @@ const initialProblemFilePageState: IProblemFilePageState = {
     testDataUploadTasks: [],
 };
 
-export const problemFilePageReducer = createReducer(initialProblemFilePageState, (builder) => {
+export const problemFilePageReducer = createReducer(initialProblemFilePageState, builder => {
     builder.addCase(setProblemFilePage, (state, action) => ({
         ...state,
         ...action.payload,

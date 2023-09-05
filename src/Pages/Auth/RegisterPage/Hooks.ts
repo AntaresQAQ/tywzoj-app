@@ -29,8 +29,8 @@ export const useRegisterProps = () => {
     const recaptcha = useRecaptcha();
 
     const requireEmailVerification = useAppSelector(getRequireEmailVerification);
-    const loading = useAppSelector((state) => state.registerPage.loading);
-    const sendCodeTime = useAppSelector((state) => state.registerPage.sendCodeTime);
+    const loading = useAppSelector(state => state.registerPage.loading);
+    const sendCodeTime = useAppSelector(state => state.registerPage.sendCodeTime);
 
     const username = useAppSelector(getRegisterPageUsername);
     const email = useAppSelector(getRegisterPageEmail);
@@ -128,7 +128,7 @@ export const useRegisterProps = () => {
 
 export const useSendingCodeError = () => {
     const dispatch = useAppDispatch();
-    const err = useAppSelector((state) => state.registerPage.sError);
+    const err = useAppSelector(state => state.registerPage.sError);
     const timeout = React.useRef<number>(null);
 
     React.useEffect(() => {

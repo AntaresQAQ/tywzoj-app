@@ -15,7 +15,7 @@ const styles = mergeStyles({
     },
 });
 
-export const IconButton: React.FC<IButtonProps> = (props) => {
+export const IconButton: React.FC<IButtonProps> = props => {
     const cls = combineAttributes(styles, props.className);
     return <FluentIconButton {...props} className={cls} />;
 };

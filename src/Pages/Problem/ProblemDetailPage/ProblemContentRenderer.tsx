@@ -8,7 +8,7 @@ export interface IProblemContentRendererProps {
     content: string;
 }
 
-export const ProblemContentRenderer: React.FC<IProblemContentRendererProps> = (props) => {
+export const ProblemContentRenderer: React.FC<IProblemContentRendererProps> = props => {
     return (
         <React.Suspense fallback={<Spinner size={SpinnerSize.large} />}>
             <MarkdownRendererLazy content={props.content} />

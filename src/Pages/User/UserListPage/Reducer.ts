@@ -9,7 +9,7 @@ const initialUserListPageState: IUserListPageState = {
     userSearchResults: [],
 };
 
-export const userListPageReducer = createReducer(initialUserListPageState, (builder) => {
+export const userListPageReducer = createReducer(initialUserListPageState, builder => {
     builder.addCase(setUserListPage, (state, action) => ({
         ...state,
         ...action.payload,

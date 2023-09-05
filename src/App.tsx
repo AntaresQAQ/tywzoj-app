@@ -21,8 +21,8 @@ export const App: React.FC = () => {
     const pageName = useAppSelector(getPageName);
     const lang = useAppSelector(getLanguage);
     const isRtl = useAppSelector(getIsRtl);
-    const recaptchaEnabled = useAppSelector((state) => state.env.recaptchaEnabled);
-    const useRecaptchaNet = useAppSelector((state) => state.env.useRecaptchaNet);
+    const recaptchaEnabled = useAppSelector(state => state.env.recaptchaEnabled);
+    const useRecaptchaNet = useAppSelector(state => state.env.useRecaptchaNet);
     const recaptchaKey = useAppSelector(getRecaptchaKey);
 
     React.useEffect(() => {

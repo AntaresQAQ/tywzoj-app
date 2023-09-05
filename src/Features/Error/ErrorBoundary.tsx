@@ -30,7 +30,7 @@ export class GlobalErrorBoundary extends React.Component<IProps> {
     }
 }
 
-export const AppErrorBoundary: React.FC<IProps> = (props) => {
+export const AppErrorBoundary: React.FC<IProps> = props => {
     const errorCode = useAppSelector(getErrorCode);
     const navigate = useNavigate();
     const dispatch = useAppDispatch();

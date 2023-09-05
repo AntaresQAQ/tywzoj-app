@@ -35,7 +35,7 @@ registerSortUpIcon();
 // but I don't have time to fix it,
 // and will be fixed in the future
 // TODO: rewrite this component
-export const UserListTable: React.FC<IUserListTableProps> = (props) => {
+export const UserListTable: React.FC<IUserListTableProps> = props => {
     const { userList, sortBy, setSortBy, onClickUser, className, loading } = props;
 
     const isMiniScreen = useIsMiniScreen();
@@ -144,7 +144,7 @@ export const UserListTable: React.FC<IUserListTableProps> = (props) => {
         return cols;
     }, [isMiddleScreen, isMiniScreen, isSmallScreen, loading, ls, setSortBy, sortBy]);
 
-    const items = React.useMemo(() => userList.map((user) => (loading ? null : user)), [loading, userList]);
+    const items = React.useMemo(() => userList.map(user => (loading ? null : user)), [loading, userList]);
 
     return (
         <ShimmeredDetailsList
@@ -154,7 +154,7 @@ export const UserListTable: React.FC<IUserListTableProps> = (props) => {
             layoutMode={DetailsListLayoutMode.justified}
             className={className}
             enableShimmer={loading && !userList.length}
-            onActiveItemChanged={(item) => onClickUser && onClickUser(item)}
+            onActiveItemChanged={item => onClickUser && onClickUser(item)}
         />
     );
 };

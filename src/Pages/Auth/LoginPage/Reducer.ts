@@ -14,7 +14,7 @@ const initialLoginPageState: ILoginPageState = {
     pError: null,
 };
 
-export const loginPageReducer = createReducer<ILoginPageState>(initialLoginPageState, (builder) => {
+export const loginPageReducer = createReducer<ILoginPageState>(initialLoginPageState, builder => {
     builder.addCase(setLoginPageState, (state, action) => ({
         ...state,
         ...action.payload,

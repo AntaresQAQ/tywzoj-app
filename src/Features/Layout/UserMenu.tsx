@@ -55,7 +55,7 @@ export const AppUserMenu: React.FC = () => {
     const hideUserMenu = useEventCallback(() => setIsShowUserMenu(false));
     const onUserClick = useEventCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        setIsShowUserMenu((s) => !s);
+        setIsShowUserMenu(s => !s);
     });
 
     const onSignInClick = React.useCallback(() => {

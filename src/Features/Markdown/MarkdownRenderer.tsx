@@ -33,7 +33,7 @@ export interface IMarkdownRendererProps {
     patcher?: IMarkdownContentPatcher;
 }
 
-export const MarkdownRenderer: React.FC<IMarkdownRendererProps> = (props) => {
+export const MarkdownRenderer: React.FC<IMarkdownRendererProps> = props => {
     const { content = "", className, noSanitize = false, patcher = {} } = props;
 
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ export const MarkdownRenderer: React.FC<IMarkdownRendererProps> = (props) => {
     React.useEffect(() => {
         setPending(true);
         renderAsync(content, noSanitize, patcher, themeName)
-            .then((h) => setHtml(h))
+            .then(h => setHtml(h))
             .finally(() => setPending(false));
     }, [content, noSanitize, patcher, themeName]);
 
@@ -82,7 +82,7 @@ export const MarkdownRenderer: React.FC<IMarkdownRendererProps> = (props) => {
         const { onPatchResult } = patcher;
         if (onPatchResult && wrapperElement) cleanCallbacks.push(onPatchResult(wrapperElement));
 
-        return () => cleanCallbacks.forEach((fn) => fn && fn());
+        return () => cleanCallbacks.forEach(fn => fn && fn());
     }, [navigate, patcher, wrapperElement]);
 
     return pending ? (
@@ -131,7 +131,7 @@ async function renderAsync(
     }
 
     // Patch <a> tags for security reason
-    Array.from(wrapper.getElementsByTagName("a")).forEach((a) => {
+    Array.from(wrapper.getElementsByTagName("a")).forEach(a => {
         a.relList.add("noreferrer", "noreferrer");
         if (!parseUrlIfSameOrigin(a.href)) a.target = "_blank";
     });

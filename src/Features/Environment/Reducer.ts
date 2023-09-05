@@ -22,7 +22,7 @@ const versionInitialState: IVersionState = {
 const paginationInitialState: IPaginationState = null as unknown as IPaginationState;
 const currentUserInitialState: ICurrentUserState = null as unknown as ICurrentUserState;
 
-export const envReducer = createReducer<IEnvState>(envInitialState, (builder) => {
+export const envReducer = createReducer<IEnvState>(envInitialState, builder => {
     builder.addCase(setEnv, (state, action) => {
         return {
             ...state,
@@ -31,7 +31,7 @@ export const envReducer = createReducer<IEnvState>(envInitialState, (builder) =>
     });
 });
 
-export const versionReducer = createReducer<IVersionState>(versionInitialState, (builder) => {
+export const versionReducer = createReducer<IVersionState>(versionInitialState, builder => {
     builder
         .addCase(setServerVersion, (state, action) => ({
             ...state,
@@ -43,10 +43,10 @@ export const versionReducer = createReducer<IVersionState>(versionInitialState, 
         }));
 });
 
-export const paginationReducer = createReducer<IPaginationState>(paginationInitialState, (builder) => {
+export const paginationReducer = createReducer<IPaginationState>(paginationInitialState, builder => {
     builder.addCase(setPagination, (state, action) => action.payload);
 });
 
-export const currentUserReducer = createReducer<ICurrentUserState>(currentUserInitialState, (builder) => {
+export const currentUserReducer = createReducer<ICurrentUserState>(currentUserInitialState, builder => {
     builder.addCase(setCurrentUser, (state, action) => action.payload);
 });

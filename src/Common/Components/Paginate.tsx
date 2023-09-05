@@ -77,7 +77,7 @@ const PageButton: React.FC<{
     disabled?: boolean;
     ariaLabel?: string;
     tooltip?: string;
-}> = (props) => {
+}> = props => {
     const { children, isActive = false, disabled = false, ariaLabel, tooltip, onClick } = props;
     const tooltipId = useId();
     const theme = useTheme();
@@ -117,7 +117,7 @@ const MoreButton: React.FC<{
     end: number;
     onPageClick: (p: number) => void;
     disabled?: boolean;
-}> = (props) => {
+}> = props => {
     const { start, end, onPageClick, disabled } = props;
     const ls = useLocalizedStrings();
     const tooltipId = useId();
@@ -129,7 +129,7 @@ const MoreButton: React.FC<{
     const [show, setShow] = React.useState(false);
 
     const items = React.useMemo<IContextualMenuItem[]>(() => {
-        return range(start, end + 1).map((p) => ({
+        return range(start, end + 1).map(p => ({
             key: p.toString(),
             text: p.toString(),
             onClick: () => onPageClick(p),
@@ -140,7 +140,7 @@ const MoreButton: React.FC<{
     const onMoreClick = React.useCallback(
         (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.preventDefault();
-            disabled || setShow((s) => !s);
+            disabled || setShow(s => !s);
         },
         [disabled],
     );
@@ -191,7 +191,7 @@ export interface IPaginateProps {
     disabled?: boolean;
 }
 
-export const Paginate: React.FC<IPaginateProps> = (props) => {
+export const Paginate: React.FC<IPaginateProps> = props => {
     const { count: itemCount = 0, takeCount = 1, tiny = false, disabled = false } = props;
 
     const isMiniScreen = useIsMiniScreen();
@@ -276,7 +276,7 @@ export const Paginate: React.FC<IPaginateProps> = (props) => {
                                 disabled={disabled}
                             />
                         )}
-                        {range(page - leftCount, page + rightCount, 1).map((p) => (
+                        {range(page - leftCount, page + rightCount, 1).map(p => (
                             <PageButton
                                 onClick={() => setPage(p)}
                                 isActive={p === page}

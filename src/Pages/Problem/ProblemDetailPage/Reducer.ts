@@ -10,7 +10,7 @@ const initialProblemDetailPageState: IProblemDetailPageState = {
     showTags: undefined,
 } as unknown as IProblemDetailPageState;
 
-export const problemDetailPageReducer = createReducer(initialProblemDetailPageState, (builder) => {
+export const problemDetailPageReducer = createReducer(initialProblemDetailPageState, builder => {
     builder
         .addCase(setProblemDetailPage, (state, action) => ({
             ...state,

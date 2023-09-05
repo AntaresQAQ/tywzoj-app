@@ -18,7 +18,7 @@ export const useAsyncFunctionResult = <F extends (...args: any[]) => Promise<any
         refCurrentRenderingProcessId.current = renderingProcessId;
 
         let finished = false;
-        f(...args).then((result) => {
+        f(...args).then(result => {
             finished = true;
             if (refCurrentRenderingProcessId.current === renderingProcessId) {
                 onResult(result);
@@ -36,7 +36,7 @@ export const useAsyncFunctionResult = <F extends (...args: any[]) => Promise<any
     const refFirstInvokePending = React.useRef<boolean>(false);
     if (refCurrentRenderingProcessId.current == null) {
         invoke(
-            (r) => {
+            r => {
                 if (refFirstInvokePending.current) {
                     // First invoke async
                     setResult(r);
@@ -61,7 +61,7 @@ export const useAsyncFunctionResult = <F extends (...args: any[]) => Promise<any
         }
 
         invoke(
-            (r) => {
+            r => {
                 setResult(r);
                 setPending(false);
             },

@@ -18,7 +18,7 @@ export interface IProblemSamplesProps {
     boxTitleClassName: string;
 }
 
-const SampleBox: React.FC<{ content: string }> = (props) => {
+const SampleBox: React.FC<{ content: string }> = props => {
     return (
         <React.Suspense fallback={<Spinner size={SpinnerSize.large} />}>
             <CodeBoxLazy code={props.content} />
@@ -26,7 +26,7 @@ const SampleBox: React.FC<{ content: string }> = (props) => {
     );
 };
 
-export const ProblemSamples: React.FC<IProblemSamplesProps> = (props) => {
+export const ProblemSamples: React.FC<IProblemSamplesProps> = props => {
     const { samples, boxContainerClassName, boxTitleClassName } = props;
 
     const ls = useLocalizedStrings();

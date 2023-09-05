@@ -2,7 +2,7 @@ import { memoizeFunction, mergeStyleSets } from "@fluentui/react";
 
 import { flex } from "@/Common/Styles/Flex";
 
-export const getProblemSamplesStyles = memoizeFunction((isMiddleScreen) =>
+export const getProblemSamplesStyles = memoizeFunction(isMiddleScreen =>
     mergeStyleSets({
         inOrOutContainer: {
             ...flex({

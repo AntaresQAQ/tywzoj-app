@@ -20,9 +20,9 @@ configureStore();
 
 const Wrapper: React.FC = () => {
     const dispatch = useAppDispatch();
-    const takeCount = useAppSelector((state) => state.pagination.userList);
+    const takeCount = useAppSelector(state => state.pagination.userList);
     const qsPage = usePage();
-    const sortBy = useSortBy<CE_SortBy>((state) => state.env.sortUserBy);
+    const sortBy = useSortBy<CE_SortBy>(state => state.env.sortUserBy);
     const skipCount = (qsPage - 1) * takeCount;
 
     const [loading, setLoading] = React.useState(false);

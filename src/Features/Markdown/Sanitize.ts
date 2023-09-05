@@ -9,7 +9,7 @@ delete whiteList.audio;
 delete whiteList.video;
 
 // Allow "style" and "class" attributes
-Object.keys(whiteList).forEach((tag) => {
+Object.keys(whiteList).forEach(tag => {
     whiteList[tag].push("style", "class");
 });
 

@@ -198,7 +198,7 @@ export const ProblemDetailPage: React.FC = () => {
                                     ) : (
                                         <div className={styles.tagsContainer}>
                                             {problemDetail.tags?.length
-                                                ? problemDetail.tags.map((tag) => (
+                                                ? problemDetail.tags.map(tag => (
                                                       <Label
                                                           key={tag.id}
                                                           backgroundColor={tag.type?.color || "#000"}

@@ -11,11 +11,11 @@ export interface IUserInformationRenderProps {
     content: string;
 }
 
-export const UserInformationRenderer: React.FC<IUserInformationRenderProps> = (props) => {
+export const UserInformationRenderer: React.FC<IUserInformationRenderProps> = props => {
     const { content = "" } = props;
     const styles = getUserInformationRendererStyles();
 
-    const renderMarkdown = useAppSelector((state) => state.env.renderMarkdownInUserBio);
+    const renderMarkdown = useAppSelector(state => state.env.renderMarkdownInUserBio);
 
     return renderMarkdown ? (
         <div>

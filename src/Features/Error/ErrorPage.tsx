@@ -36,7 +36,7 @@ const messageStyle = mergeStyles({
     },
 });
 
-export const ErrorPage: React.FC<IErrorPageProps> = (props) => {
+export const ErrorPage: React.FC<IErrorPageProps> = props => {
     const { code, onShow } = props;
     const ls = useLocalizedStrings();
     const dispatch = useAppDispatch();

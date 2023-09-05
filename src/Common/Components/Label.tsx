@@ -23,7 +23,7 @@ const getStyle = memoizeFunction((backgroundColor: string, borderColor: string) 
     }),
 );
 
-export const Label: React.FC<ILabelProps> = (props) => {
+export const Label: React.FC<ILabelProps> = props => {
     const { backgroundColor, borderColor, className } = props;
     const cls = getStyle(backgroundColor, borderColor ?? backgroundColor);
     const newProps = { ...props };

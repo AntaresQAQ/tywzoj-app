@@ -19,7 +19,7 @@ const initialRegisterPageState: IRegisterPageState = {
     sendCodeTime: 0,
 };
 
-export const registerPageReducer = createReducer(initialRegisterPageState, (builder) => {
+export const registerPageReducer = createReducer(initialRegisterPageState, builder => {
     builder.addCase(setRegisterPageState, (state, action) => ({
         ...state,
         ...action.payload,

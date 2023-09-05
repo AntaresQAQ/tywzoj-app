@@ -9,14 +9,14 @@ export interface IButtonAnchorProps extends Omit<IButtonProps, "href"> {
     href: string;
 }
 
-export const ButtonAnchor: React.FC<IButtonAnchorProps> = (props) => {
+export const ButtonAnchor: React.FC<IButtonAnchorProps> = props => {
     const navigate = useNavigate();
 
     return (
         <DefaultButton
             target="_blank"
             {...props}
-            onClick={(e) => {
+            onClick={e => {
                 if (props.onClick) {
                     props.onClick(e);
                     return;

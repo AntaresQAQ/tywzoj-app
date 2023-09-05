@@ -22,7 +22,7 @@ export interface IUserListPageProps {
     sortBy: CE_SortBy;
 }
 
-export const UserListPage: React.FC<IUserListPageProps> = (props) => {
+export const UserListPage: React.FC<IUserListPageProps> = props => {
     const { loading, takeCount, sortBy } = props;
 
     const dispatch = useAppDispatch();
@@ -52,7 +52,7 @@ export const UserListPage: React.FC<IUserListPageProps> = (props) => {
                         userList={userList}
                         sortBy={sortBy}
                         setSortBy={setSortBy}
-                        onClickUser={(user) =>
+                        onClickUser={user =>
                             navigate(
                                 makeUrl({
                                     page: CE_Page.UserDetail,

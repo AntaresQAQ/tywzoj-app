@@ -12,7 +12,7 @@ export interface ISendEmailVerificationCodeButtonProps {
     disabled?: boolean;
 }
 
-export const SendEmailVerificationCodeButton: React.FC<ISendEmailVerificationCodeButtonProps> = (props) => {
+export const SendEmailVerificationCodeButton: React.FC<ISendEmailVerificationCodeButtonProps> = props => {
     const { sendTime, delta, onSend, className, tabIndex, disabled } = props;
 
     const ls = useLocalizedStrings();

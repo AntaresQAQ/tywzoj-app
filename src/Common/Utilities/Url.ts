@@ -36,7 +36,7 @@ export function makeUrl<T extends CE_Page>(props: IMakeUrlProps<T>) {
             if (!path.startsWith("/") && !url.endsWith("/")) url += "/";
             url += path
                 .split("/")
-                .map((x) => encodeURIComponent(x.trim()))
+                .map(x => encodeURIComponent(x.trim()))
                 .join("/");
         }
     }
@@ -59,7 +59,7 @@ export function makeEmailUrl(address: string) {
 
 export function applyParams(page: string, params?: IParam) {
     params &&
-        Object.keys(params).forEach((key) => {
+        Object.keys(params).forEach(key => {
             page = page.replaceAll(`:${key}`, encodeURIComponent(`${params[key]}`.trim()));
         });
     return page;

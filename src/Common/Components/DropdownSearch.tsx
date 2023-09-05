@@ -34,7 +34,7 @@ const getStyles = memoizeFunction((width: number) =>
     }),
 );
 
-export const DropdownSearch: React.FC<IDropdownSearchProps> = (props) => {
+export const DropdownSearch: React.FC<IDropdownSearchProps> = props => {
     const { width, items, onSearch, onChange, maxHeight } = props;
 
     const styles = getStyles(width);
@@ -70,7 +70,7 @@ export const DropdownSearch: React.FC<IDropdownSearchProps> = (props) => {
                     tabFlag.current = false;
                     e.preventDefault();
                     items[e.shiftKey ? items.length - 1 : 0].focus();
-                    items[e.shiftKey ? 0 : items.length - 1].onkeydown = (ev) => {
+                    items[e.shiftKey ? 0 : items.length - 1].onkeydown = ev => {
                         if (ev.shiftKey === e.shiftKey && ev.key === "Tab") {
                             ev.preventDefault();
                             searchBoxRef.current?.getElementsByTagName?.("input")?.[0]?.focus();

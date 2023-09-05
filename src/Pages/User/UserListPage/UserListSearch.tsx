@@ -17,7 +17,7 @@ export const UserListSearch: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const items: IContextualMenuItem[] = searchResult.map((user) => ({
+    const items: IContextualMenuItem[] = searchResult.map(user => ({
         key: user.id.toString(),
         onRenderContent: () => (
             <Persona size={PersonaSize.size32} text={user.username} imageUrl={user.avatar && gravatar(user.avatar)} />

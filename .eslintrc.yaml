@@ -33,6 +33,7 @@ rules:
   arrow-parens:
     - error
     - as-needed
+    - requireForBlockBody: false
   curly:
     - error
     - multi-line

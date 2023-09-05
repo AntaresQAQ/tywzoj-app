@@ -56,7 +56,7 @@ export const ProblemFilePage: React.FC = () => {
     }, []);
     const uploadFiles = React.useCallback(
         (fileType: CE_ProblemFileType) => {
-            openUploadDialog((files) => dispatch(uploadFileAction(fileType, files)));
+            openUploadDialog(files => dispatch(uploadFileAction(fileType, files)));
         },
         [dispatch],
     );
@@ -85,7 +85,7 @@ export const ProblemFilePage: React.FC = () => {
                             <ProblemFileList
                                 files={testDataFiles}
                                 onDownload={downloadFiles}
-                                onDelete={(files) => deleteFiles(CE_ProblemFileType.TestData, files)}
+                                onDelete={files => deleteFiles(CE_ProblemFileType.TestData, files)}
                                 onUpload={() => uploadFiles(CE_ProblemFileType.TestData)}
                                 uploadTasks={testDataUploadTasks}
                             />
@@ -96,7 +96,7 @@ export const ProblemFilePage: React.FC = () => {
                         <ProblemFileList
                             files={additionalFiles}
                             onDownload={downloadFiles}
-                            onDelete={(files) => deleteFiles(CE_ProblemFileType.AdditionalFile, files)}
+                            onDelete={files => deleteFiles(CE_ProblemFileType.AdditionalFile, files)}
                             onUpload={() => uploadFiles(CE_ProblemFileType.AdditionalFile)}
                             uploadTasks={additionalFileUploadTasks}
                         />

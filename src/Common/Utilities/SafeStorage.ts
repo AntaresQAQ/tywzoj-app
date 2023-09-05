@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 let _localStorage: Storage;
 let _sessionStorage: Storage;
 let _noStorage: Storage;
@@ -70,15 +74,15 @@ export function supportsSessionStorage(): boolean {
 }
 
 class NoStorage implements Storage {
-    public length: number = 0; // eslint-disable-line
-    public clear(): void {} // eslint-disable-line
-    public getItem(key: string): any {} // eslint-disable-line
+    public length: number = 0;
+    public clear(): void {}
+    public getItem(key: string): any {}
+
     public key(index: number): string {
-        // eslint-disable-line
         return null;
     }
-    public removeItem(key: string): void {} // eslint-disable-line
-    public setItem(key: string, data: string): void {} // eslint-disable-line
-    [key: string]: any; // eslint-disable-line
+    public removeItem(key: string): void {}
+    public setItem(key: string, data: string): void {}
+    [key: string]: any;
     [index: number]: string;
 }
