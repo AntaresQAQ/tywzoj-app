@@ -7,6 +7,8 @@ import { IProblemFilePageState } from "./Types";
 const initialProblemFilePageState: IProblemFilePageState = {
   testDataFiles: [],
   additionalFiles: [],
+  additionalFileUploadTasks: [],
+  testDataUploadTasks: [],
 };
 
 export const problemFilePageReducer = createReducer(initialProblemFilePageState, builder => {

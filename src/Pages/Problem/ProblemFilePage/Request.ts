@@ -9,7 +9,6 @@ import {
   IPostProblemFileUploadRequestRequestBody,
   IPostProblemFileUploadRequestResponse,
 } from "./Types";
-import { CE_ProblemFileType } from "@/Common/ServerType/ProblemFile";
 
 export async function getProblemDetailRequestAsync(id: string) {
   return await requestAsync<IGetProblemDetailResponse, IGetProblemDetailRequestQuery>({

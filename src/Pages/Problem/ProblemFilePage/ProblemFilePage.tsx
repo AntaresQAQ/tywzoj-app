@@ -4,12 +4,14 @@ import * as React from "react";
 import { ButtonAnchor } from "@/Common/Components/ButtonAnchor";
 import { CE_Page } from "@/Common/Enums/PagePath";
 import { CE_ProblemFileType, IProblemFileEntityWithExtra } from "@/Common/ServerType/ProblemFile";
+import openUploadDialog from "@/Common/Utilities/UploadDialog";
 import { makeUrl } from "@/Common/Utilities/Url";
 import { setPageName } from "@/Features/Environment/Action";
 import { useIsMiddleScreen } from "@/Features/Environment/Hooks";
 import { useLocalizedStrings } from "@/Features/LocalizedString/Hooks";
 import { useAllowedManageProblem } from "@/Features/Permission/Hooks/Problem";
 import { useAppDispatch, useAppSelector } from "@/Features/Store";
+import { uploadFileAction } from "@/Pages/Problem/ProblemFilePage/Action";
 
 import { getProblemDetail } from "../ProblemDetailPage/Selectors";
 import { ProblemFileList } from "./ProblemFileList";
@@ -20,9 +22,6 @@ import {
   getProblemTestDataUploadTasks,
 } from "./Selectors";
 import { getProblemFilePageStyle } from "./Styles/ProblemFilePageStyles";
-import openUploadDialog from "@/Common/Utilities/UploadDialog";
-import { setProblemFilePage, uploadFileAction } from "@/Pages/Problem/ProblemFilePage/Action";
-import { CE_UploadingState } from "@/Pages/Problem/ProblemFilePage/Types";
 
 export const ProblemFilePage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -47,9 +46,11 @@ export const ProblemFilePage: React.FC = () => {
     dispatch(setPageName(title));
   }, [dispatch, title]);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const deleteFiles = React.useCallback((fileType: CE_ProblemFileType, files: IProblemFileEntityWithExtra[]) => {
     // TODO: delete files
   }, []);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const downloadFiles = React.useCallback((files: IProblemFileEntityWithExtra[]) => {
     // TODO: download files
   }, []);
