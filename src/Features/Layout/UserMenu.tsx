@@ -45,7 +45,7 @@ export const AppUserMenu: React.FC = () => {
   const currentUser = useCurrentUser();
   const theme = useTheme();
   const isMobileView = useIsMobileView();
-  const gravatar = useGravatar(40);
+  const gravatar = useGravatar(128);
   const navigate = useNavigate();
   const ls = useLocalizedStrings();
   const styles = getUserMenuStyles(theme, isMobileView);
