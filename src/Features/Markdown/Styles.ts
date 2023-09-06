@@ -45,5 +45,9 @@ export const getMarkdownContentStyles = memoizeFunction((theme: ITheme) =>
                 paddingLeft: "1.5em",
             },
         },
+
+        code: {
+            fontSize: 12,
+        },
     }),
 );
