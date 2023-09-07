@@ -42,4 +42,13 @@ export default defineConfig({
             css: false,
         }),
     ],
+    build: {
+        rollupOptions: {
+            output: {
+                chunkFileNames: "assets/[name].[hash].js",
+                entryFileNames: "[name].[hash].js",
+                assetFileNames: "assets/[name].[hash].[ext]",
+            },
+        }
+    },
 });

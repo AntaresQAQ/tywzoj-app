@@ -52,7 +52,9 @@ export const MarkdownRenderer: React.FC<IMarkdownRendererProps> = props => {
         renderAsync(content, noSanitize, patcher, themeName)
             .then(h => setHtml(h))
             .finally(() => setPending(false));
-    }, [content, noSanitize, patcher, themeName]);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [content]);
 
     // 3. This will be triggered after html updated.
     React.useEffect(() => {
@@ -83,7 +85,8 @@ export const MarkdownRenderer: React.FC<IMarkdownRendererProps> = props => {
         if (onPatchResult && wrapperElement) cleanCallbacks.push(onPatchResult(wrapperElement));
 
         return () => cleanCallbacks.forEach(fn => fn && fn());
-    }, [navigate, patcher, wrapperElement]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wrapperElement]);
 
     return pending ? (
         <Spinner size={SpinnerSize.large} />

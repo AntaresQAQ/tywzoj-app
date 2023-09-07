@@ -134,6 +134,18 @@
   value: Go to next page.
   description: A aria-label and tooltip for next page button.
 
+- name: COMMON_MARKDOWN_EDITOR_PRIVIEW
+  value: Preview
+  description: A string for markdown editor preview button.
+
+- name: COMMON_MARKDOWN_EDITOR_PRIVIEW_LOADING
+  value: Loading preview...
+  description: A string for markdown editor preview loading.
+
+- name: COMMON_MARKDOWN_EDITOR_EDITOR_LOADING
+  value: Loading editor...
+  description: A string for markdown editor editor loading.
+
 - name: USER_LEVEL_LABEL_TOOLTIP
   value: The user level is {0}.
   description: An aria-label and tool tip for user level label
